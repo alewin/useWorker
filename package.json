@@ -1,0 +1,40 @@
+{
+  "name": "useworker",
+  "version": "0.0.1",
+  "description": "useWorker() - React hook with web worker support ",
+  "author": "alewin",
+  "license": "MIT",
+  "repository": "alewin/useworker",
+  "main": "dist/index.js",
+  "keywords": [
+    "react",
+    "hooks",
+    "web worker",
+    "background"
+  ],
+  "scripts": {
+    "start": "parcel ./src/index.js"
+  },
+  "peerDependencies": {
+    "react": "^15.0.0 || ^16.0.0"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-eslint": "^10.0.3",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "eslint": "6.6.0",
+    "eslint-config-airbnb": "^18.0.1",
+    "eslint-config-prettier": "^6.10.0",
+    "eslint-plugin-import": "^2.20.1",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-prettier": "^3.1.2",
+    "eslint-plugin-react": "^7.18.3",
+    "parcel-bundler": "^1.12.3",
+    "prettier": "^1.19.1"
+  },
+  "dependencies": {
+    "react": "^16.12.0"
+  }
+}
