@@ -1,24 +1,70 @@
-# React hook - Web workers
+# useWorker() Hook
 
-> useWorker() - Use web workers with react hook
+![logo](logo.png)
+
+`useWorker()` - Use web workers with react hooks
+
+## Features
+
+- Run expensive function **without blocking UI**
+- Supports **Promises** pattern instead of event-messages
+- Clear **API**
+
+## Install
+
+```bash
+npm i @koale/useworker
+```
+
+```jsx
+import useWorker, { status } from "@koale/useworker";
+```
+
+## API
+
+```javascript
+const [workerFn, workerStatus, workerTerminate] = useWorker(fun);
+```
+
+| Value           | Type             | Description                                                 |
+| --------------- | ---------------- | ----------------------------------------------------------- |
+| fun             | Function         | The `pure function` to run with web workers                 |
+| workerFn        | Promise Function | The `function` that allows you to run `fun` with web worker |
+| workerStatus    | `@STATUS`        | The status of `workerFn` function                           |
+| workerTerminate | Function         | The function that allow to kill the worker                  |
+
+**@STATUS:**
+| Value            | Description                                                      |
+| ---------------- | ---------------------------------------------------------------- |
+| `STATUS_PENDING` | the web worker has been initialized, but has not yet been runned |
+| `STATUS_SUCCESS` | the web worker, has been executed correctly                      |
+| `STATUS_RUNNING` | the web worker, is running                                       |
+| `STATUS_ERROR`   | tthe web worker, ended with an error                             |
 
 ## Usage
 
 ```jsx
-import React, { Component } from 'react'
+import React from "react";
+import useWorker from "@koale/useworker";
 
-import useWorker from 'useworker'
+const numbers = [...Array(5000000)].map(e => ~~(Math.random() * 1000000));
+const sortNumbers = nums => nums.sort();
 
-class Example extends Component {
-  const fnWorker = useWorker(fn)
-  const result = await fnWorker()
+const Example = () => {
+  const [sortWorker] = useWorker(sortNumbers);
 
-  render () {
-    return (
-      <MyComponent />
-    )
-  }
-}
+  const runSort = async () => {
+    const result = await sortWorker(numbers); // non-blocking UI
+    console.log("End.");
+  };
+
+  return (
+    <button type="button" onClick={runSort}>
+      Run Sort
+    </button>
+  );
+};
+
 ```
 
 ## License

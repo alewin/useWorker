@@ -1,6 +1,6 @@
 import React from "react";
 import useWorker from "@koale/useworker";
-import logo from "./logo.svg";
+import logo from "./react.png";
 import "./App.css";
 
 const selectionSort = arr => {
@@ -24,7 +24,7 @@ const selectionSort = arr => {
 const bubleSort = array => {
   let swapp;
   let n = array.length - 1;
-  const sortedArray = [...array];
+  const sortedArray = array.slice();
   do {
     swapp = false;
     for (let index = 0; index < n; index++) {
