@@ -1,7 +1,7 @@
 import React from "react";
+import useWorker from "@koale/useworker";
 import logo from "./logo.svg";
 import "./App.css";
-import useWorker from "useWorker";
 
 const selectionSort = arr => {
   const len = arr.length;
@@ -118,7 +118,7 @@ function App() {
     dispatch({ type: "SET_SELECTION_SORT_WORKER_LOADING", loading: false });
     bSortKill();
     dispatch({ type: "SET_BUBLE_SORT_WORKER_LOADING", loading: false });
-  }
+  };
   return (
     <>
       <div className="App">

@@ -1,1 +1,2 @@
-export { useWorker as default } from "./src/useWorker";
+import useWorker from "./src/useWorker";
+export default useWorker

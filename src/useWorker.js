@@ -34,6 +34,9 @@ const useWorker = fn => {
       worker: newWorker,
       status: STATUS_PENDING
     };
+    return () => {
+      worker.current.terminate();
+    }
   }, []);
 
   const callWorker = React.useCallback(fnArgs => {
