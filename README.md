@@ -67,6 +67,10 @@ const Example = () => {
 
 ```
 
+## Example
+
+[![Edit use-worker-hook](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/exciting-jackson-b5ljt?fontsize=14&hidenavigation=1&theme=dark)
+
 ## License
 
 MIT © [alewin](https://github.com/alewin)
