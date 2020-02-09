@@ -82,7 +82,7 @@ function App() {
       lgoo.style.transform = `rotate(${turn % 360}deg)`;
     }, 100);
 
-    return infiniteLoop;
+    return () => clearInterval(infiniteLoop)
   }, []);
 
   const [bubleSortWorker, bSortStatus, bSortKill] = useWorker(bubleSort);
