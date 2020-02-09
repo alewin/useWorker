@@ -5,18 +5,15 @@
   "author": "alewin",
   "license": "MIT",
   "repository": "alewin/useworker",
-  "main": "dist/index.js",
+  "main": "index.js",
   "keywords": [
     "react",
     "hooks",
     "web worker",
     "background"
   ],
-  "scripts": {
-    "start": "parcel ./src/index.js"
-  },
   "peerDependencies": {
-    "react": "^15.0.0 || ^16.0.0"
+    "react": "^15.0.0"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",
