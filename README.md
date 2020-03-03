@@ -42,8 +42,7 @@ const [workerFn, workerStatus, workerTerminate] = useWorker(fun);
 
 ## CONSTS
 
-**@STATUS:**
-| Value            | Description                                                      |
+| STATUS           | Description                                                      |
 | ---------------- | ---------------------------------------------------------------- |
 | `STATUS_PENDING` | the web worker has been initialized, but has not yet been runned |
 | `STATUS_SUCCESS` | the web worker, has been executed correctly                      |
@@ -54,7 +53,7 @@ const [workerFn, workerStatus, workerTerminate] = useWorker(fun);
 
 Before you start using this [hook](https://www.npmjs.com/package/@koale/useworker), I suggest you to read the [Web Worker](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers) documentation.
 
-> Remember that your web worker function `fn` must be a function **without** dependencies, which **does not** produce side-effects, access the DOM and using that page's objects.
+> Remember that your web worker function `fn` must be a function **without** dependencies, which **does not** produce side-effects, access the DOM or use page's objects.
 
 ## Usage
 
