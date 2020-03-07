@@ -1,0 +1,27 @@
+{
+  "extends": [
+    "airbnb"
+  ],
+  "parser": "babel-eslint",
+  "env": {
+    "browser": true,
+    "es6": true
+  },
+  "rules": {
+    "semi": [
+      "error",
+      "never"
+    ],
+    "one-var": 0,
+    "import/prefer-default-export": 0,
+    "import/no-dynamic-require": 0,
+    "no-restricted-syntax": 0,
+    "react/destructuring-assignment": 0,
+    "import/named": 0,
+    "import/no-cycle": 0,
+    "arrow-parens": [
+      "error",
+      "as-needed"
+    ]
+  }
+}
