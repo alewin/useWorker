@@ -15,7 +15,7 @@ const useWorker = fn => {
   const worker = React.useRef({})
   const promise = React.useRef({})
 
-  React.useEffect(() => {
+  const generateWorker = () => {
     const newWorker = createWorker(fn)
     newWorker.onmessage = e => {
       const [status, result] = e.data
@@ -31,26 +31,30 @@ const useWorker = fn => {
           break
       }
     }
+    return newWorker
+  }
 
-    worker.current = newWorker
+  React.useEffect(() => {
+    worker.current = generateWorker()
   }, [])
 
-  const callWorker = React.useCallback(fnArgs => new Promise((resolve, reject) => {
+  const callWorker = React.useCallback((...fnArgs) => new Promise((resolve, reject) => {
     promise.current = {
       [PROMISE_RESOLVE]: resolve,
       [PROMISE_REJECT]: reject,
     }
 
-    worker.current.postMessage([[fnArgs]])
+    worker.current.postMessage([[...fnArgs]])
     setWorkerStatus(RUNNING)
   }), [])
 
   const killWorker = () => {
     worker.current.terminate()
     setWorkerStatus(PENDING)
+    worker.current = generateWorker()
   }
 
-  return [fnArgs => callWorker(fnArgs), workerStatus, killWorker]
+  return [(...fnArgs) => callWorker(...fnArgs), workerStatus, killWorker]
 }
 
 export default useWorker
