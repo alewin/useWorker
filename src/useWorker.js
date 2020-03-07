@@ -1,16 +1,13 @@
 import React from "react";
 import createWorker from "./lib/createWorker";
-import {
-  PROMISE_RESOLVE,
-  PROMISE_REJECT,
-  STATUS_SUCCESS,
-  STATUS_ERROR,
-  STATUS_PENDING,
-  STATUS_RUNNING
-} from "./lib/const";
+
+const PROMISE_RESOLVE = "resolve";
+const PROMISE_REJECT = "reject";
+const WORKER_STATUS = require("./lib/workerconst");
 
 const useWorker = fn => {
   const worker = React.useRef({});
+  const [workerStatus, setWorkerStatus] = React.useState(WORKER_STATUS.PENDING);
   const promise = React.useRef({});
 
   React.useEffect(() => {
@@ -19,24 +16,18 @@ const useWorker = fn => {
       const [status, result] = e.data;
 
       switch (status) {
-        case STATUS_SUCCESS:
+        case WORKER_STATUS.SUCCESS:
           promise.current[PROMISE_RESOLVE](result);
-          worker.current.status = STATUS_SUCCESS;
+          setWorkerStatus(WORKER_STATUS.SUCCESS);
           break;
         default:
           promise.current[PROMISE_REJECT](result);
-          worker.current.status = STATUS_ERROR;
+          setWorkerStatus(WORKER_STATUS.ERROR);
           break;
       }
     };
 
-    worker.current = {
-      worker: newWorker,
-      status: STATUS_PENDING
-    };
-    return () => {
-      worker.current.terminate();
-    }
+    worker.current = newWorker;
   }, []);
 
   const callWorker = React.useCallback(fnArgs => {
@@ -46,16 +37,18 @@ const useWorker = fn => {
         [PROMISE_REJECT]: reject
       };
 
-      worker.current.worker.postMessage([[fnArgs]]);
-      worker.current.status = STATUS_RUNNING;
+      worker.current.postMessage([[fnArgs]]);
+      setWorkerStatus(WORKER_STATUS.RUNNING);
     });
   }, []);
 
-  return [
-    fnArgs => callWorker(fnArgs),
-    worker.current.status,
-    () => worker.current.worker.terminate()
-  ];
+  const killWorker = () => {
+    worker.current.terminate();
+    setWorkerStatus(WORKER_STATUS.PENDING);
+  };
+
+  return [fnArgs => callWorker(fnArgs), workerStatus, killWorker];
 };
 
 export default useWorker;
+export { WORKER_STATUS };
