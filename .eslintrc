@@ -18,6 +18,7 @@
     "no-restricted-syntax": 0,
     "react/destructuring-assignment": 0,
     "import/named": 0,
+    "no-param-reassign": 0,
     "import/no-cycle": 0,
     "arrow-parens": [
       "error",
