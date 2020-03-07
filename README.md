@@ -1,13 +1,19 @@
-# useWorker() hook
+<h1 align="center">
+  <br>
+   <img src="logo.png" alt="ShopFully International Group" title="useWorker() Use web workers with react hook" />
+  <br>
+</h1>
 
-![logo](logo.png)
+<h2 align="center">
+  ⚛️ useWorker - Use web workers with react hooks
+</h2>
 
-`useWorker()` - Use web workers with react hooks
+<h3 align="center">
+  <img alt="GitHub" src="https://img.shields.io/npm/dm/@koale/useworker">
+  <img alt="size" src="https://img.shields.io/bundlephobia/minzip/@koale/useworker/1.0.0">
+  <img alt="GitHub" src="https://img.shields.io/npm/l/@koale/useworker">
+</h3>
 
-![npm](https://img.shields.io/npm/dy/@koale/useworker)
-![size](https://img.shields.io/bundlephobia/minzip/@koale/useworker/1.0.0)
-![NPM](https://img.shields.io/npm/l/@koale/useworker)
-![GitHub repo size](https://img.shields.io/github/repo-size/alewin/useworker)
 
 ---
 
@@ -55,12 +61,12 @@ const [workerFn, workerStatus, workerTerminate] = useWorker(fun);
 import { WORKER_STATUS } from "@koale/useworker";
 ```
 
-| WORKER_STATUS | Description                                                      |
-| ------------- | ---------------------------------------------------------------- |
-| `PENDING`     | the web worker has been initialized, but has not yet been runned |
-| `SUCCESS`     | the web worker, has been executed correctly                      |
-| `RUNNING`     | the web worker, is running                                       |
-| `ERROR`       | tthe web worker, ended with an error                             |
+| WORKER_STATUS | Type   | Description                                                      |
+| ------------- | ------ | ---------------------------------------------------------------- |
+| `PENDING`     | string | the web worker has been initialized, but has not yet been runned |
+| `SUCCESS`     | string | the web worker, has been executed correctly                      |
+| `RUNNING`     | string | the web worker, is running                                       |
+| `ERROR`       | string | the web worker, ended with an error                              |
 
 ---
 
