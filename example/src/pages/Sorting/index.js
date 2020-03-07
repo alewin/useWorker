@@ -2,6 +2,7 @@
 /* eslint-disable no-console */
 import React from "react";
 import useWorker, { WORKER_STATUS } from "@koale/useworker";
+import { useToasts } from "react-toast-notifications";
 
 import bubleSort from "./algorithms/bublesort";
 
@@ -10,6 +11,8 @@ const numbers = [...Array(50000)].map(() =>
 );
 
 function App() {
+  const { addToast } = useToasts();
+
   const [sortStatus, setSortStatus] = React.useState(false);
   const [sortWorker, sortWorkerStatus, killWorker] = useWorker(bubleSort);
 
@@ -19,14 +22,14 @@ function App() {
     setSortStatus(true);
     const result = bubleSort(numbers);
     setSortStatus(false);
-    alert("Finished: normal Sort");
+    addToast("Finished: Sort", { appearance: "success" });
     console.log("Buble Sort", result);
   };
 
   const onWorkerSortClick = () => {
     sortWorker(numbers).then(result => {
       console.log("Buble Sort useWorker()", result);
-      alert("Finished: Sort using useWorker.");
+      addToast("Finished: Sort using useWorker.", { appearance: "success" });
     });
   };
 
