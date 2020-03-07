@@ -1,7 +1,7 @@
 /* eslint-disable no-alert */
 /* eslint-disable no-console */
 import React from "react";
-import useWorker, { WORKER_STATUS } from "../../useWorker";
+import useWorker, { WORKER_STATUS } from "@koale/useworker";
 
 import bubleSort from "./algorithms/bublesort";
 
