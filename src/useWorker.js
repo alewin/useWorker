@@ -1,61 +1,56 @@
-import React from "react";
-import createWorker from "./lib/createWorker";
+import React from 'react'
+import createWorker from './lib/createWorker'
 import {
-  PROMISE_RESOLVE,
-  PROMISE_REJECT,
-  STATUS_SUCCESS,
-  STATUS_ERROR,
-  STATUS_PENDING,
-  STATUS_RUNNING
-} from "./lib/const";
+  PENDING,
+  SUCCESS,
+  ERROR,
+  RUNNING,
+} from './lib/workerconst'
+
+const PROMISE_RESOLVE = 'resolve'
+const PROMISE_REJECT = 'reject'
 
 const useWorker = fn => {
-  const worker = React.useRef({});
-  const promise = React.useRef({});
+  const [workerStatus, setWorkerStatus] = React.useState(PENDING)
+  const worker = React.useRef({})
+  const promise = React.useRef({})
 
   React.useEffect(() => {
-    const newWorker = createWorker(fn);
+    const newWorker = createWorker(fn)
     newWorker.onmessage = e => {
-      const [status, result] = e.data;
+      const [status, result] = e.data
 
       switch (status) {
-        case STATUS_SUCCESS:
-          promise.current[PROMISE_RESOLVE](result);
-          worker.current.status = STATUS_SUCCESS;
-          break;
+        case SUCCESS:
+          promise.current[PROMISE_RESOLVE](result)
+          setWorkerStatus(SUCCESS)
+          break
         default:
-          promise.current[PROMISE_REJECT](result);
-          worker.current.status = STATUS_ERROR;
-          break;
+          promise.current[PROMISE_REJECT](result)
+          setWorkerStatus(ERROR)
+          break
       }
-    };
-
-    worker.current = {
-      worker: newWorker,
-      status: STATUS_PENDING
-    };
-    return () => {
-      worker.current.terminate();
     }
-  }, []);
 
-  const callWorker = React.useCallback(fnArgs => {
-    return new Promise((resolve, reject) => {
-      promise.current = {
-        [PROMISE_RESOLVE]: resolve,
-        [PROMISE_REJECT]: reject
-      };
+    worker.current = newWorker
+  }, [])
 
-      worker.current.worker.postMessage([[fnArgs]]);
-      worker.current.status = STATUS_RUNNING;
-    });
-  }, []);
+  const callWorker = React.useCallback(fnArgs => new Promise((resolve, reject) => {
+    promise.current = {
+      [PROMISE_RESOLVE]: resolve,
+      [PROMISE_REJECT]: reject,
+    }
 
-  return [
-    fnArgs => callWorker(fnArgs),
-    worker.current.status,
-    () => worker.current.worker.terminate()
-  ];
-};
+    worker.current.postMessage([[fnArgs]])
+    setWorkerStatus(RUNNING)
+  }), [])
 
-export default useWorker;
+  const killWorker = () => {
+    worker.current.terminate()
+    setWorkerStatus(PENDING)
+  }
+
+  return [fnArgs => callWorker(fnArgs), workerStatus, killWorker]
+}
+
+export default useWorker
