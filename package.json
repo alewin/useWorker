@@ -7,10 +7,11 @@
   "unpkg": "dist/index.umd.js",
   "scripts": {
     "build": "microbundle src/index.js",
+    "dev": "microbundle watch",
     "eslint": "eslint src/ --ext .js --ext .jsx"
   },
   "peerDependencies": {
-    "react": "^15.0.0"
+    "react": "^16.8.0"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",

@@ -11,8 +11,8 @@ const PROMISE_RESOLVE = 'resolve'
 const PROMISE_REJECT = 'reject'
 
 const useWorker = fn => {
-  const worker = React.useRef({})
   const [workerStatus, setWorkerStatus] = React.useState(PENDING)
+  const worker = React.useRef({})
   const promise = React.useRef({})
 
   React.useEffect(() => {
