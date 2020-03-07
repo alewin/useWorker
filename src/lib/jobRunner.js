@@ -1,14 +1,14 @@
-import WORKER_STATUS from './workerconst'
+import { SUCCESS, ERROR } from "./workerconst";
 
 const jobRunner = userFunc => e => {
   const [userFuncArgs] = e.data;
 
   return Promise.resolve(userFunc(...userFuncArgs))
     .then(result => {
-      postMessage([WORKER_STATUS.SUCCESS, result]);
+      postMessage([SUCCESS, result]);
     })
     .catch(error => {
-      postMessage([WORKER_STATUS.ERROR, error]);
+      postMessage([ERROR, error]);
     });
 };
 
