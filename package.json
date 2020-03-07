@@ -1,6 +1,6 @@
 {
   "name": "@koale/useworker",
-  "version": "0.0.2",
+  "version": "1.0.0",
   "main": "dist/index.js",
   "source": "src/index.js",
   "module": "dist/index.module.js",
