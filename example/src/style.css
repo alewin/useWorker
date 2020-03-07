@@ -59,3 +59,9 @@ code {
   color: white;
   font-size: 50px;
 }
+
+.App-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
