@@ -1,17 +1,14 @@
 {
   "name": "@koale/useworker",
   "version": "0.0.2",
-  "description": "useWorker() - Web worker React hook",
-  "author": "alewin",
-  "license": "MIT",
-  "repository": "alewin/useworker",
-  "main": "index.js",
-  "keywords": [
-    "react",
-    "hooks",
-    "web worker",
-    "background"
-  ],
+  "main": "dist/index.js",
+  "source": "src/index.js",
+  "module": "dist/index.module.js",
+  "unpkg": "dist/index.umd.js",
+  "scripts": {
+    "build": "microbundle src/index.js",
+    "eslint": "eslint src/ --ext .js --ext .jsx"
+  },
   "peerDependencies": {
     "react": "^15.0.0"
   },
@@ -30,5 +27,15 @@
     "eslint-plugin-react": "^7.18.3",
     "parcel-bundler": "^1.12.3",
     "prettier": "^1.19.1"
-  }
+  },
+  "description": "useWorker() - Web worker React hook",
+  "author": "alewin",
+  "license": "MIT",
+  "repository": "alewin/useworker",
+  "keywords": [
+    "react",
+    "hooks",
+    "web worker",
+    "background"
+  ]
 }
