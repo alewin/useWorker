@@ -1,10 +1,10 @@
 import jobRunner from './jobRunner'
 
-const createWorker = fn => {
+const createWorkerBlobUrl = fn => {
   const blobCode = `onmessage=(${jobRunner})(${fn})`
   const blob = new Blob([blobCode], { type: 'text/javascript' })
   const url = URL.createObjectURL(blob)
-  return new Worker(url)
+  return url
 }
 
-export default createWorker
+export default createWorkerBlobUrl
