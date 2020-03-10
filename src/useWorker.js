@@ -1,5 +1,7 @@
+/* eslint-disable no-underscore-dangle */
+/* eslint-disable no-console */
 import React from 'react'
-import createWorker from './lib/createWorker'
+import createWorkerBlobUrl from './lib/createWorkerBlobUrl'
 import {
   PENDING,
   SUCCESS,
@@ -15,30 +17,37 @@ const useWorker = fn => {
   const worker = React.useRef({})
   const promise = React.useRef({})
 
+  const killWorker = (status = PENDING) => {
+    worker.current.terminate()
+    URL.revokeObjectURL(worker.current._url)
+    promise.current = {}
+    worker.current = {}
+    setWorkerStatus(status)
+  }
+
   const generateWorker = () => {
-    const newWorker = createWorker(fn)
+    const blobUrl = createWorkerBlobUrl(fn)
+    const newWorker = new Worker(blobUrl)
+    newWorker._url = blobUrl
+
     newWorker.onmessage = e => {
       const [status, result] = e.data
 
       switch (status) {
         case SUCCESS:
           promise.current[PROMISE_RESOLVE](result)
-          setWorkerStatus(SUCCESS)
+          killWorker(SUCCESS)
           break
         default:
           promise.current[PROMISE_REJECT](result)
-          setWorkerStatus(ERROR)
+          killWorker(ERROR)
           break
       }
     }
     return newWorker
   }
 
-  React.useEffect(() => {
-    worker.current = generateWorker()
-  }, [])
-
-  const callWorker = React.useCallback((...fnArgs) => new Promise((resolve, reject) => {
+  const callWorker = (...fnArgs) => new Promise((resolve, reject) => {
     promise.current = {
       [PROMISE_RESOLVE]: resolve,
       [PROMISE_REJECT]: reject,
@@ -46,15 +55,19 @@ const useWorker = fn => {
 
     worker.current.postMessage([[...fnArgs]])
     setWorkerStatus(RUNNING)
-  }), [])
+  })
 
-  const killWorker = () => {
-    worker.current.terminate()
-    setWorkerStatus(PENDING)
+  const workerHook = (...fnArgs) => {
+    if (workerStatus === RUNNING) {
+      console.error('[useWorker] You can only run one instance of the worker at a time, if you want to run more than one in parallel, create another instance with the hook useWorker(). Read more: https://github.com/alewin/useWorker')
+      return Promise.reject()
+    }
+
     worker.current = generateWorker()
+    return callWorker(...fnArgs)
   }
 
-  return [(...fnArgs) => callWorker(...fnArgs), workerStatus, killWorker]
+  return [workerHook, workerStatus, killWorker]
 }
 
 export default useWorker
