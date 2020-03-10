@@ -12,7 +12,7 @@ import {
 const PROMISE_RESOLVE = 'resolve'
 const PROMISE_REJECT = 'reject'
 
-const useWorker = fn => {
+const useWorker = (fn, options = {}) => {
   const [workerStatus, setWorkerStatus] = React.useState(PENDING)
   const worker = React.useRef({})
   const promise = React.useRef({})
@@ -26,7 +26,8 @@ const useWorker = fn => {
   }
 
   const generateWorker = () => {
-    const blobUrl = createWorkerBlobUrl(fn)
+    const { dependencies } = options
+    const blobUrl = createWorkerBlobUrl(fn, dependencies)
     const newWorker = new Worker(blobUrl)
     newWorker._url = blobUrl
 
