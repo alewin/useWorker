@@ -7,26 +7,42 @@ import {
   SUCCESS,
   ERROR,
   RUNNING,
-} from './lib/workerconst'
+  TIMEOUT_EXPIRED,
+} from './lib/status'
 
 const PROMISE_RESOLVE = 'resolve'
 const PROMISE_REJECT = 'reject'
+const DEFAULT_OPTIONS = {
+  timeout: undefined,
+  dependencies: [],
+}
 
-const useWorker = (fn, options = {}) => {
+const useWorker = (fn, options = DEFAULT_OPTIONS) => {
   const [workerStatus, setWorkerStatus] = React.useState(PENDING)
   const worker = React.useRef({})
   const promise = React.useRef({})
+  const timeoutId = React.useRef({})
 
   const killWorker = (status = PENDING) => {
-    worker.current.terminate()
-    URL.revokeObjectURL(worker.current._url)
-    promise.current = {}
-    worker.current = {}
-    setWorkerStatus(status)
+    if (Object.keys(worker.current).length !== 0) {
+      worker.current.terminate()
+      URL.revokeObjectURL(worker.current._url)
+      promise.current = {}
+      worker.current = {}
+      clearTimeout(timeoutId.current)
+      setWorkerStatus(status)
+    }
   }
 
+  React.useEffect(() => () => {
+    killWorker()
+  }, [])
+
   const generateWorker = () => {
-    const { dependencies } = options
+    const {
+      dependencies = DEFAULT_OPTIONS.dependencies,
+      timeout = DEFAULT_OPTIONS.timeout,
+    } = options
     const blobUrl = createWorkerBlobUrl(fn, dependencies)
     const newWorker = new Worker(blobUrl)
     newWorker._url = blobUrl
@@ -44,6 +60,11 @@ const useWorker = (fn, options = {}) => {
           killWorker(ERROR)
           break
       }
+    }
+    if (timeout) {
+      timeoutId.current = setTimeout(() => {
+        killWorker(TIMEOUT_EXPIRED)
+      }, timeout)
     }
     return newWorker
   }
