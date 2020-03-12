@@ -1,7 +1,7 @@
 module.exports = {
   title: 'useWorker',
   tagline: 'Use web worker with github hooks',
-  url: 'https://github.com/alewin/useworker',
+  url: 'https://useworker.netlify.com/',
   baseUrl: '/',
   favicon: 'img/favicon.ico',
   organizationName: 'alewin', // Usually your GitHub org/user name.
