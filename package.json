@@ -1,12 +1,13 @@
 {
   "name": "@koale/useworker",
-  "version": "1.2.1",
+  "version": "1.2.1a",
   "main": "dist/index.js",
   "source": "src/index.js",
   "module": "dist/index.module.js",
   "unpkg": "dist/index.umd.js",
   "scripts": {
     "build": "microbundle src/index.js",
+    "publish": "npm publish dist",
     "dev": "microbundle watch",
     "eslint": "eslint src/ --ext .js --ext .jsx"
   },
