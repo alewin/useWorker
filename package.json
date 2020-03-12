@@ -1,12 +1,12 @@
 {
   "name": "@koale/useworker",
-  "version": "2.0.0",
-  "main": "dist/index.js",
+  "version": "2.0.1",
+  "main": "index.js",
   "source": "src/index.js",
-  "module": "dist/index.module.js",
-  "unpkg": "dist/index.umd.js",
+  "module": "index.module.js",
+  "unpkg": "index.umd.js",
   "files": [
-    "dist"
+    "dist/*"
   ],
   "scripts": {
     "build": "microbundle src/index.js && npm run copy",
