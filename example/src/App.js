@@ -4,6 +4,7 @@ import { ToastProvider } from "react-toast-notifications";
 
 import SortingPage from "./pages/Sorting";
 import CsvPage from "./pages/Csv";
+import ExternalScriptsPage from "./pages/ExternalScripts";
 import logo from "./react.png";
 import "./style.css";
 
@@ -38,6 +39,11 @@ export default function App() {
                   Csv Demo
                 </Link>
               </li>
+              <li>
+                <Link style={{ color: "white" }} to="/external">
+                  External Scripts
+                </Link>
+              </li>
             </ul>
           </header>
           <hr />
@@ -49,6 +55,9 @@ export default function App() {
             </Route>
             <Route path="/csv">
               <CsvPage />
+            </Route>
+            <Route path="/external">
+              <ExternalScriptsPage />
             </Route>
           </Switch>
         </div>

@@ -10,10 +10,9 @@
 
 <h3 align="center">
   <img alt="GitHub" src="https://img.shields.io/npm/dm/@koale/useworker">
-  <img alt="size" src="https://img.shields.io/bundlephobia/minzip/@koale/useworker/1.0.0">
+  <img alt="size" src="https://img.shields.io/bundlephobia/minzip/@koale/useworker/1.2.0">
   <img alt="GitHub" src="https://img.shields.io/npm/l/@koale/useworker">
 </h3>
-
 
 ---
 
@@ -61,12 +60,13 @@ const [workerFn, workerStatus, workerTerminate] = useWorker(fun);
 import { WORKER_STATUS } from "@koale/useworker";
 ```
 
-| WORKER_STATUS | Type   | Description                                                      |
-| ------------- | ------ | ---------------------------------------------------------------- |
-| `PENDING`     | string | the web worker has been initialized, but has not yet been runned |
-| `SUCCESS`     | string | the web worker, has been executed correctly                      |
-| `RUNNING`     | string | the web worker, is running                                       |
-| `ERROR`       | string | the web worker, ended with an error                              |
+| WORKER_STATUS     | Type   | Description                                                      |
+| ----------------- | ------ | ---------------------------------------------------------------- |
+| `PENDING`         | string | the web worker has been initialized, but has not yet been runned |
+| `SUCCESS`         | string | the web worker, has been executed correctly                      |
+| `RUNNING`         | string | the web worker, is running                                       |
+| `ERROR`           | string | the web worker, ended with an error                              |
+| `TIMEOUT_EXPIRED` | string | The web worker was killed because the defined timeout expired.   |
 
 ---
 
@@ -74,7 +74,15 @@ import { WORKER_STATUS } from "@koale/useworker";
 
 Before you start using this [hook](https://www.npmjs.com/package/@koale/useworker), I suggest you to read the [Web Worker](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers) documentation.
 
-> Remember that your web worker function `fn` must be a function **without** dependencies, which **does not** produce side-effects, access the DOM or use page's objects.
+> Remember that your web worker function `fn` must be a function **without** local dependencies, which **does not** produce side-effects.
+
+- The web worker **don't** have access to the document, and window object
+
+```javascript
+  document.querySelectoAll('#demoId');
+```
+
+- The web worker **cannot** return a function because the response is serialized.
 
 ---
 
@@ -118,7 +126,10 @@ More examples: https://github.com/alewin/useWorker/tree/develop/example
 
 - [x] Kill Web Worker
 - [x] Reactive web worker status
-- [ ] import and use external script inside `useWorker` function
+- [x] Add timeout option
+- [x] import and use external script inside `useWorker` function
+- [ ] import and use local script inside `useWorker` function
+- [ ] run multiple instance of the worker
 
 ---
 
