@@ -5,10 +5,13 @@
   "source": "src/index.js",
   "module": "dist/index.module.js",
   "unpkg": "dist/index.umd.js",
+  "files": [
+    "dist"
+  ],
   "scripts": {
-    "build": "microbundle src/index.js",
-    "publish": "npm publish dist",
+    "build": "microbundle src/index.js && npm run copy",
     "dev": "microbundle watch",
+    "copy": "cp package.json dist/ && cp README.md dist/",
     "eslint": "eslint src/ --ext .js --ext .jsx"
   },
   "peerDependencies": {
