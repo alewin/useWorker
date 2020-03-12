@@ -10,7 +10,7 @@
 
 <h3 align="center">
   <img alt="GitHub" src="https://img.shields.io/npm/dm/@koale/useworker">
-  <img alt="size" src="https://img.shields.io/bundlephobia/minzip/@koale/useworker/1.0.0">
+  <img alt="size" src="https://img.shields.io/bundlephobia/minzip/@koale/useworker/1.2.0">
   <img alt="GitHub" src="https://img.shields.io/npm/l/@koale/useworker">
 </h3>
 
