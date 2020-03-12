@@ -6,6 +6,7 @@
 
 <h2 align="center">
   ⚛️ useWorker - Use web workers with react hooks
+  https://useworker.netlify.com/docs/introduction
 </h2>
 
 <h3 align="center">
@@ -40,6 +41,12 @@ import useWorker, { WORKER_STATUS } from "@koale/useworker";
 ```
 
 ---
+
+## Docs
+> https://useworker.netlify.com/docs/introduction
+
+---
+
 
 ## API
 
