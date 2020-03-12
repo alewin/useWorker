@@ -7,6 +7,7 @@
   "unpkg": "dist/index.umd.js",
   "scripts": {
     "build": "microbundle src/index.js",
+    "publish": "npm publish dist",
     "dev": "microbundle watch",
     "eslint": "eslint src/ --ext .js --ext .jsx"
   },
