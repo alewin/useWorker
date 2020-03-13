@@ -6,6 +6,8 @@
 
 <h2 align="center">
   ⚛️ useWorker - Use web workers with react hooks
+  <BR>
+   EXPERIMENTAL LIBRARY DO NOT USE UNTIL IT IS COMPLETED
   https://useworker.netlify.com/docs/introduction
 </h2>
 
