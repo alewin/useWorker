@@ -1,5 +1,7 @@
+src/
 node_modules/
 .cache/
 example/
 website/
 .editorconfig
+logo.png

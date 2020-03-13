@@ -1,7 +1,7 @@
 /* eslint-disable no-alert */
 /* eslint-disable no-console */
 import React from "react";
-import useWorker, { WORKER_STATUS } from "@koale/useworker";
+import { useWorker, WORKER_STATUS } from "@koale/useworker";
 import { useToasts } from "react-toast-notifications";
 
 import csvToJson from "./parser/csvToJson";

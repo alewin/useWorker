@@ -6,7 +6,7 @@ title: useWorker()
 ## Import
 
 ```javascript
-import useWorker from "@koale/useworker";
+import { useWorker } from "@koale/useworker";
 ```
 
 ## Usage
@@ -32,7 +32,7 @@ to view the values of `WORKER_STATUS` click here: [Status API](./workerstatus.md
 ### Options
 
 ```javascript
-import useWorker from "@koale/useworker";
+import { useWorker } from "@koale/useworker";
 const [workerFn, workerStatus, workerTerminate] = useWorker(fn, {
   timeout: undefined,
   dependencies: []
@@ -49,7 +49,7 @@ const [workerFn, workerStatus, workerTerminate] = useWorker(fn, {
 ## Options Example
 
 ```javascript
-import useWorker from "@koale/useworker";
+import { useWorker } from "@koale/useworker";
 
 const fn = dates => dates.sort(dateFns.compareAsc)
 
