@@ -11,9 +11,9 @@
 </h2>
 
 <h3 align="center">
-  <img alt="GitHub" src="https://img.shields.io/npm/dm/@koale/useworker">
-  <img alt="size" src="https://img.shields.io/bundlephobia/minzip/@koale/useworker/2.0.6">
-  <img alt="GitHub" src="https://img.shields.io/npm/l/@koale/useworker">
+  <img alt="GitHub" src="https://img.shields.io/npm/dm/@koale/useworker" />
+  <img alt="size" src="https://img.shields.io/bundlephobia/minzip/@koale/useworker/2.0.6" />
+  <img alt="GitHub" src="https://img.shields.io/npm/l/@koale/useworker" />
 </h3>
 
 ---
@@ -117,3 +117,7 @@ The library is experimental so if you find a **bug** or would like to request a 
 ## License
 
 MIT © [alewin](https://github.com/alewin)
+
+---
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/833cd6b2-6e74-47f0-aa85-5f14aea8ea35/deploy-status)](https://app.netlify.com/sites/useworker/deploys)
