@@ -8,7 +8,7 @@ title: Usage
 the useWorker function is a hook and accepts as first parameter the function to execute inside the web worker
 
 ```javascript
-import useWorker from "@koale/useworker";
+import { useWorker } from "@koale/useworker";
 ```
 
 **useWorker()** returns an array containing 3 values:
@@ -29,7 +29,7 @@ In this example the hook is used to sort 5000000 numbers. all sorting operations
 ```javascript
 
 import React from "react";
-import useWorker from "@koale/useworker";
+import { useWorker } from "@koale/useworker";
 
 const numbers = [...Array(5000000)].map(e => ~~(Math.random() * 1000000));
 const sortNumbers = nums => nums.sort();

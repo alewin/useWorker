@@ -17,7 +17,7 @@ const DEFAULT_OPTIONS = {
   dependencies: [],
 }
 
-const useWorker = (fn, options = DEFAULT_OPTIONS) => {
+export const useWorker = (fn, options = DEFAULT_OPTIONS) => {
   const [workerStatus, setWorkerStatus] = React.useState(PENDING)
   const worker = React.useRef({})
   const promise = React.useRef({})
@@ -91,5 +91,3 @@ const useWorker = (fn, options = DEFAULT_OPTIONS) => {
 
   return [workerHook, workerStatus, killWorker]
 }
-
-export default useWorker

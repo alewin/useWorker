@@ -16,7 +16,7 @@ npm i @koale/useworker
 To import the package:
 
 ```jsx
-import useWorker, { WORKER_STATUS } from "@koale/useworker";
+import { useWorker, WORKER_STATUS } from "@koale/useworker";
 ```
 
 :::tip

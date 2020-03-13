@@ -37,12 +37,13 @@ npm i @koale/useworker
 ## Import
 
 ```jsx
-import useWorker, { WORKER_STATUS } from "@koale/useworker";
+import { useWorker, WORKER_STATUS } from "@koale/useworker";
 ```
 
 ---
 
 ## Docs
+
 > https://useworker.netlify.com/docs/introduction
 
 ---
@@ -97,7 +98,7 @@ Before you start using this [hook](https://www.npmjs.com/package/@koale/useworke
 
 ```jsx
 import React from "react";
-import useWorker from "@koale/useworker";
+import { useWorker } from "@koale/useworker";
 
 const numbers = [...Array(5000000)].map(e => ~~(Math.random() * 1000000));
 const sortNumbers = nums => nums.sort();
