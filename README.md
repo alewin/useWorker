@@ -1,6 +1,6 @@
 <h1 align="center">
   <br>
-   <img src="logo.png" alt="ShopFully International Group" title="useWorker() Use web workers with react hook" />
+   <img src="logo.png" alt="useWorker" title="useWorker() Use web workers with react hook" />
   <br>
 </h1>
 
@@ -8,6 +8,9 @@
   ⚛️ useWorker - Use web workers with react hooks
   <BR>
   http://bit.ly/useWorker
+      <a href="https://twitter.com/intent/tweet?text=useWorker - Use web workers with react hooks&url=https://github.com/alewin/useWorker&via=alessiokoci&hashtags=react,useworker,hooks,javascript">
+    <img alt="Tweet" src="https://img.shields.io/twitter/url/http/shields.io.svg?style=social" />
+  </a>
 </h2>
 
 <h3 align="center">
@@ -18,7 +21,7 @@
 
 ---
 
-## Features
+## 🎨 Features
 
 - Run expensive function **without blocking UI** ([Show live gif](https://github.com/alewin/useWorker/issues/2))
 - Supports **Promises** pattern instead of event-messages
@@ -27,15 +30,15 @@
 
 ---
 
-## [Install](https://www.npmjs.com/package/@koale/useworker)
+## 💾 [Install](https://www.npmjs.com/package/@koale/useworker)
 
 ```bash
-npm i @koale/useworker
+npm install --save @koale/useworker
 ```
 
 ---
 
-## Import
+## 🔨 Import
 
 ```jsx
 import { useWorker, WORKER_STATUS } from "@koale/useworker";
@@ -43,25 +46,31 @@ import { useWorker, WORKER_STATUS } from "@koale/useworker";
 
 ---
 
-## Docs
+## 📙 Documents
 
-> http://bit.ly/useWorker
-
----
-
-## Demo
-
-> https://icji4.csb.app/
+* [Getting Started](https://useworker.netlify.com/docs/introduction/)
+* [APIs](https://useworker.netlify.com/docs/api-useworker)
+* [Examples](https://useworker.netlify.com/docs/examples/examples-sort)
+* [Limitations](https://useworker.netlify.com/docs/limitations)
 
 ---
 
-## Web Workers
+## 🍞 Demo
+
+* [Sorting](https://icji4.csb.app/sorting): Sorting 50000 random numbers
+* [Csv](https://icji4.csb.app/csv): Generate Csv, Parse Csv, Convert to JSON 
+* [External Dependencies](https://icji4.csb.app/external) Use external scripts inside WebWorkers
+
+
+---
+
+## ⚙ Web Workers
 
 Before you start using this [hook](https://www.npmjs.com/package/@koale/useworker), I suggest you to read the [Web Worker](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers) documentation.
 
 ---
 
-## Usage
+## 🐾 Usage
 
 ```jsx
 import React from "react";
@@ -89,7 +98,7 @@ const Example = () => {
 
 ---
 
-## Examples
+## 🐾 Examples
 
 [![Edit white-glitter-icji4](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/white-glitter-icji4?fontsize=14&hidenavigation=1&theme=dark)
 
@@ -97,7 +106,7 @@ More examples: https://github.com/alewin/useWorker/tree/develop/example
 
 ---
 
-## Roadmap
+## 🔧 Roadmap
 
 - [x] Kill Web Worker
 - [x] Reactive web worker status
@@ -108,13 +117,13 @@ More examples: https://github.com/alewin/useWorker/tree/develop/example
 
 ---
 
-## Contribute? Bug? New Feature?
+## 🌏 Contribute? Bug? New Feature?
 
 The library is experimental so if you find a **bug** or would like to request a new **feature**, open an [issue](https://github.com/alewin/useWorker/issues/new)
 
 ---
 
-## License
+## 📜 License
 
 MIT © [alewin](https://github.com/alewin)
 
