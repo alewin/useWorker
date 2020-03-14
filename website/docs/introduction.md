@@ -13,7 +13,7 @@ This library allows you to run the expensive function without blocking the user 
 
 The javascript language is **single threaded**, so if we're executing an expensive code, we should wait for it, before continuing to execute other portions of code.
 Some javascript features are offered by the browser, through the **Web API** (XMLHttpRequest, EventListener, Worker...).
-In this way many features can be run in "**parallel**" without blocking our javscript code
+In this way, many features can be run in "**parallel**" without blocking our javascript code
 
 ## Features
 
@@ -24,7 +24,7 @@ In this way many features can be run in "**parallel**" without blocking our javs
 - Garbage collector web worker instance
 - set a timeout for the web worker
 
-the most useful feature of `useWorker`,  however, is the *simplicity*, in this paragraph you can see the difference between using webworkers via pure javascript and via `useWorker()`.
+the most useful feature of `useWorker`,  however, is the *simplicity*, in this paragraph, you can see the difference between using web workers via pure javascript and via `useWorker()`.
 
 ### Without using useWorker
 
@@ -50,7 +50,7 @@ webworker.addEventListener("message", function(event) {
 });
 ```
 
-###  Using useWorker
+### Using useWorker
 
 `index.js`
 

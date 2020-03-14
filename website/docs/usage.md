@@ -5,7 +5,7 @@ title: Usage
 
 ## useWorker
 
-the useWorker function is a hook and accepts as first parameter the function to execute inside the web worker
+the `useWorker` function is a hook and accepts as first parameter the function to execute inside the web worker
 
 ```javascript
 import { useWorker } from "@koale/useworker";
@@ -24,7 +24,7 @@ const [sortWorker, sortStatus, killSortWorker] = useWorker(sortNumbers);
 
 ## Example
 
-In this example the hook is used to sort 5000000 numbers. all sorting operations using web workers, will not block the UI:
+In this example, the hook is used to sort 5000000 numbers. all sorting operations using web workers, will not block the UI:
 
 ```javascript
 

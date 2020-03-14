@@ -8,7 +8,7 @@ title: Installation
 The package is available on [npm](https://www.npmjs.com/package/@koale/useworker)
 
 ```bash
-npm i @koale/useworker
+npm install --save @koale/useworker
 ```
 
 ## Import

@@ -7,6 +7,10 @@ module.exports = {
   organizationName: 'alewin',
   projectName: 'useWorker',
   themeConfig: {
+    googleAnalytics: {
+      trackingID: 'UA-160695625-2',
+      anonymizeIP: true,
+    },
     navbar: {
       title: 'useWorker',
       logo: {
