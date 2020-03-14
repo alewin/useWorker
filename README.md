@@ -123,10 +123,17 @@ The library is experimental so if you find a **bug** or would like to request a 
 
 ---
 
+## 💡 Similar Project
+
+* [react-hooks-worker](https://github.com/dai-shi/react-hooks-worker)
+
+---
+
 ## 📜 License
 
 MIT © [alewin](https://github.com/alewin)
 
 ---
+
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/833cd6b2-6e74-47f0-aa85-5f14aea8ea35/deploy-status)](https://app.netlify.com/sites/useworker/deploys)
