@@ -1,6 +1,7 @@
 {
   "name": "@koale/useworker",
   "version": "2.0.6",
+  "types": "./index.d.ts",
   "source": "src/index.js",
   "main": "dist/index.js",
   "umd:main": "dist/index.umd.js",
