@@ -17,6 +17,11 @@ const DEFAULT_OPTIONS = {
   dependencies: [],
 }
 
+/**
+ *
+ * @param {Function} fn the function to run with web worker
+ * @param {Object} options useWorker option params
+ */
 export const useWorker = (fn, options = DEFAULT_OPTIONS) => {
   const [workerStatus, setWorkerStatus] = React.useState(PENDING)
   const worker = React.useRef({})

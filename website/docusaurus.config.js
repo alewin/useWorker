@@ -1,12 +1,16 @@
 module.exports = {
   title: 'useWorker',
-  tagline: 'Use web worker with github hooks',
+  tagline: 'Use web workers with react hook',
   url: 'https://useworker.netlify.com/',
   baseUrl: '/',
   favicon: 'img/favicon.ico',
-  organizationName: 'alewin', // Usually your GitHub org/user name.
-  projectName: 'useWorker', // Usually your repo name.
+  organizationName: 'alewin',
+  projectName: 'useWorker',
   themeConfig: {
+    googleAnalytics: {
+      trackingID: 'UA-160695625-2',
+      anonymizeIP: true,
+    },
     navbar: {
       title: 'useWorker',
       logo: {

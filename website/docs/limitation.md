@@ -5,7 +5,7 @@ title: Limitations
 
 ## Web Worker
 
-Before you start using this hook, I suggest you to read the [Web Worker](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers) documentation.
+Before you start using this hook, I suggest you read the [Web Worker](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers) documentation.
 
 > Remember that your web worker function `fn` must be a function **without** local dependencies, which **does not** produce side-effects.
 
@@ -25,7 +25,7 @@ Before you start using this hook, I suggest you to read the [Web Worker](https:/
 :::warning
 The web worker **cannot** return a function because the response is serialized
 
-- The web worker **cannot** return a function because the response is serialized.
+- The web worker **cannot** returns a function because the response is serialized.
 
 ```javascript
   const fn = () => {
