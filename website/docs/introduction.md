@@ -56,7 +56,7 @@ webworker.addEventListener("message", function(event) {
 `index.js`
 
 ```javascript
-const sortNumbers numbers => ([...numbers].sort())
+const sortNumbers = numbers => ([...numbers].sort())
 const [sortWorker] = useWorker(sortNumbers);
 
 const result = await sortWorker([1,2,3])
