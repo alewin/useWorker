@@ -1,23 +1,26 @@
 <h1 align="center">
   <br>
-   <img height="200px" width="300px" src="logo.png" alt="useWorker" title="useWorker() Use web workers with react hook" />
+  <img height="200px" width="300px" src="logo.png" alt="useWorker"
+    title="useWorker() Use web workers with react hook" />
   <br>
 </h1>
 
 <h2 align="center">
-  Use web workers with react hook
+  Use web workers with react hook 
   <br />
   https://useworker.js.org/
-      <a href="https://twitter.com/intent/tweet?text=useWorker - Use web workers with react hooks&url=https://github.com/alewin/useWorker&via=alessiokoci&hashtags=react,useworker,hooks,javascript">
-<br />
+  <a
+    href="https://twitter.com/intent/tweet?text=useWorker - Use web workers with react hooks&url=https://github.com/alewin/useWorker&via=alessiokoci&hashtags=react,useworker,hooks,javascript">
+    <br />
     <img alt="Tweet" src="https://img.shields.io/twitter/url/http/shields.io.svg?style=social" />
   </a>
 </h2>
 
 <h3 align="center">
   <img alt="GitHub" src="https://img.shields.io/npm/dm/@koale/useworker" />
-  <img alt="size" src="https://img.shields.io/bundlephobia/minzip/@koale/useworker/2.0.6" />
+  <img alt="size" src="https://img.shields.io/bundlephobia/minzip/@koale/useworker/2.1.0" />
   <img alt="GitHub" src="https://img.shields.io/npm/l/@koale/useworker" />
+ <img src="https://camo.githubusercontent.com/6ef0a300e96da21e04d4d45bf54285202674498c/68747470733a2f2f62616467656e2e6e65742f62616467652f547970655363726970742f537570706f7274" alt="TypeScript Support" title="TypeScript Support" data-canonical-src="https://badgen.net/badge/TypeScript/Support" style="max-width:100%;">
 </h3>
 
 ---
@@ -27,7 +30,10 @@
 - Run expensive function **without blocking UI** ([Show live gif](https://github.com/alewin/useWorker/issues/2))
 - Supports **Promises** pattern instead of event-messages
 - Size: `< 1KB`, with `zero` dependencies
-- Clear **API** using hook
+- Clear [API](https://useworker.js.org/docs/api-useworker#options-api) using hook
+- Typescript support
+- Garbage collector web worker instance
+- [timeout](https://useworker.js.org/docs/api-useworker#options-api) option
 
 ---
 
@@ -49,19 +55,18 @@ import { useWorker, WORKER_STATUS } from "@koale/useworker";
 
 ## 📙 Documents
 
-* [Getting Started](https://useworker.netlify.com/docs/introduction/)
-* [APIs](https://useworker.netlify.com/docs/api-useworker)
-* [Examples](https://useworker.netlify.com/docs/examples/examples-sort)
-* [Limitations](https://useworker.netlify.com/docs/limitations)
+- [Getting Started](https://useworker.netlify.com/docs/introduction/)
+- [APIs](https://useworker.netlify.com/docs/api-useworker)
+- [Examples](https://useworker.netlify.com/docs/examples/examples-sort)
+- [Limitations](https://useworker.netlify.com/docs/limitations)
 
 ---
 
 ## 🍞 Demo
 
-* [Sorting](https://icji4.csb.app/sorting): Sorting 50000 random numbers
-* [Csv](https://icji4.csb.app/csv): Generate Csv, Parse Csv, Convert to JSON 
-* [External Dependencies](https://icji4.csb.app/external) Use external scripts inside WebWorkers
-
+- [Sorting](https://icji4.csb.app/sorting): Sorting 50000 random numbers
+- [Csv](https://icji4.csb.app/csv): Generate Csv, Parse Csv, Convert to JSON
+- [External Dependencies](https://icji4.csb.app/external) Use external scripts inside WebWorkers
 
 ---
 
@@ -126,7 +131,7 @@ The library is experimental so if you find a **bug** or would like to request a 
 
 ## 💡 Similar Project
 
-* [react-hooks-worker](https://github.com/dai-shi/react-hooks-worker)
+- [react-hooks-worker](https://github.com/dai-shi/react-hooks-worker)
 
 ---
 
@@ -135,6 +140,5 @@ The library is experimental so if you find a **bug** or would like to request a 
 MIT © [alewin](https://github.com/alewin)
 
 ---
-
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/833cd6b2-6e74-47f0-aa85-5f14aea8ea35/deploy-status)](https://app.netlify.com/sites/useworker/deploys)

@@ -12,4 +12,5 @@ export const WORKER_STATUS = {
   ERROR,
   TIMEOUT_EXPIRED,
 }
+
 export default WORKER_STATUS

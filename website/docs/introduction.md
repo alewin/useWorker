@@ -6,12 +6,12 @@ sidebar_label: Introduction
 
 ## useWorker
 
-`useWorker()` is a library that allows you to use the WEB API: [Web Worker](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers), through the React Hooks.
-This library allows you to run the expensive function without blocking the user interface, using a simple interface that makes use of [Promise](https://developer.mozilla.org/it/docs/Web/JavaScript/Reference/Global_Objects/Promise)
+`useWorker()` is a js library (_with typescript support_) that allows you to use the [Web Worker Web API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers), through React Hooks.
+This library allows you to run the expensive function without blocking the user interface, using a simple syntax that makes use of [Promise](https://developer.mozilla.org/it/docs/Web/JavaScript/Reference/Global_Objects/Promise)
 
-## Web Api
+## Web API
 
-The javascript language is **single threaded**, so if we're executing an expensive code, we should wait for it, before continuing to execute other portions of code.
+The javascript language is **single-threaded**, so if we're executing an expensive task, we should wait for it, before continuing to execute other portions of code.
 Some javascript features are offered by the browser, through the **Web API** (XMLHttpRequest, EventListener, Worker...).
 In this way, many features can be run in "**parallel**" without blocking our javascript code
 
@@ -21,8 +21,9 @@ In this way, many features can be run in "**parallel**" without blocking our jav
 - Supports Promises pattern instead of event-messages
 - Size: < 1KB, with zero dependencies
 - Clear API using hook
+- Typescript support
 - Garbage collector web worker instance
-- set a timeout for the web worker
+- [timeout](https://useworker.js.org/docs/api-useworker#options-api) option
 
 the most useful feature of `useWorker`,  however, is the *simplicity*, in this paragraph, you can see the difference between using web workers via pure javascript and via `useWorker()`.
 
