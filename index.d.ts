@@ -3,4 +3,4 @@ export type HookOptions = {
   dependencies?: Array<String>;
 }
 export type HookReturnType = [(...fnArgs: any[]) => (Promise<any>), string, () => void];
-export function useWorker(fn: Function, options: HookOptions): HookReturnType;
+export function useWorker(fn: Function, options?: HookOptions): HookReturnType;
