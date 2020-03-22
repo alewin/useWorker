@@ -66,6 +66,12 @@ export const useWorker = (fn, options = DEFAULT_OPTIONS) => {
           break
       }
     }
+
+    newWorker.onerror = e => {
+      promise.current[PROMISE_REJECT](e)
+      killWorker(ERROR)
+    }
+
     if (timeout) {
       timeoutId.current = setTimeout(() => {
         killWorker(TIMEOUT_EXPIRED)
