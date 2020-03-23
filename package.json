@@ -1,13 +1,13 @@
 {
   "name": "@koale/useworker",
   "version": "2.1.2",
-  "types": "./index.d.ts",
+  "types": "dist/index.d.ts",
   "source": "src/index.js",
   "main": "dist/index.js",
   "umd:main": "dist/index.umd.js",
   "module": "dist/index.mjs",
   "scripts": {
-    "build": "microbundle src/index.js",
+    "build": "microbundle src/index.ts",
     "dev": "microbundle watch",
     "eslint": "eslint src/ --ext .js --ext .jsx"
   },
@@ -15,6 +15,7 @@
     "react": "^16.8.0"
   },
   "devDependencies": {
+    "@types/react": "^16.9.25",
     "babel-core": "^6.26.3",
     "babel-eslint": "^10.0.3",
     "babel-preset-env": "^1.7.0",
