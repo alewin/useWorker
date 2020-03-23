@@ -3,4 +3,4 @@ export type HookOptions = {
   dependencies?: Array<String>;
 }
 export type HookReturnType<T> = [(...fnArgs: Parameters<T>) => (Promise<ReturnType<T>>), string, () => void];
-export function useWorker<T>(fn: T, options?: HookOptions): HookReturnType<T>;
+export function useWorker<T extends Function>(fn: T, options?: HookOptions): HookReturnType<T>;
