@@ -1,12 +1,10 @@
-/* eslint-disable no-underscore-dangle */
-/* eslint-disable no-console */
 import React from 'react'
 import createWorkerBlobUrl from './lib/createWorkerBlobUrl'
 import WORKER_STATUS from './lib/status'
 
 type Options = {
   timeout?: number;
-  dependencies: string[];
+  dependencies?: string[];
 }
 
 const PROMISE_RESOLVE = 'resolve'
@@ -33,7 +31,7 @@ export const useWorker = <T extends (...fnArgs: any[]) => any>(fn: T, options: O
       URL.revokeObjectURL(worker.current._url)
       promise.current = {}
       worker.current = undefined
-      clearTimeout(timeoutId.current)
+      window.clearTimeout(timeoutId.current)
       setWorkerStatus(status)
     }
   }
@@ -47,7 +45,7 @@ export const useWorker = <T extends (...fnArgs: any[]) => any>(fn: T, options: O
       dependencies = DEFAULT_OPTIONS.dependencies,
       timeout = DEFAULT_OPTIONS.timeout,
     } = options
-    const blobUrl = createWorkerBlobUrl(fn, dependencies)
+    const blobUrl = createWorkerBlobUrl(fn, dependencies!)
     const newWorker: Worker & { _url?: string } = new Worker(blobUrl)
     newWorker._url = blobUrl
 
@@ -72,9 +70,9 @@ export const useWorker = <T extends (...fnArgs: any[]) => any>(fn: T, options: O
     }
 
     if (timeout) {
-      timeoutId.current = setTimeout(() => {
+      timeoutId.current = window.setTimeout(() => {
         killWorker(WORKER_STATUS.TIMEOUT_EXPIRED)
-      }, timeout) as any as number
+      }, timeout)
     }
     return newWorker
   }
@@ -92,6 +90,7 @@ export const useWorker = <T extends (...fnArgs: any[]) => any>(fn: T, options: O
 
   const workerHook = (...fnArgs: Parameters<T>) => {
     if (workerStatus === WORKER_STATUS.RUNNING) {
+      /* eslint-disable-next-line no-console */
       console.error('[useWorker] You can only run one instance of the worker at a time, if you want to run more than one in parallel, create another instance with the hook useWorker(). Read more: https://github.com/alewin/useWorker')
       return Promise.reject()
     }
