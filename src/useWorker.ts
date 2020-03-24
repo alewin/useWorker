@@ -21,10 +21,10 @@ const DEFAULT_OPTIONS: Options = {
  * @param {Function} fn the function to run with web worker
  * @param {Object} options useWorker option params
  */
-export const useWorker = <R = any>(fn: (...args: string[]) => void, options: Options = DEFAULT_OPTIONS) => {
+export const useWorker = <T extends (...fnArgs: any[]) => any>(fn: T, options: Options = DEFAULT_OPTIONS) => {
   const [workerStatus, setWorkerStatus] = React.useState<WORKER_STATUS>(WORKER_STATUS.PENDING)
   const worker = React.useRef<Worker & { _url?: string }>()
-  const promise = React.useRef<{ [PROMISE_REJECT]?: (result: R | ErrorEvent) => void;[PROMISE_RESOLVE]?: (result: R) => void }>({})
+  const promise = React.useRef<{ [PROMISE_REJECT]?: (result: ReturnType<T> | ErrorEvent) => void;[PROMISE_RESOLVE]?: (result: ReturnType<T>) => void }>({})
   const timeoutId = React.useRef<number>()
 
   const killWorker = (status = WORKER_STATUS.PENDING) => {
@@ -52,7 +52,7 @@ export const useWorker = <R = any>(fn: (...args: string[]) => void, options: Opt
     newWorker._url = blobUrl
 
     newWorker.onmessage = (e: MessageEvent) => {
-      const [status, result] = e.data as [WORKER_STATUS, R]
+      const [status, result] = e.data as [WORKER_STATUS, ReturnType<T>]
 
       switch (status) {
         case WORKER_STATUS.SUCCESS:
@@ -79,7 +79,7 @@ export const useWorker = <R = any>(fn: (...args: string[]) => void, options: Opt
     return newWorker
   }
 
-  const callWorker = (...fnArgs: any[]) => new Promise((resolve, reject) => {
+  const callWorker = (...fnArgs: Parameters<T>) => new Promise<ReturnType<T>>((resolve, reject) => {
     promise.current = {
       [PROMISE_RESOLVE]: resolve,
       [PROMISE_REJECT]: reject,
@@ -90,7 +90,7 @@ export const useWorker = <R = any>(fn: (...args: string[]) => void, options: Opt
     setWorkerStatus(WORKER_STATUS.RUNNING)
   })
 
-  const workerHook = (...fnArgs: any[]) => {
+  const workerHook = (...fnArgs: Parameters<T>) => {
     if (workerStatus === WORKER_STATUS.RUNNING) {
       console.error('[useWorker] You can only run one instance of the worker at a time, if you want to run more than one in parallel, create another instance with the hook useWorker(). Read more: https://github.com/alewin/useWorker')
       return Promise.reject()
@@ -100,5 +100,5 @@ export const useWorker = <R = any>(fn: (...args: string[]) => void, options: Opt
     return callWorker(...fnArgs)
   }
 
-  return [workerHook, workerStatus, killWorker]
+  return [workerHook, workerStatus, killWorker] as [typeof workerHook, WORKER_STATUS, typeof killWorker]
 }
