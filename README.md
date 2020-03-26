@@ -135,6 +135,12 @@ The library is experimental so if you find a **bug** or would like to request a 
 
 ---
 
+## 💻 Contributors
+
+- Thanks to [@Pigotz](https://github.com/Pigotz) [@grdnrt](https://github.com/grdnrt) [@IljaDaderko](https://github.com/IljaDaderko) [@z4o4z](https://github.com/z4o4z) 
+
+---
+
 ## 📜 License
 
 MIT © [alewin](https://github.com/alewin)
