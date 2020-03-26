@@ -11,14 +11,16 @@
  * @returns {Function} returns a function that accepts the parameters
  * to be passed to the "userFunc" function
  */
-const jobRunner = userFunc => e => {
-  const [userFuncArgs] = e.data
+const jobRunner = (userFunc: Function) => (e: MessageEvent) => {
+  const [userFuncArgs] = e.data as [any[]];
 
   return Promise.resolve(userFunc(...userFuncArgs))
     .then(result => {
+      // @ts-ignore
       postMessage(['SUCCESS', result])
     })
     .catch(error => {
+      // @ts-ignore
       postMessage(['ERROR', error])
     })
 }
