@@ -16,10 +16,12 @@ const jobRunner = (userFunc: Function) => (e: MessageEvent) => {
 
   return Promise.resolve(userFunc(...userFuncArgs))
     .then(result => {
-      postMessage(['SUCCESS', result], '*')
+      // @ts-ignore
+      postMessage(['SUCCESS', result])
     })
     .catch(error => {
-      postMessage(['ERROR', error], '*')
+      // @ts-ignore
+      postMessage(['ERROR', error])
     })
 }
 
