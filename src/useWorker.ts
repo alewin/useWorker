@@ -19,14 +19,19 @@ const DEFAULT_OPTIONS: Options = {
  * @param {Function} fn the function to run with web worker
  * @param {Object} options useWorker option params
  */
-export const useWorker = <T extends (...fnArgs: any[]) => any>(fn: T, options: Options = DEFAULT_OPTIONS) => {
+export const useWorker = <T extends (...fnArgs: any[]) => any>(
+  fn: T, options: Options = DEFAULT_OPTIONS,
+) => {
   const [workerStatus, setWorkerStatus] = React.useState<WORKER_STATUS>(WORKER_STATUS.PENDING)
   const worker = React.useRef<Worker & { _url?: string }>()
-  const promise = React.useRef<{ [PROMISE_REJECT]?: (result: ReturnType<T> | ErrorEvent) => void;[PROMISE_RESOLVE]?: (result: ReturnType<T>) => void }>({})
+  const promise = React.useRef<{
+    [PROMISE_REJECT]?:(result: ReturnType<T> | ErrorEvent) => void;[PROMISE_RESOLVE]?:
+    (result: ReturnType<T>) => void
+  }>({})
   const timeoutId = React.useRef<number>()
 
   const killWorker = (status = WORKER_STATUS.PENDING) => {
-    if (worker.current && worker.current._url) {
+    if (worker.current?._url) {
       worker.current.terminate()
       URL.revokeObjectURL(worker.current._url)
       promise.current = {}
@@ -54,18 +59,18 @@ export const useWorker = <T extends (...fnArgs: any[]) => any>(fn: T, options: O
 
       switch (status) {
         case WORKER_STATUS.SUCCESS:
-          promise.current[PROMISE_RESOLVE]!(result)
+          promise.current[PROMISE_RESOLVE]?.(result)
           killWorker(status)
           break
         default:
-          promise.current[PROMISE_REJECT]!(result)
+          promise.current[PROMISE_REJECT]?.(result)
           killWorker(WORKER_STATUS.ERROR)
           break
       }
     }
 
     newWorker.onerror = (e: ErrorEvent) => {
-      promise.current[PROMISE_REJECT]!(e)
+      promise.current[PROMISE_REJECT]?.(e)
       killWorker(WORKER_STATUS.ERROR)
     }
 
@@ -83,7 +88,7 @@ export const useWorker = <T extends (...fnArgs: any[]) => any>(fn: T, options: O
       [PROMISE_REJECT]: reject,
     }
 
-    worker.current!.postMessage([[...fnArgs]])
+    worker.current?.postMessage([[...fnArgs]])
 
     setWorkerStatus(WORKER_STATUS.RUNNING)
   })
@@ -99,5 +104,7 @@ export const useWorker = <T extends (...fnArgs: any[]) => any>(fn: T, options: O
     return callWorker(...fnArgs)
   }
 
-  return [workerHook, workerStatus, killWorker] as [typeof workerHook, WORKER_STATUS, typeof killWorker]
+  return [
+    workerHook, workerStatus, killWorker,
+  ] as [typeof workerHook, WORKER_STATUS, typeof killWorker]
 }
