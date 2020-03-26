@@ -1,8 +1,15 @@
 src/
-node_modules/
-.cache/
 example/
 website/
+
+node_modules/
+
+.rts2_cache_*
+.cache/
+
 .eslintrc
 .editorconfig
+
+dist/*.map
+
 logo.png
