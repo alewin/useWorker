@@ -1,27 +1,22 @@
 {
   "extends": [
-    "airbnb"
+    "airbnb-typescript"
   ],
-  "parser": "babel-eslint",
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  },
   "env": {
     "browser": true,
     "es6": true
   },
   "rules": {
-    "semi": [
+    "@typescript-eslint/semi": [
       "error",
       "never"
     ],
-    "one-var": 0,
+    "arrow-parens": 0,
+    "no-underscore-dangle": 0,
     "import/prefer-default-export": 0,
-    "import/no-dynamic-require": 0,
-    "no-restricted-syntax": 0,
-    "react/destructuring-assignment": 0,
-    "import/named": 0,
-    "import/no-cycle": 0,
-    "arrow-parens": [
-      "error",
-      "as-needed"
-    ]
+    "import/no-named-as-default": 0
   }
 }
