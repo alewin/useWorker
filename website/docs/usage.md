@@ -14,7 +14,7 @@ import { useWorker } from "@koale/useworker";
 **useWorker()** returns an array containing 3 values:
 
 - `sortWorker`: the function to call the web worker
-- `sortStatus`: the status of the web worker, defined as the constants [WORKER_STATUS](api.md)
+- `sortStatus`: the status of the web worker, defined as the constants [WORKER_STATUS](./workerstatus.md)
 - `killSortWorker`: the function used to terminate the web worker
 
 ```javascript
