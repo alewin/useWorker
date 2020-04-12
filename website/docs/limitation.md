@@ -23,7 +23,6 @@ Before you start using this hook, I suggest you read the [Web Worker](https://de
 ---
 
 :::warning
-The web worker **cannot** return a function because the response is serialized
 
 - The web worker **cannot** returns a function because the response is serialized.
 
