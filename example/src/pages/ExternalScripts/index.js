@@ -14,21 +14,18 @@ function App() {
   const { addToast } = useToasts();
 
   const [sortStatus, setSortStatus] = React.useState(false);
-  const [timeout, setTimeout] = React.useState(1);
-  const [sortWorker, sortWorkerStatus, killWorker] = useWorker(sortDates,{
-    timeout,
+  const [sortWorker, sortWorkerStatus, killWorker] = useWorker(sortDates, {
+    timeout: 5000,
     dependencies: [
       "https://cdnjs.cloudflare.com/ajax/libs/date-fns/1.30.1/date_fns.js"
     ]
-  })
+  });
 
   React.useEffect(()=>{
     console.log("WORKER:", sortWorkerStatus);
   }, [sortWorkerStatus])
 
   const onSortClick = () => {
-    setTimeout(2000000)
-    return
     setSortStatus(true);
     const result = sortDates(dates);
     setSortStatus(false);
@@ -38,7 +35,7 @@ function App() {
 
   const onWorkerSortClick = () => {
     sortWorker(dates).then(result => {
-     // console.log("Buble Sort useWorker()", result);
+      console.log("Buble Sort useWorker()", result);
       addToast("Finished: Sort using useWorker.", { appearance: "success" });
     });
   };
