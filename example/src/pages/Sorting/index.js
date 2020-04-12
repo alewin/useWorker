@@ -16,7 +16,9 @@ function App() {
   const [sortStatus, setSortStatus] = React.useState(false);
   const [sortWorker, sortWorkerStatus, killWorker] = useWorker(bubleSort);
 
-  console.log("WORKER:", sortWorkerStatus);
+  React.useEffect(()=>{
+    console.log("WORKER:", sortWorkerStatus);
+  }, [sortWorkerStatus])
 
   const onSortClick = () => {
     setSortStatus(true);
