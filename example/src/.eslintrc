@@ -1,27 +1,15 @@
 {
-  "extends": [
-    "airbnb-typescript"
-  ],
-  "parserOptions": {
-    "project": "./tsconfig.json"
-  },
+  "parser": "babel-eslint",
   "env": {
     "browser": true,
     "es6": true
   },
   "rules": {
-    "@typescript-eslint/semi": [
-      "error",
-      "never"
-    ],
     "arrow-parens": 0,
     "no-underscore-dangle": 0,
     "import/prefer-default-export": 0,
     "import/no-named-as-default": 0,
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn"
-  },
-  "plugins": [
-    "react-hooks"
-  ]
+  }
 }

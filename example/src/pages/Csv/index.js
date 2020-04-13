@@ -14,7 +14,9 @@ function App() {
   const [generateWorker] = useWorker(generateCsv);
   const [csvWorker, csvWorkerStatus, killWorker] = useWorker(csvToJson);
 
-  console.log("WORKER:", csvWorkerStatus);
+  React.useEffect(()=>{
+    console.log("WORKER:", csvWorkerStatus);
+  }, [csvWorkerStatus])
 
   const onCsvClick = () => {
     const fakeCsv = generateCsv();

@@ -1,6 +1,7 @@
 import React from 'react'
 import createWorkerBlobUrl from './lib/createWorkerBlobUrl'
 import WORKER_STATUS from './lib/status'
+import { useDeepCallback } from './hook/useDeepCallback'
 
 type Options = {
   timeout?: number;
@@ -19,14 +20,25 @@ const DEFAULT_OPTIONS: Options = {
  * @param {Function} fn the function to run with web worker
  * @param {Object} options useWorker option params
  */
-export const useWorker = <T extends (...fnArgs: any[]) => any>(fn: T, options: Options = DEFAULT_OPTIONS) => {
-  const [workerStatus, setWorkerStatus] = React.useState<WORKER_STATUS>(WORKER_STATUS.PENDING)
+export const useWorker = <T extends (...fnArgs: any[]) => any>(
+  fn: T, options: Options = DEFAULT_OPTIONS,
+) => {
+  const [workerStatus, _setWorkerStatus] = React.useState<WORKER_STATUS>(WORKER_STATUS.PENDING)
   const worker = React.useRef<Worker & { _url?: string }>()
-  const promise = React.useRef<{ [PROMISE_REJECT]?: (result: ReturnType<T> | ErrorEvent) => void;[PROMISE_RESOLVE]?: (result: ReturnType<T>) => void }>({})
+  const isRunning = React.useRef(false)
+  const promise = React.useRef<{
+    [PROMISE_REJECT]?:(result: ReturnType<T> | ErrorEvent) => void;[PROMISE_RESOLVE]?:
+    (result: ReturnType<T>) => void
+  }>({})
   const timeoutId = React.useRef<number>()
 
-  const killWorker = (status = WORKER_STATUS.PENDING) => {
-    if (worker.current && worker.current._url) {
+  const setWorkerStatus = React.useCallback((status: WORKER_STATUS) => {
+    isRunning.current = status === WORKER_STATUS.RUNNING
+    _setWorkerStatus(status)
+  }, [])
+
+  const killWorker = React.useCallback((status = WORKER_STATUS.PENDING) => {
+    if (worker.current?._url) {
       worker.current.terminate()
       URL.revokeObjectURL(worker.current._url)
       promise.current = {}
@@ -34,17 +46,18 @@ export const useWorker = <T extends (...fnArgs: any[]) => any>(fn: T, options: O
       window.clearTimeout(timeoutId.current)
       setWorkerStatus(status)
     }
-  }
+  }, [setWorkerStatus])
 
   React.useEffect(() => () => {
     killWorker()
-  }, [])
+  }, [killWorker])
 
-  const generateWorker = () => {
+  const generateWorker = useDeepCallback(() => {
     const {
       dependencies = DEFAULT_OPTIONS.dependencies,
       timeout = DEFAULT_OPTIONS.timeout,
     } = options
+
     const blobUrl = createWorkerBlobUrl(fn, dependencies!)
     const newWorker: Worker & { _url?: string } = new Worker(blobUrl)
     newWorker._url = blobUrl
@@ -54,18 +67,18 @@ export const useWorker = <T extends (...fnArgs: any[]) => any>(fn: T, options: O
 
       switch (status) {
         case WORKER_STATUS.SUCCESS:
-          promise.current[PROMISE_RESOLVE]!(result)
+          promise.current[PROMISE_RESOLVE]?.(result)
           killWorker(status)
           break
         default:
-          promise.current[PROMISE_REJECT]!(result)
+          promise.current[PROMISE_REJECT]?.(result)
           killWorker(WORKER_STATUS.ERROR)
           break
       }
     }
 
     newWorker.onerror = (e: ErrorEvent) => {
-      promise.current[PROMISE_REJECT]!(e)
+      promise.current[PROMISE_REJECT]?.(e)
       killWorker(WORKER_STATUS.ERROR)
     }
 
@@ -75,21 +88,23 @@ export const useWorker = <T extends (...fnArgs: any[]) => any>(fn: T, options: O
       }, timeout)
     }
     return newWorker
-  }
+  }, [fn, options, killWorker])
 
-  const callWorker = (...fnArgs: Parameters<T>) => new Promise<ReturnType<T>>((resolve, reject) => {
-    promise.current = {
-      [PROMISE_RESOLVE]: resolve,
-      [PROMISE_REJECT]: reject,
-    }
+  const callWorker = React.useCallback((...fnArgs: Parameters<T>) => (
+    new Promise<ReturnType<T>>((resolve, reject) => {
+      promise.current = {
+        [PROMISE_RESOLVE]: resolve,
+        [PROMISE_REJECT]: reject,
+      }
 
-    worker.current!.postMessage([[...fnArgs]])
+    worker.current?.postMessage([[...fnArgs]])
 
     setWorkerStatus(WORKER_STATUS.RUNNING)
-  })
+    })
+  ), [setWorkerStatus])
 
-  const workerHook = (...fnArgs: Parameters<T>) => {
-    if (workerStatus === WORKER_STATUS.RUNNING) {
+  const workerHook = React.useCallback((...fnArgs: Parameters<T>) => {
+    if (isRunning.current) {
       /* eslint-disable-next-line no-console */
       console.error('[useWorker] You can only run one instance of the worker at a time, if you want to run more than one in parallel, create another instance with the hook useWorker(). Read more: https://github.com/alewin/useWorker')
       return Promise.reject()
@@ -97,7 +112,9 @@ export const useWorker = <T extends (...fnArgs: any[]) => any>(fn: T, options: O
 
     worker.current = generateWorker()
     return callWorker(...fnArgs)
-  }
+  }, [generateWorker, callWorker])
 
-  return [workerHook, workerStatus, killWorker] as [typeof workerHook, WORKER_STATUS, typeof killWorker]
+  return [
+    workerHook, workerStatus, killWorker,
+  ] as [typeof workerHook, WORKER_STATUS, typeof killWorker]
 }
