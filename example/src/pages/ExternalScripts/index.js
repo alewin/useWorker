@@ -21,7 +21,9 @@ function App() {
     ]
   });
 
-  console.log("WORKER:", sortWorkerStatus);
+  React.useEffect(()=>{
+    console.log("WORKER:", sortWorkerStatus);
+  }, [sortWorkerStatus])
 
   const onSortClick = () => {
     setSortStatus(true);
