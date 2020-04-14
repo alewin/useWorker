@@ -6,6 +6,7 @@ import { useDeepCallback } from './hook/useDeepCallback'
 type Options = {
   timeout?: number;
   dependencies?: string[];
+  autoTerminate?: boolean;
 }
 
 const PROMISE_RESOLVE = 'resolve'
@@ -13,6 +14,7 @@ const PROMISE_REJECT = 'reject'
 const DEFAULT_OPTIONS: Options = {
   timeout: undefined,
   dependencies: [],
+  autoTerminate: true,
 }
 
 /**
@@ -48,9 +50,14 @@ export const useWorker = <T extends (...fnArgs: any[]) => any>(
     }
   }, [setWorkerStatus])
 
-  React.useEffect(() => () => {
-    killWorker()
-  }, [killWorker])
+  const onWorkerEnd = React.useCallback((status: WORKER_STATUS) => {
+    const { autoTerminate = DEFAULT_OPTIONS.autoTerminate } = options
+
+    if (autoTerminate) {
+      killWorker(status)
+    }
+    setWorkerStatus(status)
+  }, [options, killWorker, setWorkerStatus])
 
   const generateWorker = useDeepCallback(() => {
     const {
@@ -68,18 +75,18 @@ export const useWorker = <T extends (...fnArgs: any[]) => any>(
       switch (status) {
         case WORKER_STATUS.SUCCESS:
           promise.current[PROMISE_RESOLVE]?.(result)
-          killWorker(status)
+          onWorkerEnd(WORKER_STATUS.SUCCESS)
           break
         default:
           promise.current[PROMISE_REJECT]?.(result)
-          killWorker(WORKER_STATUS.ERROR)
+          onWorkerEnd(WORKER_STATUS.ERROR)
           break
       }
     }
 
     newWorker.onerror = (e: ErrorEvent) => {
       promise.current[PROMISE_REJECT]?.(e)
-      killWorker(WORKER_STATUS.ERROR)
+      onWorkerEnd(WORKER_STATUS.ERROR)
     }
 
     if (timeout) {
@@ -110,9 +117,16 @@ export const useWorker = <T extends (...fnArgs: any[]) => any>(
       return Promise.reject()
     }
 
-    worker.current = generateWorker()
     return callWorker(...fnArgs)
-  }, [generateWorker, callWorker])
+  }, [callWorker])
+
+  React.useEffect(() => {
+    worker.current = generateWorker()
+  }, [generateWorker])
+
+  React.useEffect(() => () => {
+    killWorker()
+  }, [killWorker])
 
   return [
     workerHook, workerStatus, killWorker,
