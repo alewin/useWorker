@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-syntax */
 /**
  *
  * Concatenates the dependencies into a comma separated string.
@@ -10,11 +11,20 @@
  * @example
  * depsParser(['demo1', 'demo2']) // return importScripts('demo1, demo2')
  */
-const depsParser = (deps: string[]) => {
+const depsParser = (deps: any[]) => {
   if (deps.length === 0) return ''
 
-  const depsString = (deps.map(dep => `${dep}`)).toString()
-  return `importScripts('${depsString}')`
-}
+  let localDep = ''
+  let remoteDep = ''
 
-export default depsParser
+  for (const dep of deps) {
+    if (typeof dep === 'function') {
+      localDep += ` ${dep.toString()} `
+    }
+    if (typeof dep === 'string') {
+      remoteDep += `${dep}`
+    }
+  }
+
+  return `importScripts('${remoteDep}') ${localDep}`
+}
