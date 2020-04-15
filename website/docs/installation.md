@@ -7,8 +7,16 @@ title: Installation
 
 The package is available on [npm](https://www.npmjs.com/package/@koale/useworker)
 
+- **@latest**
+
 ```bash
 npm install --save @koale/useworker
+```
+
+- **@next 3.0.0-beta**
+
+```bash
+npm install --save @koale/useworker@next
 ```
 
 ## Import
