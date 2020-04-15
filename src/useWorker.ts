@@ -6,6 +6,7 @@ import { useDeepCallback } from './hook/useDeepCallback'
 type Options = {
   timeout?: number;
   dependencies?: string[];
+  autoTerminate?: boolean;
 }
 
 const PROMISE_RESOLVE = 'resolve'
@@ -13,6 +14,7 @@ const PROMISE_REJECT = 'reject'
 const DEFAULT_OPTIONS: Options = {
   timeout: undefined,
   dependencies: [],
+  autoTerminate: true,
 }
 
 /**
@@ -37,20 +39,24 @@ export const useWorker = <T extends (...fnArgs: any[]) => any>(
     _setWorkerStatus(status)
   }, [])
 
-  const killWorker = React.useCallback((status = WORKER_STATUS.PENDING) => {
+  const killWorker = React.useCallback(() => {
     if (worker.current?._url) {
       worker.current.terminate()
       URL.revokeObjectURL(worker.current._url)
       promise.current = {}
       worker.current = undefined
       window.clearTimeout(timeoutId.current)
-      setWorkerStatus(status)
     }
-  }, [setWorkerStatus])
+  }, [])
 
-  React.useEffect(() => () => {
-    killWorker()
-  }, [killWorker])
+  const onWorkerEnd = React.useCallback((status: WORKER_STATUS) => {
+    const { autoTerminate = DEFAULT_OPTIONS.autoTerminate } = options
+
+    if (autoTerminate) {
+      killWorker()
+    }
+    setWorkerStatus(status)
+  }, [options, killWorker, setWorkerStatus])
 
   const generateWorker = useDeepCallback(() => {
     const {
@@ -68,23 +74,24 @@ export const useWorker = <T extends (...fnArgs: any[]) => any>(
       switch (status) {
         case WORKER_STATUS.SUCCESS:
           promise.current[PROMISE_RESOLVE]?.(result)
-          killWorker(status)
+          onWorkerEnd(WORKER_STATUS.SUCCESS)
           break
         default:
           promise.current[PROMISE_REJECT]?.(result)
-          killWorker(WORKER_STATUS.ERROR)
+          onWorkerEnd(WORKER_STATUS.ERROR)
           break
       }
     }
 
     newWorker.onerror = (e: ErrorEvent) => {
       promise.current[PROMISE_REJECT]?.(e)
-      killWorker(WORKER_STATUS.ERROR)
+      onWorkerEnd(WORKER_STATUS.ERROR)
     }
 
     if (timeout) {
       timeoutId.current = window.setTimeout(() => {
-        killWorker(WORKER_STATUS.TIMEOUT_EXPIRED)
+        killWorker()
+        setWorkerStatus(WORKER_STATUS.TIMEOUT_EXPIRED)
       }, timeout)
     }
     return newWorker
@@ -110,9 +117,16 @@ export const useWorker = <T extends (...fnArgs: any[]) => any>(
       return Promise.reject()
     }
 
-    worker.current = generateWorker()
     return callWorker(...fnArgs)
-  }, [generateWorker, callWorker])
+  }, [callWorker])
+
+  React.useEffect(() => {
+    worker.current = generateWorker()
+  }, [generateWorker])
+
+  React.useEffect(() => () => {
+    killWorker()
+  }, [killWorker])
 
   return [
     workerHook, workerStatus, killWorker,
