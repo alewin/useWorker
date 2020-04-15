@@ -28,3 +28,5 @@ const depsParser = (deps: any[]) => {
 
   return `importScripts('${remoteDep}') ${localDep}`
 }
+
+export default depsParser
