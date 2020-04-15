@@ -39,22 +39,21 @@ export const useWorker = <T extends (...fnArgs: any[]) => any>(
     _setWorkerStatus(status)
   }, [])
 
-  const killWorker = React.useCallback((status = WORKER_STATUS.PENDING) => {
+  const killWorker = React.useCallback(() => {
     if (worker.current?._url) {
       worker.current.terminate()
       URL.revokeObjectURL(worker.current._url)
       promise.current = {}
       worker.current = undefined
       window.clearTimeout(timeoutId.current)
-      setWorkerStatus(status)
     }
-  }, [setWorkerStatus])
+  }, [])
 
   const onWorkerEnd = React.useCallback((status: WORKER_STATUS) => {
     const { autoTerminate = DEFAULT_OPTIONS.autoTerminate } = options
 
     if (autoTerminate) {
-      killWorker(status)
+      killWorker()
     }
     setWorkerStatus(status)
   }, [options, killWorker, setWorkerStatus])
@@ -91,7 +90,8 @@ export const useWorker = <T extends (...fnArgs: any[]) => any>(
 
     if (timeout) {
       timeoutId.current = window.setTimeout(() => {
-        killWorker(WORKER_STATUS.TIMEOUT_EXPIRED)
+        killWorker()
+        setWorkerStatus(WORKER_STATUS.TIMEOUT_EXPIRED)
       }, timeout)
     }
     return newWorker
