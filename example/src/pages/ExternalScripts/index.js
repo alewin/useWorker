@@ -15,12 +15,15 @@ function App() {
 
   const [sortStatus, setSortStatus] = React.useState(false);
   const [sortWorker, sortWorkerStatus, killWorker] = useWorker(sortDates, {
-    timeout: 100000,
     autoTerminate: false, // you should manually kill the worker using "killWorker()"
     dependencies: [
       "https://cdnjs.cloudflare.com/ajax/libs/date-fns/1.30.1/date_fns.js"
     ],
   });
+
+  React.useEffect(()=>()=> {
+    killWorker(); // [UN-MOUNT] Since autoTerminate: false we need to kill the worker manually (recommended)
+  },[killWorker]);
 
   React.useEffect(()=>{
     console.log("WORKER:", sortWorkerStatus);
@@ -38,7 +41,6 @@ function App() {
     sortWorker(dates).then(result => {
       console.log("Buble Sort useWorker()", result);
       addToast("Finished: Sort using useWorker.", { appearance: "success" });
-      killWorker() // since autoTerminate: false we need to kill the worker manually
     });
   };
 
