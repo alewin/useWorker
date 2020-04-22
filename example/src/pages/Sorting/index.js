@@ -14,7 +14,10 @@ function App() {
   const { addToast } = useToasts();
 
   const [sortStatus, setSortStatus] = React.useState(false);
-  const [sortWorker, sortWorkerStatus, killWorker] = useWorker(bubleSort);
+  const [sortWorker, {
+    status: sortWorkerStatus,
+    kill: killWorker
+  }] = useWorker(bubleSort);
 
   React.useEffect(()=>{
     console.log("WORKER:", sortWorkerStatus);
