@@ -4,14 +4,14 @@
  * Concatenates the dependencies into a comma separated string.
  * this string will then be passed as an argument to the "importScripts" function
  *
- * @param {Array.<String>}} deps array of string
+ * @param {Array.<String | Function>}} deps array of string or function
  * @returns {String} a string composed by the concatenation of the array
- * elements "deps" and "importScripts".
+ * elements "deps" and "importScripts" and inline function.
  *
  * @example
- * depsParser(['demo1', 'demo2']) // return importScripts('demo1, demo2')
+ * depsParser(['demo1', 'demo2',]) // return importScripts('demo1, demo2')
  */
-const depsParser = (deps: any[]) => {
+const depsParser = (deps: (string | Function)[]) => {
   if (deps.length === 0) return ''
 
   let localDep = ''
@@ -26,7 +26,8 @@ const depsParser = (deps: any[]) => {
     }
   }
 
-  return `importScripts('${remoteDep}') ${localDep}`
+  remoteDep = remoteDep ? `importScripts('${remoteDep}')` : ''
+  return `${remoteDep} ${localDep}`
 }
 
 export default depsParser
