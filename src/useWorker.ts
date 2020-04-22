@@ -3,6 +3,11 @@ import createWorkerBlobUrl from './lib/createWorkerBlobUrl'
 import WORKER_STATUS from './lib/status'
 import { useDeepCallback } from './hook/useDeepCallback'
 
+type WorkerController = {
+  status: WORKER_STATUS;
+  kill: Function;
+}
+
 type Options = {
   timeout?: number;
   dependencies?: string[];
@@ -120,6 +125,11 @@ export const useWorker = <T extends (...fnArgs: any[]) => any>(
     return callWorker(...fnArgs)
   }, [callWorker])
 
+  const workerController = {
+    status: workerStatus,
+    kill: killWorker,
+  }
+
   React.useEffect(() => {
     worker.current = generateWorker()
   }, [generateWorker])
@@ -129,6 +139,6 @@ export const useWorker = <T extends (...fnArgs: any[]) => any>(
   }, [killWorker])
 
   return [
-    workerHook, workerStatus, killWorker,
-  ] as [typeof workerHook, WORKER_STATUS, typeof killWorker]
+    workerHook, workerController,
+  ] as [typeof workerHook, WorkerController]
 }
