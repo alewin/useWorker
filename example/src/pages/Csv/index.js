@@ -12,7 +12,7 @@ function App() {
 
   const [csvStatus, setCsvStatus] = React.useState(false);
   const [generateWorker] = useWorker(generateCsv);
-  const [csvWorker, csvWorkerStatus, killWorker] = useWorker(csvToJson);
+  const [csvWorker, { status: csvWorkerStatus, kill: killWorker }] = useWorker(csvToJson);
 
   React.useEffect(()=>{
     console.log("WORKER:", csvWorkerStatus);
