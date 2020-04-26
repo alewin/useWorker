@@ -35,16 +35,16 @@ to view the values of `WORKER_STATUS` click here: [Status API](./workerstatus.md
 import { useWorker } from "@koale/useworker";
 const [workerFn, workerStatus, workerTerminate] = useWorker(fn, {
   timeout: undefined,
-  dependencies: []
+  remoteDependencies: []
 });
 ```
 
 ## Options API
 
-| Value        | Type            | Default   | Description                                                               |
-| ------------ | --------------- | --------- | ------------------------------------------------------------------------- |
-| timeout      | Number          | undefined | the number of milliseconds before killing the worker                      |
-| dependencies | Array of String | []        | an array that contains the external dependencies needed to run the worker |
+| Value              | Type            | Default   | Description                                                               |
+| ------------------ | --------------- | --------- | ------------------------------------------------------------------------- |
+| timeout            | Number          | undefined | the number of milliseconds before killing the worker                      |
+| remoteDependencies | Array of String | []        | an array that contains the remote dependencies needed to run the worker   |
 
 ## Options Example
 
@@ -55,7 +55,7 @@ const fn = dates => dates.sort(dateFns.compareAsc)
 
 const [workerFn, workerStatus, workerTerminate] = useWorker(fn, {
   timeout: 50000 // 5 seconds
-  dependencies: [
+  remoteDependencies: [
       "https://cdnjs.cloudflare.com/ajax/libs/date-fns/1.30.1/date_fns.js" // dateFns
     ]
 });

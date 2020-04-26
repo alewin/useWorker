@@ -1,6 +1,6 @@
 /**
  *
- * Concatenates the dependencies into a comma separated string.
+ * Concatenates the remote dependencies into a comma separated string.
  * this string will then be passed as an argument to the "importScripts" function
  *
  * @param {Array.<String>}} deps array of string
@@ -8,13 +8,13 @@
  * elements "deps" and "importScripts".
  *
  * @example
- * depsParser(['demo1', 'demo2']) // return importScripts('demo1, demo2')
+ * remoteDepsParser(['http://js.com/1.js', 'http://js.com/2.js']) // return importScripts('http://js.com/1.js, http://js.com/2.js')
  */
-const depsParser = (deps: string[]) => {
+const remoteDepsParser = (deps: string[]) => {
   if (deps.length === 0) return ''
 
   const depsString = (deps.map(dep => `${dep}`)).toString()
   return `importScripts('${depsString}')`
 }
 
-export default depsParser
+export default remoteDepsParser
