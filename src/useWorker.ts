@@ -55,13 +55,15 @@ export const useWorker = <T extends (...fnArgs: any[]) => any>(
   }, [])
 
   const onWorkerEnd = React.useCallback((status: WORKER_STATUS) => {
-    const { autoTerminate = DEFAULT_OPTIONS.autoTerminate } = options
+    const terminate = options.autoTerminate != null
+      ? options.autoTerminate
+      : DEFAULT_OPTIONS.autoTerminate
 
-    if (autoTerminate) {
+    if (terminate) {
       killWorker()
     }
     setWorkerStatus(status)
-  }, [options, killWorker, setWorkerStatus])
+  }, [options.autoTerminate, killWorker, setWorkerStatus])
 
   const generateWorker = useDeepCallback(() => {
     const {
@@ -116,23 +118,26 @@ export const useWorker = <T extends (...fnArgs: any[]) => any>(
   ), [setWorkerStatus])
 
   const workerHook = React.useCallback((...fnArgs: Parameters<T>) => {
+    const terminate = options.autoTerminate != null
+      ? options.autoTerminate
+      : DEFAULT_OPTIONS.autoTerminate
+
     if (isRunning.current) {
       /* eslint-disable-next-line no-console */
       console.error('[useWorker] You can only run one instance of the worker at a time, if you want to run more than one in parallel, create another instance with the hook useWorker(). Read more: https://github.com/alewin/useWorker')
       return Promise.reject()
     }
+    if (terminate || !worker.current) {
+      worker.current = generateWorker()
+    }
 
     return callWorker(...fnArgs)
-  }, [callWorker])
+  }, [options.autoTerminate, generateWorker, callWorker])
 
   const workerController = {
     status: workerStatus,
     kill: killWorker,
   }
-
-  React.useEffect(() => {
-    worker.current = generateWorker()
-  }, [generateWorker])
 
   React.useEffect(() => () => {
     killWorker()

@@ -11,7 +11,7 @@ function App() {
   const { addToast } = useToasts();
 
   const [csvStatus, setCsvStatus] = React.useState(false);
-  const [generateWorker] = useWorker(generateCsv);
+  const [generateWorker] = useWorker(generateCsv, { autoTerminate: false });
   const [csvWorker, { status: csvWorkerStatus, kill: killWorker }] = useWorker(csvToJson);
 
   React.useEffect(()=>{

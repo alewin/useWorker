@@ -24,6 +24,20 @@ Before you start using this hook, I suggest you read the [Web Worker](https://de
 
 :::warning
 
+- While the worker is running you **cannot** call him again, until it's finished, or until you kill it. To get around this you can create two or more "instances" of the hook
+
+```javascript
+  const [sort1] = useWorker(sort, { timeout: 10000 });
+  const [sort2] = useWorker(sort, { autoTerminate: false });
+  const [sort3] = useWorker(sort);
+```
+
+:::
+
+---
+
+:::warning
+
 - The web worker **cannot** returns a function because the response is serialized.
 
 ```javascript

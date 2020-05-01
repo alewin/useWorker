@@ -23,7 +23,7 @@ import generateCsv from "./parser/generateCsv";
 
 function App() {
   const [generateWorker] = useWorker(generateCsv);
-  const [csvWorker, csvWorkerStatus, killWorker] = useWorker(csvToJson);
+  const [csvWorker, {status: csvWorkerStatus, kill: killWorker }] = useWorker(csvToJson);
 
  const onWorkerCsvClick = async () => {
     const fakeCsv = await generateWorker();

@@ -23,7 +23,7 @@ title: External Scripts
     return dates.sort(dateFns.compareAsc);
   };
 
-  const [sortWorker, sortWorkerStatus, killWorker] = useWorker(sortDates, {
+  const [sortWorker, { status: sortWorkerStatus, kill: killWorker }] = useWorker(sortDates, {
     timeout: 5000,
     remoteDependencies: [
       "https://cdnjs.cloudflare.com/ajax/libs/date-fns/1.30.1/date_fns.js"

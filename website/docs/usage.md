@@ -19,7 +19,7 @@ import { useWorker } from "@koale/useworker";
 
 ```javascript
 const sortNumbers numbers => ([...numbers].sort())
-const [sortWorker, sortStatus, killSortWorker] = useWorker(sortNumbers);
+const [sortWorker, { status: sortStatus, kill: killSortWorker }] = useWorker(sortNumbers);
 ```
 
 ## Example

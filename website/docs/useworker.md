@@ -12,32 +12,30 @@ import { useWorker } from "@koale/useworker";
 ## Usage
 
 ```javascript
-const [workerFn, workerStatus, workerTerminate] = useWorker(fn, options);
+const [workerFn, controller] = useWorker(fn, options);
 ```
 
-## API
+## Hook API
 
 | Value           | Type             | Description                                                |
 | --------------- | ---------------- | ---------------------------------------------------------- |
 | fn              | Function         | The `pure function` to run with web workers                |
 | workerFn        | Promise          | The `function` that allows you to run `fn` with web worker |
-| workerStatus    | `@WORKER_STATUS` | The status of `workerFn`                                   |
-| workerTerminate | Function         | The function that allow to kill the worker                 |
+| controller      | Object           | Hook controller ( see Controller API)                      |
 | options         | Object           | The object containing the options of the worker            |
 
 :::note
 to view the values of `WORKER_STATUS` click here: [Status API](./workerstatus.md)
 :::
 
-### Options
+## Controller API
 
-```javascript
-import { useWorker } from "@koale/useworker";
-const [workerFn, workerStatus, workerTerminate] = useWorker(fn, {
-  timeout: undefined,
-  remoteDependencies: []
-});
-```
+| Value           | Type             | Description                                                |
+| --------------- | ---------------- | ---------------------------------------------------------- |
+| status          | `@WORKER_STATUS` | The status of `workerFn`                                   |
+| kill            | Function         | The function that allows killing the worker                 |
+
+### Options
 
 ## Options API
 
@@ -45,6 +43,7 @@ const [workerFn, workerStatus, workerTerminate] = useWorker(fn, {
 | ------------------ | --------------- | --------- | ------------------------------------------------------------------------- |
 | timeout            | Number          | undefined | the number of milliseconds before killing the worker                      |
 | remoteDependencies | Array of String | []        | an array that contains the remote dependencies needed to run the worker   |
+| autoTerminate      | Boolean         | true      | Kill the worker once it's done (success or error)                         |
 
 ## Options Example
 
@@ -53,11 +52,11 @@ import { useWorker } from "@koale/useworker";
 
 const fn = dates => dates.sort(dateFns.compareAsc)
 
-const [workerFn, workerStatus, workerTerminate] = useWorker(fn, {
+const [workerFn, {status: workerStatus, kill: workerTerminate }] = useWorker(fn, {
   timeout: 50000 // 5 seconds
   remoteDependencies: [
-      "https://cdnjs.cloudflare.com/ajax/libs/date-fns/1.30.1/date_fns.js" // dateFns
-    ]
+    "https://cdnjs.cloudflare.com/ajax/libs/date-fns/1.30.1/date_fns.js" // dateFns
+  ],
 });
 ```
 
