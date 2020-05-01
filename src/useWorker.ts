@@ -3,9 +3,14 @@ import createWorkerBlobUrl from './lib/createWorkerBlobUrl'
 import WORKER_STATUS from './lib/status'
 import { useDeepCallback } from './hook/useDeepCallback'
 
+type WorkerController = {
+  status: WORKER_STATUS;
+  kill: Function;
+}
+
 type Options = {
   timeout?: number;
-  dependencies?: string[];
+  remoteDependencies?: string[];
   autoTerminate?: boolean;
 }
 
@@ -13,7 +18,7 @@ const PROMISE_RESOLVE = 'resolve'
 const PROMISE_REJECT = 'reject'
 const DEFAULT_OPTIONS: Options = {
   timeout: undefined,
-  dependencies: [],
+  remoteDependencies: [],
   autoTerminate: true,
 }
 
@@ -60,11 +65,11 @@ export const useWorker = <T extends (...fnArgs: any[]) => any>(
 
   const generateWorker = useDeepCallback(() => {
     const {
-      dependencies = DEFAULT_OPTIONS.dependencies,
+      remoteDependencies = DEFAULT_OPTIONS.remoteDependencies,
       timeout = DEFAULT_OPTIONS.timeout,
     } = options
 
-    const blobUrl = createWorkerBlobUrl(fn, dependencies!)
+    const blobUrl = createWorkerBlobUrl(fn, remoteDependencies!)
     const newWorker: Worker & { _url?: string } = new Worker(blobUrl)
     newWorker._url = blobUrl
 
@@ -120,6 +125,11 @@ export const useWorker = <T extends (...fnArgs: any[]) => any>(
     return callWorker(...fnArgs)
   }, [callWorker])
 
+  const workerController = {
+    status: workerStatus,
+    kill: killWorker,
+  }
+
   React.useEffect(() => {
     worker.current = generateWorker()
   }, [generateWorker])
@@ -129,6 +139,6 @@ export const useWorker = <T extends (...fnArgs: any[]) => any>(
   }, [killWorker])
 
   return [
-    workerHook, workerStatus, killWorker,
-  ] as [typeof workerHook, WORKER_STATUS, typeof killWorker]
+    workerHook, workerController,
+  ] as [typeof workerHook, WorkerController]
 }

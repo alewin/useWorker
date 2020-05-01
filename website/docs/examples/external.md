@@ -25,7 +25,7 @@ title: External Scripts
 
   const [sortWorker, sortWorkerStatus, killWorker] = useWorker(sortDates, {
     timeout: 5000,
-    dependencies: [
+    remoteDependencies: [
       "https://cdnjs.cloudflare.com/ajax/libs/date-fns/1.30.1/date_fns.js"
     ]
   });

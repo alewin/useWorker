@@ -14,9 +14,10 @@ function App() {
   const { addToast } = useToasts();
 
   const [sortStatus, setSortStatus] = React.useState(false);
-  const [sortWorker, sortWorkerStatus, killWorker] = useWorker(sortDates, {
+
+  const [sortWorker, { status: sortWorkerStatus, kill: killWorker }] = useWorker(sortDates, {
     autoTerminate: false, // you should manually kill the worker using "killWorker()"
-    dependencies: [
+    remoteDependencies: [
       "https://cdnjs.cloudflare.com/ajax/libs/date-fns/1.30.1/date_fns.js"
     ],
   });
