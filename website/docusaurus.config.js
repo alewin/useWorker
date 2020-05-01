@@ -15,7 +15,7 @@ module.exports = {
       title: 'useWorker',
       logo: {
         alt: 'useWorker',
-        src: 'https://github.com/alewin/useWorker/raw/develop/logo.png',
+        src: 'https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/apple/237/gear_2699.png',
       },
       links: [
         {
@@ -45,6 +45,18 @@ module.exports = {
               label: 'Installation',
               to: 'docs/installation',
             },
+            {
+              label: 'API',
+              to: 'docs/api-useworker',
+            },
+            {
+              label: 'Examples',
+              to: 'docs/examples/examples-sort',
+            },
+            {
+              label: 'Limitations',
+              to: 'docs/limitations',
+            },
           ],
         },
         {
@@ -58,6 +70,10 @@ module.exports = {
         },
       ],
       copyright: `Copyright © ${new Date().getFullYear()}, Built with Docusaurus.`,
+    },
+    prism: {
+      defaultLanguage: 'js',
+      plugins: ['line-numbers', 'show-language'],
     },
   },
   presets: [

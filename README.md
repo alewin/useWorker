@@ -6,7 +6,7 @@
 </h1>
 
 <h2 align="center">
-  Use web workers with react hook 
+  Use web workers with react hook
   <br />
   https://useworker.js.org/
   <a
@@ -29,10 +29,11 @@
 
 - Run expensive function **without blocking UI** ([Show live gif](https://github.com/alewin/useWorker/issues/2))
 - Supports **Promises** pattern instead of event-messages
-- Size: `< 1KB`, with `zero` dependencies
+- Size: less than `3KB`!
 - Clear [API](https://useworker.js.org/docs/api-useworker#options-api) using hook
 - Typescript support
 - Garbage collector web worker instance
+- [Remote dependencies](https://useworker.js.org/docs/api-useworker#options-api) option
 - [timeout](https://useworker.js.org/docs/api-useworker#options-api) option
 
 ---
@@ -43,12 +44,6 @@
 
 ```bash
 npm install --save @koale/useworker
-```
-
-- **@next 3.0.0-beta**
-
-```bash
-npm install --save @koale/useworker@next
 ```
 
 ---
@@ -74,7 +69,7 @@ import { useWorker, WORKER_STATUS } from "@koale/useworker";
 
 - [Sorting](https://icji4.csb.app/sorting): Sorting 50000 random numbers
 - [Csv](https://icji4.csb.app/csv): Generate Csv, Parse Csv, Convert to JSON
-- [External Dependencies](https://icji4.csb.app/external) Use external scripts inside WebWorkers
+- [External Dependencies](https://icji4.csb.app/external) Use external scripts inside WebWorker
 
 ---
 
@@ -145,7 +140,7 @@ The library is experimental so if you find a **bug** or would like to request a 
 
 ## 💻 Contributors
 
-- Thanks to [@Pigotz](https://github.com/Pigotz) [@grdnrt](https://github.com/grdnrt) [@IljaDaderko](https://github.com/IljaDaderko) [@z4o4z](https://github.com/z4o4z) 
+- Thanks to [@Pigotz](https://github.com/Pigotz) [@grdnrt](https://github.com/grdnrt) [@IljaDaderko](https://github.com/IljaDaderko) [@z4o4z](https://github.com/z4o4z)
 
 ---
 

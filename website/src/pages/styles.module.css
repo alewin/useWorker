@@ -1,36 +1,82 @@
-/* stylelint-disable docusaurus/copyright-header */
+/**
+ * Copyright (c) 2017-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 /**
  * CSS files with the .module.css suffix will be treated as CSS modules
  * and scoped locally.
  */
 
-.heroBanner {
+/* .heroBanner {
   padding: 4rem 0;
   text-align: center;
   position: relative;
   overflow: hidden;
-}
+} */
 
-@media screen and (max-width: 966px) {
-  .heroBanner {
-    padding: 2rem;
-  }
+.heroBanner h2 {
+  font-size: 2rem !important;
 }
-
-.buttons {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.heroBanner p {
+  font-size: 1rem !important;
 }
-
+.heroImage {
+  max-height: 50vh;
+}
 .features {
   display: flex;
+  margin-top: 5rem;
+  margin-bottom: 5rem;
+  align-items: center;
+  padding: 2rem 0;
+  width: 100%;
+}
+.forDevelopers {
+  display: flex;
+  margin-top: 5rem;
   align-items: center;
   padding: 2rem 0;
   width: 100%;
 }
 
+.forDevelopers .button {
+  margin-top: 10px;
+}
+.featureCard {
+  height: 100%;
+  margin-bottom: 10px;
+}
 .featureImage {
-  height: 200px;
-  width: 200px;
+  height: 50px;
+  width: 50px;
+}
+
+.button {
+  margin: 25px 10px;
+}
+
+.howCard h3 {
+  font-size: 2.5rem;
+  font-weight: 800;
+}
+
+.pricingCard h3 {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+}
+.pricingCard p {
+  margin: 0;
+}
+
+.responsiveCentered {
+  text-align: center;
+}
+
+@media screen and (max-width: 999px) {
+  .responsiveCentered {
+    text-align: left;
+  }
 }

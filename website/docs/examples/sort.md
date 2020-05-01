@@ -25,7 +25,7 @@ const numbers = [...Array(50000)].map(() =>
 );
 
 function App() {
-  const [sortWorker, sortWorkerStatus, killWorker] = useWorker(bubleSort);
+  const [sortWorker, { status: sortWorkerStatus, kill: killWorker }] = useWorker(bubleSort);
 
   const onWorkerSortClick = () => {
     sortWorker(numbers).then(result => {
