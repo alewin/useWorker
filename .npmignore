@@ -9,6 +9,7 @@ node_modules/
 
 .eslintrc
 .editorconfig
+.github/
 
 dist/*.map
 
