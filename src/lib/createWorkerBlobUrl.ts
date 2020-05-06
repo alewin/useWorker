@@ -1,5 +1,6 @@
 import jobRunner from './jobRunner'
 import remoteDepsParser from './remoteDepsParser'
+import functionBodyParser from './functionBodyParser'
 
 /**
  * Converts the "fn" function into the syntax needed to be executed within a web worker
@@ -15,8 +16,8 @@ import remoteDepsParser from './remoteDepsParser'
  * .then(postMessage(['SUCCESS', result]))
  * .catch(postMessage(['ERROR', error])"
  */
-const createWorkerBlobUrl = (fn: Function, deps: string[]) => {
-  const blobCode = `${remoteDepsParser(deps)}; onmessage=(${jobRunner})(${fn})`
+const createWorkerBlobUrl = (fn: Function, deps: string[], onCreate?: Function) => {
+  const blobCode = `${remoteDepsParser(deps)}; ${functionBodyParser(onCreate)}; onmessage=(${jobRunner})(${fn})`
   const blob = new Blob([blobCode], { type: 'text/javascript' })
   const url = URL.createObjectURL(blob)
   return url

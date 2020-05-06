@@ -73,7 +73,7 @@ export const useWorker = <T extends (...fnArgs: any[]) => any>(
       onCreate,
     } = options
 
-    const blobUrl = createWorkerBlobUrl(fn, remoteDependencies!)
+    const blobUrl = createWorkerBlobUrl(fn, remoteDependencies!, onCreate)
     const newWorker: Worker & { _url?: string } = new Worker(blobUrl)
     newWorker._url = blobUrl
 
