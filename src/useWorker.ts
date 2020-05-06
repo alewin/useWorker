@@ -12,6 +12,7 @@ type Options = {
   timeout?: number;
   remoteDependencies?: string[];
   autoTerminate?: boolean;
+  onCreate?: Function,
 }
 
 const PROMISE_RESOLVE = 'resolve'
@@ -69,6 +70,7 @@ export const useWorker = <T extends (...fnArgs: any[]) => any>(
     const {
       remoteDependencies = DEFAULT_OPTIONS.remoteDependencies,
       timeout = DEFAULT_OPTIONS.timeout,
+      onCreate,
     } = options
 
     const blobUrl = createWorkerBlobUrl(fn, remoteDependencies!)
