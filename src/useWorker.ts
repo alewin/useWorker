@@ -18,6 +18,7 @@ type Options = {
   remoteDependencies?: string[];
   autoTerminate?: boolean;
   transferable?: TRANSFERABLE_TYPE;
+  onCreate?: Function,
 }
 
 const PROMISE_RESOLVE = 'resolve'
@@ -77,6 +78,7 @@ export const useWorker = <T extends (...fnArgs: any[]) => any>(
       remoteDependencies = DEFAULT_OPTIONS.remoteDependencies,
       timeout = DEFAULT_OPTIONS.timeout,
       transferable = DEFAULT_OPTIONS.transferable,
+      onCreate,
     } = options
 
     const blobUrl = createWorkerBlobUrl(fn, remoteDependencies!, transferable!)
