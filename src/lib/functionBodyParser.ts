@@ -1,11 +1,10 @@
 /**
  *
  * Convert function to a string ang gets body expressions
- * this expressions' strings will then executed on worker creation.
+ * this expressions' strings will then be inserted in the worker blob
  *
- * @param {Array.<String>}} deps array of string
- * @returns {String} a string composed by the concatenation of the array
- * elements "deps" and "importScripts".
+ * @param {Function} [] A function whose will be extracted
+ * @returns {String} The function's body
  *
  * @example
  * functionBodyParser(function () {let a = 2}) // return let a = 2)
