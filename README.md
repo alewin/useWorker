@@ -120,9 +120,10 @@ More examples: https://github.com/alewin/useWorker/tree/develop/example
 - [x] Kill Web Worker
 - [x] Reactive web worker status
 - [x] Add timeout option
-- [x] import and use external script inside `useWorker` function
-- [ ] import and use local script inside `useWorker` function
-- [ ] run multiple instance of the worker
+- [x] import and use remote script inside `useWorker` function
+- [ ] import and use local script inside `useWorker` function [#37](https://github.com/alewin/useWorker/issues/37)
+- [ ] useWorkers Hook [#38](https://github.com/alewin/useWorker/issues/38)
+
 
 ---
 
