@@ -25,7 +25,7 @@ const jobRunner = (options: JOB_RUNNER_OPTIONS) => (e: MessageEvent) => {
       const isTransferable = (val: any) => (
         val instanceof ArrayBuffer || val instanceof MessagePort || val instanceof ImageBitmap
       )
-      const transferList: any[] = options.transferable === 'auto' && isTransferable(result) ? [result.buffer] : []
+      const transferList: any[] = options.transferable === 'auto' && isTransferable(result) ? [result] : []
       // @ts-ignore
       postMessage(['SUCCESS', result], transferList)
     })

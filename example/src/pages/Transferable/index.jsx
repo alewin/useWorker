@@ -10,7 +10,7 @@ const demoFunction = (arrayBuffer) => {
   for (let i = 0; i < demo.length; ++i) {
     demo[i] = i;
   }
-  return demo
+  return demo.buffer
 }
 
 // Create a 1GB "file" and fill it.
