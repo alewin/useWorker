@@ -1,3 +1,10 @@
+import { TRANSFERABLE_TYPE } from 'src/useWorker'
+
+interface JOB_RUNNER_OPTIONS {
+  fn: Function,
+  transferable: TRANSFERABLE_TYPE
+}
+
 /**
  * This function accepts as a parameter a function "userFunc"
  * And as a result returns an anonymous function.
@@ -11,13 +18,16 @@
  * @returns {Function} returns a function that accepts the parameters
  * to be passed to the "userFunc" function
  */
-const jobRunner = (userFunc: Function) => (e: MessageEvent) => {
+const jobRunner = (options: JOB_RUNNER_OPTIONS) => (e: MessageEvent) => {
   const [userFuncArgs] = e.data as [any[]]
-
-  return Promise.resolve(userFunc(...userFuncArgs))
+  return Promise.resolve(options.fn(...userFuncArgs))
     .then(result => {
+      const isTransferable = (val: any) => (
+        val instanceof ArrayBuffer || val instanceof MessagePort || val instanceof ImageBitmap
+      )
+      const transferList: any[] = options.transferable === 'auto' && isTransferable(result) ? [result.buffer] : []
       // @ts-ignore
-      postMessage(['SUCCESS', result])
+      postMessage(['SUCCESS', result], transferList)
     })
     .catch(error => {
       // @ts-ignore

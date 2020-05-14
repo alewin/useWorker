@@ -8,10 +8,16 @@ type WorkerController = {
   kill: Function;
 }
 
+export enum TRANSFERABLE_TYPE {
+  AUTO = 'auto',
+  NONE = 'none',
+}
+
 type Options = {
   timeout?: number;
   remoteDependencies?: string[];
   autoTerminate?: boolean;
+  transferable?: TRANSFERABLE_TYPE;
 }
 
 const PROMISE_RESOLVE = 'resolve'
@@ -20,6 +26,7 @@ const DEFAULT_OPTIONS: Options = {
   timeout: undefined,
   remoteDependencies: [],
   autoTerminate: true,
+  transferable: TRANSFERABLE_TYPE.AUTO,
 }
 
 /**
@@ -69,9 +76,10 @@ export const useWorker = <T extends (...fnArgs: any[]) => any>(
     const {
       remoteDependencies = DEFAULT_OPTIONS.remoteDependencies,
       timeout = DEFAULT_OPTIONS.timeout,
+      transferable = DEFAULT_OPTIONS.transferable,
     } = options
 
-    const blobUrl = createWorkerBlobUrl(fn, remoteDependencies!)
+    const blobUrl = createWorkerBlobUrl(fn, remoteDependencies!, transferable!)
     const newWorker: Worker & { _url?: string } = new Worker(blobUrl)
     newWorker._url = blobUrl
 
@@ -104,18 +112,27 @@ export const useWorker = <T extends (...fnArgs: any[]) => any>(
     return newWorker
   }, [fn, options, killWorker])
 
-  const callWorker = React.useCallback((...fnArgs: Parameters<T>) => (
-    new Promise<ReturnType<T>>((resolve, reject) => {
+  const callWorker = React.useCallback((...workerArgs: Parameters<T>) => {
+    const { transferable = DEFAULT_OPTIONS.transferable } = options
+    return new Promise<ReturnType<T>>((resolve, reject) => {
       promise.current = {
         [PROMISE_RESOLVE]: resolve,
         [PROMISE_REJECT]: reject,
       }
+      const transferList: any[] = transferable === TRANSFERABLE_TYPE.AUTO ? (
+        workerArgs.filter((x: any) => (
+          (x instanceof ArrayBuffer) || (x instanceof MessagePort)
+            // eslint-disable-next-line no-restricted-globals
+            || (self.ImageBitmap && x instanceof ImageBitmap)
+        ))
+      ) : []
 
-    worker.current?.postMessage([[...fnArgs]])
+      worker.current?.postMessage([[...workerArgs]], transferList)
 
-    setWorkerStatus(WORKER_STATUS.RUNNING)
+      setWorkerStatus(WORKER_STATUS.RUNNING)
     })
-  ), [setWorkerStatus])
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [setWorkerStatus])
 
   const workerHook = React.useCallback((...fnArgs: Parameters<T>) => {
     const terminate = options.autoTerminate != null
