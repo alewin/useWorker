@@ -6,17 +6,11 @@ import { useToasts } from "react-toast-notifications";
 
 
 const demoFunction = (arrayBuffer) => {
-  const demo = new Uint8Array(1024 * 1024 * 100); // 100mb
-  for (let i = 0; i < demo.length; ++i) {
-    demo[i] = i;
+  var uInt8Array = new Uint8Array(arrayBuffer)
+  for (let i = 0; i < uInt8Array.length; ++i) {
+    uInt8Array[i] = 42;
   }
-  return demo.buffer
-}
-
-// Create a 1GB "file" and fill it.
-var uInt8Array = new Uint8Array(1024 * 1024 * 1000); // 1GB
-for (var i = 0; i < uInt8Array.length; ++i) {
-  uInt8Array[i] = i;
+  return uInt8Array.buffer
 }
 
 function App() {
@@ -25,16 +19,20 @@ function App() {
   const [transferableWorker, {
     status: transferableWorkerStatus,
     kill: killWorker
-  }] = useWorker(demoFunction, { transferable: 'auto'});
+  }] = useWorker(demoFunction, { autoTerminate:false, transferable: 'auto'});
 
   React.useEffect(()=>{
     console.log("WORKER:", transferableWorkerStatus);
   }, [transferableWorkerStatus])
 
   const onWorkerSortClick = () => {
-    transferableWorker(uInt8Array).then(result => {
+    // Create a 40MB "file" and fill it.
+    var uInt8Array = new Uint8Array(1024 * 1024 * 40); // 40MB
+    for (var i = 0; i < uInt8Array.length; ++i) {
+      uInt8Array[i] = i;
+    }
+    transferableWorker(uInt8Array.buffer).then(result => {
       console.log("transferable useWorker()", result);
-      console.log(uInt8Array);
       addToast("Finished: transferable using useWorker.", { appearance: "success" });
     });
   };

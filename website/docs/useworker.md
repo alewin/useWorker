@@ -41,9 +41,10 @@ to view the values of `WORKER_STATUS` click here: [Status API](./workerstatus.md
 
 | Value              | Type            | Default   | Description                                                               |
 | ------------------ | --------------- | --------- | ------------------------------------------------------------------------- |
-| timeout            | Number          | undefined | the number of milliseconds before killing the worker                      |
-| remoteDependencies | Array of String | []        | an array that contains the remote dependencies needed to run the worker   |
+| timeout            | Number          | undefined | The number of milliseconds before killing the worker                      |
+| remoteDependencies | Array of String | []        | An array that contains the remote dependencies needed to run the worker   |
 | autoTerminate      | Boolean         | true      | Kill the worker once it's done (success or error)                         |
+| transferable       | String          | 'auto'    | enable [Transferable Objects](https://developer.mozilla.org/en-US/docs/Web/API/Transferable), to disable it set transferable: 'none' |
 
 ## Options Example
 

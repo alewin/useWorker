@@ -24,7 +24,8 @@ In this way, many features can be run in "**parallel**" without blocking our jav
 - Typescript support
 - Garbage collector web worker instance
 - [Remote dependencies](https://useworker.js.org/docs/api-useworker#options-api) option
-- [timeout](https://useworker.js.org/docs/api-useworker#options-api) option
+- [Timeout](https://useworker.js.org/docs/api-useworker#options-api) option
+- Support [Transferable](https://useworker.js.org/docs/api-useworker#options-api)
 
 the most useful feature of `useWorker`, however, is the *simplicity*. You can see the difference between using web workers via pure javascript and via `useWorker()`.
 
