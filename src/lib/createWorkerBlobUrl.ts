@@ -1,3 +1,4 @@
+import { TRANSFERABLE_TYPE } from 'src/useWorker'
 import jobRunner from './jobRunner'
 import remoteDepsParser from './remoteDepsParser'
 
@@ -15,8 +16,16 @@ import remoteDepsParser from './remoteDepsParser'
  * .then(postMessage(['SUCCESS', result]))
  * .catch(postMessage(['ERROR', error])"
  */
-const createWorkerBlobUrl = (fn: Function, deps: string[]) => {
-  const blobCode = `${remoteDepsParser(deps)}; onmessage=(${jobRunner})(${fn})`
+const createWorkerBlobUrl = (
+  fn: Function, deps: string[], transferable: TRANSFERABLE_TYPE,
+) => {
+  const blobCode = `
+    ${remoteDepsParser(deps)};
+    onmessage=(${jobRunner})({
+      fn: (${fn}),
+      transferable: '${transferable}'
+    })
+  `
   const blob = new Blob([blobCode], { type: 'text/javascript' })
   const url = URL.createObjectURL(blob)
   return url
