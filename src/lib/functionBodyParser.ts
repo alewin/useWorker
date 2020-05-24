@@ -9,7 +9,9 @@
  * @example
  * functionBodyParser(function () {let a = 2}) // return let a = 2)
  */
-const functionBodyParser = (fn?: Function) => {
+const functionBodyParser = (fn?: Function): string => {
+  if (!fn) return ''
+
   const functionString = fn?.toString()
 
   return functionString?.slice(
