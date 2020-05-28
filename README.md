@@ -1,6 +1,6 @@
 <h1 align="center">
   <br>
-  <img height="200px" width="300px" src="logo.png" alt="useWorker"
+  <img width="300px" src="logo.png" alt="useWorker"
     title="useWorker() Use web workers with react hook" />
   <br>
 </h1>
@@ -120,9 +120,24 @@ More examples: https://github.com/alewin/useWorker/tree/develop/example
 - [x] Kill Web Worker
 - [x] Reactive web worker status
 - [x] Add timeout option
-- [x] import and use external script inside `useWorker` function
-- [ ] import and use local script inside `useWorker` function
-- [ ] run multiple instance of the worker
+- [x] import and use remote script inside `useWorker` function
+- [x] support [Transferable Objects](https://developer.mozilla.org/en-US/docs/Web/API/Transferable)
+- [ ] Testing useWorker [#41](https://github.com/alewin/useWorker/issues/41)
+- [ ] import and use local script inside `useWorker` function [#37](https://github.com/alewin/useWorker/issues/37)
+- [ ] useWorkers Hook [#38](https://github.com/alewin/useWorker/issues/38)
+
+
+---
+
+
+## 🤔 Motivation and Limitation
+Most react projects are initialized through [Create React App](https://github.com/facebook/create-react-app).
+CRA unfortunately does not offer support for webworkers, unless you eject and change the webpack configuration manually.
+
+This library allows you to use web workers without having to change the CRA configuration, which is why there are often limitations or particular workarounds.
+
+If you are interested in changing the webpack configuration to manually manage your workers, see: [worker-loader]( https://github.com/webpack-contrib/worker-loader)
+
 
 ---
 
@@ -134,6 +149,7 @@ The library is experimental so if you find a **bug** or would like to request a 
 
 ## 💡 Similar Project
 
+- [greenlet](https://github.com/developit/greenlet/)
 - [react-hooks-worker](https://github.com/dai-shi/react-hooks-worker)
 
 ---

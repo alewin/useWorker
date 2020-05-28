@@ -43,11 +43,11 @@ function Home() {
                       'button hero--button button--md button--secondary button--outline responsive-button',
                       styles.button
                     )}
-                    to={'https://github.com/alewin/useworker'}
+                    to={'https://icji4.csb.app/sorting'}
                     target="_blank"
                     style={{ marginLeft: 0, marginTop: 10 }}
                   >
-                    GitHub Source →
+                    Try now →
                   </Link>
                 </div>
               </div>

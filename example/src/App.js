@@ -4,6 +4,7 @@ import { ToastProvider } from "react-toast-notifications";
 
 import SortingPage from "./pages/Sorting";
 import CsvPage from "./pages/Csv";
+import TransferablePage from "./pages/Transferable";
 import ExternalScriptsPage from "./pages/ExternalScripts";
 import logo from "./react.png";
 import "./style.css";
@@ -41,7 +42,12 @@ export default function App() {
               </li>
               <li>
                 <Link style={{ color: "white" }} to="/external">
-                  External Scripts
+                  External Scripts Demo
+                </Link>
+              </li>
+              <li>
+                <Link style={{ color: "white" }} to="/transferable">
+                  Transferable Demo
                 </Link>
               </li>
             </ul>
@@ -58,6 +64,9 @@ export default function App() {
             </Route>
             <Route path="/external">
               <ExternalScriptsPage />
+            </Route>
+            <Route path="/transferable">
+              <TransferablePage />
             </Route>
           </Switch>
         </div>

@@ -18,7 +18,7 @@ import { useWorker } from "@koale/useworker";
 - `killSortWorker`: the function used to terminate the web worker
 
 ```javascript
-const sortNumbers numbers => ([...numbers].sort())
+const sortNumbers = numbers => ([...numbers].sort())
 const [sortWorker, { status: sortStatus, kill: killSortWorker }] = useWorker(sortNumbers);
 ```
 
