@@ -121,7 +121,7 @@ export const useWorker = <T extends (...fnArgs: any[]) => any>(
       }
       const transferList: any[] = transferable === TRANSFERABLE_TYPE.AUTO ? (
         workerArgs.filter((x: any) => (
-          (x instanceof ArrayBuffer) || (x instanceof MessagePort)
+          (x instanceof ArrayBuffer) || (x instanceof MessagePort || x instanceof OffscreenCanvas)
             // eslint-disable-next-line no-restricted-globals
             || (self.ImageBitmap && x instanceof ImageBitmap)
         ))
