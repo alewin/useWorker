@@ -23,7 +23,7 @@ const jobRunner = (options: JOB_RUNNER_OPTIONS) => (e: MessageEvent) => {
   return Promise.resolve(options.fn(...userFuncArgs))
     .then(result => {
       const isTransferable = (val: any) => (
-        val instanceof ArrayBuffer || val instanceof MessagePort || val instanceof ImageBitmap
+        val instanceof ArrayBuffer || val instanceof MessagePort || val instanceof ImageBitmap || val instanceof OffscreenCanvas
       )
       const transferList: any[] = options.transferable === 'auto' && isTransferable(result) ? [result] : []
       // @ts-ignore
