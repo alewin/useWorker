@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-globals */
 import { TRANSFERABLE_TYPE } from 'src/useWorker'
 
 interface JOB_RUNNER_OPTIONS {
@@ -18,12 +19,15 @@ interface JOB_RUNNER_OPTIONS {
  * @returns {Function} returns a function that accepts the parameters
  * to be passed to the "userFunc" function
  */
-const jobRunner = (options: JOB_RUNNER_OPTIONS) => (e: MessageEvent) => {
+const jobRunner = (options: JOB_RUNNER_OPTIONS): Function => (e: MessageEvent) => {
   const [userFuncArgs] = e.data as [any[]]
   return Promise.resolve(options.fn(...userFuncArgs))
     .then(result => {
       const isTransferable = (val: any) => (
-        val instanceof ArrayBuffer || val instanceof MessagePort || val instanceof ImageBitmap || val instanceof OffscreenCanvas
+        ('ArrayBuffer' in self && val instanceof ArrayBuffer)
+        || ('MessagePort' in self && val instanceof MessagePort)
+        || ('ImageBitmap' in self && val instanceof ImageBitmap)
+        || ('OffscreenCanvas' in self && val instanceof OffscreenCanvas)
       )
       const transferList: any[] = options.transferable === 'auto' && isTransferable(result) ? [result] : []
       // @ts-ignore

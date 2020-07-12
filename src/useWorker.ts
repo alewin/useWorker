@@ -120,10 +120,11 @@ export const useWorker = <T extends (...fnArgs: any[]) => any>(
         [PROMISE_REJECT]: reject,
       }
       const transferList: any[] = transferable === TRANSFERABLE_TYPE.AUTO ? (
-        workerArgs.filter((x: any) => (
-          (x instanceof ArrayBuffer) || (x instanceof MessagePort || x instanceof OffscreenCanvas)
-            // eslint-disable-next-line no-restricted-globals
-            || (self.ImageBitmap && x instanceof ImageBitmap)
+        workerArgs.filter((val: any) => (
+          ('ArrayBuffer' in window && val instanceof ArrayBuffer)
+            || ('MessagePort' in window && val instanceof MessagePort)
+            || ('ImageBitmap' in window && val instanceof ImageBitmap)
+            || ('OffscreenCanvas' in window && val instanceof OffscreenCanvas)
         ))
       ) : []
 
