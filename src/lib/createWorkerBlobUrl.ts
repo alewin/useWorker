@@ -1,6 +1,7 @@
 import { TRANSFERABLE_TYPE } from 'src/useWorker'
 import jobRunner from './jobRunner'
 import remoteDepsParser from './remoteDepsParser'
+import localDepsParser from './localDepsParser'
 
 /**
  * Converts the "fn" function into the syntax needed to be executed within a web worker
@@ -18,9 +19,14 @@ import remoteDepsParser from './remoteDepsParser'
  */
 const createWorkerBlobUrl = (
   fn: Function, deps: string[], transferable: TRANSFERABLE_TYPE,
+  fn: Function,
+  deps: string[],
+  transferable: TRANSFERABLE_TYPE,
+  localDeps: object,
 ) => {
   const blobCode = `
     ${remoteDepsParser(deps)};
+    ${localDepsParser(localDeps)}
     onmessage=(${jobRunner})({
       fn: (${fn}),
       transferable: '${transferable}'

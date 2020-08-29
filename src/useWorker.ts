@@ -13,9 +13,10 @@ export enum TRANSFERABLE_TYPE {
   NONE = 'none',
 }
 
-type Options = {
+export type Options = {
   timeout?: number;
-  remoteDependencies?: string[];
+  remoteDependencies?: string[]
+  localDependencies?: object;
   autoTerminate?: boolean;
   transferable?: TRANSFERABLE_TYPE;
 }
@@ -25,6 +26,7 @@ const PROMISE_REJECT = 'reject'
 const DEFAULT_OPTIONS: Options = {
   timeout: undefined,
   remoteDependencies: [],
+  localDependencies: {},
   autoTerminate: true,
   transferable: TRANSFERABLE_TYPE.AUTO,
 }
@@ -77,9 +79,11 @@ export const useWorker = <T extends (...fnArgs: any[]) => any>(
       remoteDependencies = DEFAULT_OPTIONS.remoteDependencies,
       timeout = DEFAULT_OPTIONS.timeout,
       transferable = DEFAULT_OPTIONS.transferable,
+      localDependencies = DEFAULT_OPTIONS.localDependencies,
     } = options
 
-    const blobUrl = createWorkerBlobUrl(fn, remoteDependencies!, transferable!)
+    console.log(localDependencies)
+    const blobUrl = createWorkerBlobUrl(fn, remoteDependencies!, transferable!, localDependencies!)
     const newWorker: Worker & { _url?: string } = new Worker(blobUrl)
     newWorker._url = blobUrl
 
