@@ -1,4 +1,6 @@
 import React from 'react'
+import clone from 'lodash.clone'
+
 import createWorkerBlobUrl from './lib/createWorkerBlobUrl'
 import WORKER_STATUS from './lib/status'
 import { useDeepCallback } from './hook/useDeepCallback'
@@ -128,7 +130,7 @@ export const useWorker = <T extends (...fnArgs: any[]) => any>(
         ))
       ) : []
 
-      worker.current?.postMessage([[...workerArgs]], transferList)
+      worker.current?.postMessage(clone([workerArgs]), transferList)
 
       setWorkerStatus(WORKER_STATUS.RUNNING)
     })

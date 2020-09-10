@@ -41,6 +41,8 @@
     "background"
   ],
   "dependencies": {
-    "dequal": "^1.0.0"
+    "@types/lodash.clone": "^4.5.6",
+    "dequal": "^1.0.0",
+    "lodash.clone": "^4.5.0"
   }
 }
