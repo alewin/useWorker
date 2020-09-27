@@ -130,7 +130,7 @@ More examples: https://github.com/alewin/useWorker/tree/develop/example
 ---
 
 
-## 🤔 Motivation and Limitation
+## 🤔 Motivation and Limitations
 Most react projects are initialized through [Create React App](https://github.com/facebook/create-react-app).
 CRA unfortunately does not offer support for webworkers, unless you eject and change the webpack configuration manually.
 
@@ -138,6 +138,19 @@ This library allows you to use web workers without having to change the CRA conf
 
 If you are interested in changing the webpack configuration to manually manage your workers, see: [worker-loader]( https://github.com/webpack-contrib/worker-loader)
 
+--
+
+## Known issues
+
+There's a known issue related to transpiling tools such as Babel causing `Not refereced` errors. 
+
+Since the approach of this library is moving the entire function passed to the Hook to a worker, if the function gets transpiled, the variable definitions used by the transpiling tool get out of scope when the function gets moved to the worker, causing unexpected reference errors.
+
+If you're experimenting this type of issue, one workaround is wrapping your function declaration inside a function object as a string.
+
+```js
+const sum = new Function(`a`, `b`, `return a + b`)
+```
 
 ---
 
