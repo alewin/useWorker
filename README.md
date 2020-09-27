@@ -144,7 +144,7 @@ If you are interested in changing the webpack configuration to manually manage y
 
 There's a known issue related to transpiling tools such as Babel causing `Not refereced` errors. 
 
-Since the approach of this library is moving the entire function passed to the Hook to a worker, if the function gets transpiled, the variable definitions used by the transpiling tool get out of scope when the function gets moved to the worker, causing unexpected reference errors.
+Since the approach of this library is moving the entire function passed to the Hook to a worker, if the function gets transpiled, variable definitions used by the transpiling tool may get out of scope when the function gets moved to the worker, causing unexpected reference errors.
 
 If you're experimenting this type of issue, one workaround is wrapping your function declaration inside a function object as a string.
 
