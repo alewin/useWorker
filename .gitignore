@@ -4,3 +4,5 @@ node_modules/
 .cache/
 
 .rts2_cache_*
+
+.vscode
