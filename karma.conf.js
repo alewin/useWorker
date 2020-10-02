@@ -3,7 +3,7 @@ module.exports = function (config) {
     frameworks: ["mocha", "chai"],
     files: [{ pattern: "test/*.test.js" }],
     preprocessors: {
-      "test/*.test.js": ["webpack", "sourcemap"], //preprocess with webpack and our sourcemap loader
+      "test/*.test.js": ["webpack"], //preprocess with webpack
     },
     reporters: ["dots"], //report results in this format
     webpack: {
