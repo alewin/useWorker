@@ -1,6 +1,6 @@
 module.exports = function (config) {
   config.set({
-    frameworks: ["mocha", "chai"],
+    frameworks: ["mocha", "chai", "detectBrowsers"],
     files: [{ pattern: "test/*.test.js" }],
     preprocessors: {
       "test/*.test.js": ["webpack"], //preprocess with webpack
@@ -36,10 +36,36 @@ module.exports = function (config) {
       },
     },
     reporters: ["progress"],
+    singleRun: true,
     port: 9876, // karma web server port
     colors: true,
     logLevel: config.LOG_INFO,
-    browsers: ["ChromeHeadless"],
+    detectBrowsers: {
+      enabled: true,
+      usePhantomJS: false,
+      preferHeadless: true,
+      postDetection: (availableBrowsers) => {
+        if (process.env.INSIDE_DOCKER) {
+          return ["DockerChrome"];
+        } else if (process.env.CHROME_ONLY) {
+          return ["ChromeHeadless"];
+        } else {
+          // Filtering SafariTechPreview because I am having
+          // local issues and I have no idea how to fix them.
+          // I know that’s not a good reason to disable tests,
+          // but Safari TP is relatively unimportant.
+          return availableBrowsers.filter(
+            (browser) => browser !== "SafariTechPreview"
+          );
+        }
+      },
+    },
+    customLaunchers: {
+      DockerChrome: {
+        base: "ChromeHeadless",
+        flags: ["--no-sandbox"],
+      },
+    },
     autoWatch: false,
     concurrency: Infinity,
   });
