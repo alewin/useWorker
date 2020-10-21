@@ -37,7 +37,7 @@ module.exports = function (config) {
     },
     reporters: ["progress"],
     singleRun: true,
-    port: 9876, // karma web server port
+    port: 9876, // Karma web server port
     colors: true,
     logLevel: config.LOG_INFO,
     detectBrowsers: {
