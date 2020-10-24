@@ -4,5 +4,5 @@ services:
   - docker
 
 script:
-  - docker build -t comlink .
-  - docker run --rm -v `pwd`:/usr/src comlink
+  - docker build -t useworker .
+  - docker run --rm -v `pwd`:/usr/src useworker
