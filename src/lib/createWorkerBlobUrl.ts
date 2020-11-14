@@ -18,7 +18,6 @@ import localDepsParser from './localDepsParser'
  * .catch(postMessage(['ERROR', error])"
  */
 const createWorkerBlobUrl = (
-  fn: Function, deps: string[], transferable: TRANSFERABLE_TYPE,
   fn: Function,
   deps: string[],
   transferable: TRANSFERABLE_TYPE,
