@@ -8,11 +8,16 @@
 <h2 align="center">
   Use web workers with react hook
   <br />
-  https://useworker.js.org/
+  https://useworker.js.org/  
   <a
     href="https://twitter.com/intent/tweet?text=useWorker - Use web workers with react hooks&url=https://github.com/alewin/useWorker&via=alessiokoci&hashtags=react,useworker,hooks,javascript">
     <br />
     <img alt="Tweet" src="https://img.shields.io/twitter/url/http/shields.io.svg?style=social" />
+  </a>
+  <a
+    href="https://ui.dev/bytes/?r=alessio">
+    <br />
+    <img alt="Bytes Newsletter" src="https://raw.githubusercontent.com/alewin/useWorker/develop/website/static/img/bytes-newsletter.jpg" />
   </a>
 </h2>
 
