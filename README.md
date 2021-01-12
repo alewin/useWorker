@@ -125,10 +125,10 @@ More examples: https://github.com/alewin/useWorker/tree/develop/example
 - [x] Kill Web Worker
 - [x] Reactive web worker status
 - [x] Add timeout option
-- [x] import and use remote script inside `useWorker` function
+- [x] Import and use remote script inside `useWorker` function
 - [x] support [Transferable Objects](https://developer.mozilla.org/en-US/docs/Web/API/Transferable)
-- [ ] Testing useWorker [#41](https://github.com/alewin/useWorker/issues/41)
-- [ ] import and use local script inside `useWorker` function [#37](https://github.com/alewin/useWorker/issues/37)
+- [x] Testing useWorker [#41](https://github.com/alewin/useWorker/issues/41)
+- [x] Import and use local script inside `useWorker` function [#37](https://github.com/alewin/useWorker/issues/37)
 - [ ] useWorkers Hook [#38](https://github.com/alewin/useWorker/issues/38)
 
 
@@ -165,7 +165,7 @@ The library is experimental so if you find a **bug** or would like to request a 
 
 ---
 
-## 💡 Similar Project
+## 💡 Similar Projects
 
 - [greenlet](https://github.com/developit/greenlet/)
 - [react-hooks-worker](https://github.com/dai-shi/react-hooks-worker)
@@ -175,7 +175,7 @@ The library is experimental so if you find a **bug** or would like to request a 
 ## 💻 Contributors
 
 - Thanks to:
-- [@gonzachr](https://github.com/gonzachr) 
+- [@zant](https://github.com/zant) 
 - [@IljaDaderko](https://github.com/IljaDaderko)
 - [@Pigotz](https://github.com/Pigotz)
 - [@z4o4z](https://github.com/z4o4z)

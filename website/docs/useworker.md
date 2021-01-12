@@ -43,6 +43,7 @@ to view the values of `WORKER_STATUS` click here: [Status API](./workerstatus.md
 | ------------------ | --------------- | --------- | ------------------------------------------------------------------------- |
 | timeout            | Number          | undefined | The number of milliseconds before killing the worker                      |
 | remoteDependencies | Array of String | []        | An array that contains the remote dependencies needed to run the worker   |
+| localDependencies  | Function of Array of String | () => []        | A function that returns an array that contains the local dependencies needed to run the worker   |
 | autoTerminate      | Boolean         | true      | Kill the worker once it's done (success or error)                         |
 | transferable       | String          | 'auto'    | Enable [Transferable Objects](https://developer.mozilla.org/en-US/docs/Web/API/Transferable), to disable it set transferable: 'none' |
 
@@ -50,6 +51,7 @@ to view the values of `WORKER_STATUS` click here: [Status API](./workerstatus.md
 
 ```javascript
 import { useWorker } from "@koale/useworker";
+import { adder } from './utils'
 
 const fn = dates => dates.sort(dateFns.compareAsc)
 
@@ -58,6 +60,19 @@ const [workerFn, {status: workerStatus, kill: workerTerminate }] = useWorker(fn,
   remoteDependencies: [
     "https://cdnjs.cloudflare.com/ajax/libs/date-fns/1.30.1/date_fns.js" // dateFns
   ],
+});
+```
+## Local Dependencies Example
+
+```javascript
+import { useWorker } from "@koale/useworker";
+import { expensiveAdder } from './utils'
+
+const fn = (a, b) => expensiveAdder(a,b) 
+
+const [workerFn, {status: workerStatus, kill: workerTerminate }] = useWorker(fn, {
+  timeout: 50000 // 5 seconds
+  localDependencies: () => [expensiveAdder] // we pass the local function to the worker
 });
 ```
 
