@@ -179,6 +179,7 @@ The library is experimental so if you find a **bug** or would like to request a 
 - [@IljaDaderko](https://github.com/IljaDaderko)
 - [@Pigotz](https://github.com/Pigotz)
 - [@z4o4z](https://github.com/z4o4z)
+- [@101arrowz](https://github.com/101arrowz)
 
 ---
 
