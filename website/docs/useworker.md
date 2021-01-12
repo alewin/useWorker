@@ -51,7 +51,6 @@ to view the values of `WORKER_STATUS` click here: [Status API](./workerstatus.md
 
 ```javascript
 import { useWorker } from "@koale/useworker";
-import { adder } from './utils'
 
 const fn = dates => dates.sort(dateFns.compareAsc)
 
