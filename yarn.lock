@@ -4074,9 +4074,9 @@ isobject@^3.0.0, isobject@^3.0.1:
   integrity sha1-TkMekrEalzFjaqH5yNHMvP2reN8=
 
 isoworker@^0.1.0:
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/isoworker/-/isoworker-0.1.0.tgz#7100e5cf54df7b47f16c0837b6d710c91e5070a3"
-  integrity sha512-XvNQTgTkQRCsAZU9To6rox9f4aJtKGTNFZrOZM28EsRNtOQeQGaaqI/cVGZv4EN6HhwILU5lwOrvEWfP3/PUjQ==
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/isoworker/-/isoworker-0.1.1.tgz#99e68e08c18300685695c5187c4adbffa14d254b"
+  integrity sha512-25hcgGZlLh3bxF6/YNS5aw/dw2H7cna/30EvKhq6Hwwsd7gzkML6oo9XrBTpExihBVJX/8RanSXR6M4Ox5dQWA==
 
 jest-worker@^24.9.0:
   version "24.9.0"
