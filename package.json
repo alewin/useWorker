@@ -58,6 +58,6 @@
   ],
   "dependencies": {
     "dequal": "^1.0.0",
-    "isoworker": "^0.1.0"
+    "isoworker": "^0.1.1"
   }
 }
