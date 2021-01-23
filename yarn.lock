@@ -4073,6 +4073,11 @@ isobject@^3.0.0, isobject@^3.0.1:
   resolved "https://registry.yarnpkg.com/isobject/-/isobject-3.0.1.tgz#4e431e92b11a9731636aa1f9c8d1ccbcfdab78df"
   integrity sha1-TkMekrEalzFjaqH5yNHMvP2reN8=
 
+isoworker@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/isoworker/-/isoworker-0.1.1.tgz#99e68e08c18300685695c5187c4adbffa14d254b"
+  integrity sha512-25hcgGZlLh3bxF6/YNS5aw/dw2H7cna/30EvKhq6Hwwsd7gzkML6oo9XrBTpExihBVJX/8RanSXR6M4Ox5dQWA==
+
 jest-worker@^24.9.0:
   version "24.9.0"
   resolved "https://registry.yarnpkg.com/jest-worker/-/jest-worker-24.9.0.tgz#5dbfdb5b2d322e98567898238a9697bcce67b3e5"
