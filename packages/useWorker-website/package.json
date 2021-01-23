@@ -1,5 +1,5 @@
 {
-  "name": "docs",
+  "name": "@koale/useworker-docs",
   "version": "2.0.1",
   "private": true,
   "scripts": {
