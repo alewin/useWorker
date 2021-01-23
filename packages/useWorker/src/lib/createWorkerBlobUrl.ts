@@ -1,3 +1,4 @@
+import isoworker from 'isoworker'
 import { TRANSFERABLE_TYPE } from 'src/useWorker'
 import jobRunner from './jobRunner'
 import remoteDepsParser from './remoteDepsParser'
@@ -17,10 +18,15 @@ import remoteDepsParser from './remoteDepsParser'
  * .catch(postMessage(['ERROR', error])"
  */
 const createWorkerBlobUrl = (
-  fn: Function, deps: string[], transferable: TRANSFERABLE_TYPE,
+  fn: Function,
+  deps: string[],
+  transferable: TRANSFERABLE_TYPE,
+  localDeps: () => unknown[],
 ) => {
+  const [context] = isoworker.createContext(localDeps)
   const blobCode = `
     ${remoteDepsParser(deps)};
+    ${context}
     onmessage=(${jobRunner})({
       fn: (${fn}),
       transferable: '${transferable}'
