@@ -8,11 +8,16 @@
 <h2 align="center">
   Use web workers with react hook
   <br />
-  https://useworker.js.org/
+  https://useworker.js.org/  
   <a
     href="https://twitter.com/intent/tweet?text=useWorker - Use web workers with react hooks&url=https://github.com/alewin/useWorker&via=alessiokoci&hashtags=react,useworker,hooks,javascript">
     <br />
     <img alt="Tweet" src="https://img.shields.io/twitter/url/http/shields.io.svg?style=social" />
+  </a>
+  <a
+    href="https://ui.dev/bytes/?r=alessio">
+    <br />
+    <img alt="Bytes Newsletter" src="https://raw.githubusercontent.com/alewin/useWorker/develop/website/static/img/bytes-newsletter.jpg" />
   </a>
 </h2>
 
@@ -120,17 +125,17 @@ More examples: https://github.com/alewin/useWorker/tree/develop/example
 - [x] Kill Web Worker
 - [x] Reactive web worker status
 - [x] Add timeout option
-- [x] import and use remote script inside `useWorker` function
+- [x] Import and use remote script inside `useWorker` function
 - [x] support [Transferable Objects](https://developer.mozilla.org/en-US/docs/Web/API/Transferable)
-- [ ] Testing useWorker [#41](https://github.com/alewin/useWorker/issues/41)
-- [ ] import and use local script inside `useWorker` function [#37](https://github.com/alewin/useWorker/issues/37)
+- [x] Testing useWorker [#41](https://github.com/alewin/useWorker/issues/41)
+- [x] Import and use local script inside `useWorker` function [#37](https://github.com/alewin/useWorker/issues/37)
 - [ ] useWorkers Hook [#38](https://github.com/alewin/useWorker/issues/38)
 
 
 ---
 
 
-## 🤔 Motivation and Limitation
+## 🤔 Motivation and Limitations
 Most react projects are initialized through [Create React App](https://github.com/facebook/create-react-app).
 CRA unfortunately does not offer support for webworkers, unless you eject and change the webpack configuration manually.
 
@@ -138,6 +143,19 @@ This library allows you to use web workers without having to change the CRA conf
 
 If you are interested in changing the webpack configuration to manually manage your workers, see: [worker-loader]( https://github.com/webpack-contrib/worker-loader)
 
+--
+
+## Known issues
+
+There's a known issue related to transpiling tools such as Babel causing `Not refereced` errors. 
+
+Since the approach of this library is moving the entire function passed to the Hook to a worker, if the function gets transpiled, variable definitions used by the transpiling tool may get out of scope when the function gets moved to the worker, causing unexpected reference errors.
+
+If you're experimenting this type of issue, one workaround is wrapping your function declaration inside a function object as a string.
+
+```js
+const sum = new Function(`a`, `b`, `return a + b`)
+```
 
 ---
 
@@ -147,7 +165,7 @@ The library is experimental so if you find a **bug** or would like to request a 
 
 ---
 
-## 💡 Similar Project
+## 💡 Similar Projects
 
 - [greenlet](https://github.com/developit/greenlet/)
 - [react-hooks-worker](https://github.com/dai-shi/react-hooks-worker)
@@ -157,10 +175,11 @@ The library is experimental so if you find a **bug** or would like to request a 
 ## 💻 Contributors
 
 - Thanks to:
-- [@gonzachr](https://github.com/gonzachr) 
+- [@zant](https://github.com/zant) 
 - [@IljaDaderko](https://github.com/IljaDaderko)
 - [@Pigotz](https://github.com/Pigotz)
 - [@z4o4z](https://github.com/z4o4z)
+- [@101arrowz](https://github.com/101arrowz)
 
 ---
 
