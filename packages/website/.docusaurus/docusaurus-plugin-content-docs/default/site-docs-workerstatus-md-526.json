@@ -1,0 +1,21 @@
+{
+  "unversionedId": "api-workerstatus",
+  "id": "api-workerstatus",
+  "isDocsHomePage": false,
+  "title": "WORKER_STATUS",
+  "description": "Import",
+  "source": "@site/docs/workerstatus.md",
+  "slug": "/api-workerstatus",
+  "permalink": "/docs/api-workerstatus",
+  "editUrl": "https://github.com/alewin/useworker/edit/master/website/docs/workerstatus.md",
+  "version": "current",
+  "sidebar": "someSidebar",
+  "previous": {
+    "title": "useWorker()",
+    "permalink": "/docs/api-useworker"
+  },
+  "next": {
+    "title": "Sorting Numbers",
+    "permalink": "/docs/examples/examples-sort"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "unversionedId": "examples/examples-sort",
+  "id": "examples/examples-sort",
+  "isDocsHomePage": false,
+  "title": "Sorting Numbers",
+  "description": "Example",
+  "source": "@site/docs/examples/sort.md",
+  "slug": "/examples/examples-sort",
+  "permalink": "/docs/examples/examples-sort",
+  "editUrl": "https://github.com/alewin/useworker/edit/master/website/docs/examples/sort.md",
+  "version": "current",
+  "sidebar": "someSidebar",
+  "previous": {
+    "title": "WORKER_STATUS",
+    "permalink": "/docs/api-workerstatus"
+  },
+  "next": {
+    "title": "Csv parsing",
+    "permalink": "/docs/examples/examples-csv"
+  }
+}

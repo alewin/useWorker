@@ -1,0 +1,21 @@
+{
+  "unversionedId": "installation",
+  "id": "installation",
+  "isDocsHomePage": false,
+  "title": "Installation",
+  "description": "Install",
+  "source": "@site/docs/installation.md",
+  "slug": "/installation",
+  "permalink": "/docs/installation",
+  "editUrl": "https://github.com/alewin/useworker/edit/master/website/docs/installation.md",
+  "version": "current",
+  "sidebar": "someSidebar",
+  "previous": {
+    "title": "Introduction",
+    "permalink": "/docs/introduction"
+  },
+  "next": {
+    "title": "Usage",
+    "permalink": "/docs/usage"
+  }
+}

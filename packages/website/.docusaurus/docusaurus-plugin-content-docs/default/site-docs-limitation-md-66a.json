@@ -1,0 +1,17 @@
+{
+  "unversionedId": "limitations",
+  "id": "limitations",
+  "isDocsHomePage": false,
+  "title": "Limitations",
+  "description": "Web Worker",
+  "source": "@site/docs/limitation.md",
+  "slug": "/limitations",
+  "permalink": "/docs/limitations",
+  "editUrl": "https://github.com/alewin/useworker/edit/master/website/docs/limitation.md",
+  "version": "current",
+  "sidebar": "someSidebar",
+  "previous": {
+    "title": "External Scripts",
+    "permalink": "/docs/examples/examples-external"
+  }
+}
