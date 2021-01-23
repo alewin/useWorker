@@ -1,9 +1,9 @@
 {
   "name": "@koale/useworker-examples",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "dependencies": {
-    "@koale/useworker": "file:..",
+    "@koale/useworker": "workspace:^3.3.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.1.2",

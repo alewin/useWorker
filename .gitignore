@@ -1,6 +1,17 @@
+# Production
+/build
+/dist
+
+# Dependencies
 node_modules/
-.cache/
 
-.rts2_cache_*
-
+# editors
 .vscode
+*.sublime*
+
+# misc
+.DS_*
+.cache/
+.rts2_cache_*
+npm-debug.log*
+.tmp/
