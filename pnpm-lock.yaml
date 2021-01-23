@@ -14,6 +14,7 @@ importers:
       '@types/react': 16.14.2
       '@typescript-eslint/eslint-plugin': 2.34.0_eslint@6.8.0
       babel-eslint: 10.1.0_eslint@6.8.0
+      babel-loader: 8.2.2_webpack@4.46.0
       chai: 4.2.0
       eslint: 6.8.0
       eslint-config-airbnb: 18.2.1_4c2c13b60f95587f6d30f92525271c5c
@@ -39,6 +40,7 @@ importers:
       '@types/react': ^16.9.34
       '@typescript-eslint/eslint-plugin': ^2.27.0
       babel-eslint: ^10.1.0
+      babel-loader: ^8.1.0
       chai: ^4.2.0
       dequal: ^1.0.0
       eslint: 6.8.0
@@ -4719,6 +4721,21 @@ packages:
       schema-utils: 2.7.1
       webpack: 4.46.0
     dev: false
+    engines:
+      node: '>= 8.9'
+    peerDependencies:
+      '@babel/core': ^7.0.0
+      webpack: '>=2'
+    resolution:
+      integrity: sha512-JvTd0/D889PQBtUXJ2PXaKU/pjZDMtHA9V2ecm+eNRmmBCMR09a+fmpGTNwnJtFmFl5Ei7Vy47LjBb+L0wQ99g==
+  /babel-loader/8.2.2_webpack@4.46.0:
+    dependencies:
+      find-cache-dir: 3.3.1
+      loader-utils: 1.4.0
+      make-dir: 3.1.0
+      schema-utils: 2.7.1
+      webpack: 4.46.0
+    dev: true
     engines:
       node: '>= 8.9'
     peerDependencies:
@@ -14644,7 +14661,6 @@ packages:
       '@types/json-schema': 7.0.7
       ajv: 6.12.6
       ajv-keywords: 3.5.2_ajv@6.12.6
-    dev: false
     engines:
       node: '>= 8.9.0'
     resolution:
