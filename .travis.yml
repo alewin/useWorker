@@ -4,5 +4,5 @@ services:
   - docker
 
 script:
-  - docker build -t useworker .
+  - docker build -t useworker ./packages/useWorker
   - docker run --rm -v `pwd`:/usr/src useworker
