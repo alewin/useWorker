@@ -1,0 +1,21 @@
+{
+  "unversionedId": "examples/examples-csv",
+  "id": "examples/examples-csv",
+  "isDocsHomePage": false,
+  "title": "Csv parsing",
+  "description": "Example",
+  "source": "@site/docs/examples/csv.md",
+  "slug": "/examples/examples-csv",
+  "permalink": "/docs/examples/examples-csv",
+  "editUrl": "https://github.com/alewin/useworker/edit/master/website/docs/examples/csv.md",
+  "version": "current",
+  "sidebar": "someSidebar",
+  "previous": {
+    "title": "Sorting Numbers",
+    "permalink": "/docs/examples/examples-sort"
+  },
+  "next": {
+    "title": "External Scripts",
+    "permalink": "/docs/examples/examples-external"
+  }
+}

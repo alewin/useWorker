@@ -1,0 +1,21 @@
+{
+  "unversionedId": "examples/examples-external",
+  "id": "examples/examples-external",
+  "isDocsHomePage": false,
+  "title": "External Scripts",
+  "description": "Example",
+  "source": "@site/docs/examples/external.md",
+  "slug": "/examples/examples-external",
+  "permalink": "/docs/examples/examples-external",
+  "editUrl": "https://github.com/alewin/useworker/edit/master/website/docs/examples/external.md",
+  "version": "current",
+  "sidebar": "someSidebar",
+  "previous": {
+    "title": "Csv parsing",
+    "permalink": "/docs/examples/examples-csv"
+  },
+  "next": {
+    "title": "Limitations",
+    "permalink": "/docs/limitations"
+  }
+}

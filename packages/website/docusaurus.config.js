@@ -17,7 +17,7 @@ module.exports = {
         alt: 'useWorker',
         src: 'https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/apple/237/gear_2699.png',
       },
-      links: [
+      items: [
         {
           to: 'docs/introduction',
           activeBasePath: 'docs',

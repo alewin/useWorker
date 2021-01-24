@@ -98,7 +98,7 @@ const Example = () => {
 
   const runSort = async () => {
     const result = await sortWorker(numbers); // non-blocking UI
-    console.log("End.");
+    console.log(result);
   };
 
   return (
@@ -109,6 +109,12 @@ const Example = () => {
 };
 
 ```
+
+---
+
+## 🖼 Live Demo
+
+<img alt="useworker demo" src="https://user-images.githubusercontent.com/980844/82120716-70151e00-9788-11ea-8f8d-07b06a13dde2.gif" />
 
 ---
 
@@ -130,6 +136,7 @@ More examples: https://github.com/alewin/useWorker/tree/develop/example
 - [x] Testing useWorker [#41](https://github.com/alewin/useWorker/issues/41)
 - [x] Import and use local script inside `useWorker` function [#37](https://github.com/alewin/useWorker/issues/37)
 - [ ] useWorkers Hook [#38](https://github.com/alewin/useWorker/issues/38)
+- [ ] useWorkerFile Hook [#93](https://github.com/alewin/useWorker/issues/93)
 
 
 ---
@@ -143,7 +150,7 @@ This library allows you to use web workers without having to change the CRA conf
 
 If you are interested in changing the webpack configuration to manually manage your workers, see: [worker-loader]( https://github.com/webpack-contrib/worker-loader)
 
---
+---
 
 ## Known issues
 
@@ -172,20 +179,26 @@ The library is experimental so if you find a **bug** or would like to request a 
 
 ---
 
+## 💻 Mantainers
+
+- [@zant](https://github.com/zant)
+- [@alewin](https://github.com/alewin)
+
 ## 💻 Contributors
 
 - Thanks to:
-- [@zant](https://github.com/zant) 
-- [@IljaDaderko](https://github.com/IljaDaderko)
-- [@Pigotz](https://github.com/Pigotz)
-- [@z4o4z](https://github.com/z4o4z)
-- [@101arrowz](https://github.com/101arrowz)
+- [@zant](https://github.com/zant) (test, CI, `RFC`, bugfixes, `localdependencies` feature, ...)
+- [@101arrowz](https://github.com/101arrowz) ( `isoworker` packages proposal )
+- [@z4o4z](https://github.com/z4o4z) (`Typescript` implementation, Discussion of `RFC`)
+- [@IljaDaderko](https://github.com/IljaDaderko) (`Typescript` support, Discussion of `RFC`)
+- [@ophirg](https://github.com/ophirg) (`Typescript` support)
+- [@Pigotz](https://github.com/Pigotz) (Discussion of `RFC`)
 
 ---
 
 ## 📜 License
 
-MIT © [alewin](https://github.com/alewin)
+[MIT](https://github.com/alewin/useWorker/blob/develop/LICENSE)
 
 ---
 

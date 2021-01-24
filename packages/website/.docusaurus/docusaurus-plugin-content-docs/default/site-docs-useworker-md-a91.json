@@ -1,0 +1,21 @@
+{
+  "unversionedId": "api-useworker",
+  "id": "api-useworker",
+  "isDocsHomePage": false,
+  "title": "useWorker()",
+  "description": "Import",
+  "source": "@site/docs/useworker.md",
+  "slug": "/api-useworker",
+  "permalink": "/docs/api-useworker",
+  "editUrl": "https://github.com/alewin/useworker/edit/master/website/docs/useworker.md",
+  "version": "current",
+  "sidebar": "someSidebar",
+  "previous": {
+    "title": "Usage",
+    "permalink": "/docs/usage"
+  },
+  "next": {
+    "title": "WORKER_STATUS",
+    "permalink": "/docs/api-workerstatus"
+  }
+}

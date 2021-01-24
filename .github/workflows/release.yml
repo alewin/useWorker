@@ -1,0 +1,54 @@
+name: Release
+
+on:
+  push:
+    branches:
+      - master
+env:
+  CI: true
+  PNPM_CACHE_FOLDER: .pnpm-store
+
+jobs:
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@master
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js 12.x
+        uses: actions/setup-node@master
+        with:
+          node-version: 12.x
+
+      - name: Install pnpm
+        run: |
+          npm install pnpm@latest -g
+
+      - name: Setup pnpm config
+        run: pnpm config set store-dir $PNPM_CACHE_FOLDER
+
+      - name: Setup GIT
+        run: |
+          git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
+          git config user.name "$GITHUB_ACTOR"
+
+      - name: Set up NPM credentials
+        run: echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Install Dependencies
+        run: pnpm install --frozen-lockfile=false
+
+      - name: Create Release Pull Request or Publish to npm
+        id: changesets
+        uses: changesets/action@master
+        with:
+          version: pnpm ci:version
+          publish: pnpm ci:publish
+          commit: 'chore: update version'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

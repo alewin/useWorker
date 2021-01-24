@@ -1,9 +1,9 @@
 {
-  "name": "example",
-  "version": "0.1.0",
+  "name": "@koale/useworker-examples",
+  "version": "1.0.0",
   "private": true,
   "dependencies": {
-    "@koale/useworker": "file:..",
+    "@koale/useworker": "workspace:^3.3.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.1.2",
@@ -11,8 +11,8 @@
     "react-toast-notifications": "^2.4.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build"
+    "start": "SKIP_PREFLIGHT_CHECK=true react-scripts start",
+    "build": "SKIP_PREFLIGHT_CHECK=true react-scripts build"
   },
   "browserslist": {
     "production": [
@@ -27,6 +27,6 @@
     ]
   },
   "devDependencies": {
-    "eslint-plugin-react": "^7.19.0"
+    "eslint-plugin-react": "^7.22.0"
   }
 }
