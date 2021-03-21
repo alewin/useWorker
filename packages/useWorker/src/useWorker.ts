@@ -18,7 +18,7 @@ type Options = {
   remoteDependencies?: string[];
   autoTerminate?: boolean;
   transferable?: TRANSFERABLE_TYPE;
-  localDependencies?: () => unknown[];
+  // localDependencies?: () => unknown[];
 }
 
 const PROMISE_RESOLVE = 'resolve'
@@ -28,7 +28,7 @@ const DEFAULT_OPTIONS: Options = {
   remoteDependencies: [],
   autoTerminate: true,
   transferable: TRANSFERABLE_TYPE.AUTO,
-  localDependencies: () => [],
+  // localDependencies: () => [],
 }
 
 
@@ -80,10 +80,10 @@ export const useWorker = <T extends (...fnArgs: any[]) => any>(
       remoteDependencies = DEFAULT_OPTIONS.remoteDependencies,
       timeout = DEFAULT_OPTIONS.timeout,
       transferable = DEFAULT_OPTIONS.transferable,
-      localDependencies = DEFAULT_OPTIONS.localDependencies,
+      // localDependencies = DEFAULT_OPTIONS.localDependencies,
     } = options
 
-    const blobUrl = createWorkerBlobUrl(fn, remoteDependencies!, transferable!, localDependencies!)
+    const blobUrl = createWorkerBlobUrl(fn, remoteDependencies!, transferable! /*, localDependencies!*/)
     const newWorker: Worker & { _url?: string } = new Worker(blobUrl)
     newWorker._url = blobUrl
 
