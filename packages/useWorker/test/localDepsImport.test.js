@@ -1,8 +1,7 @@
 import React from "react";
 import { useWorker } from "../dist/index";
 import { renderHook } from "@testing-library/react-hooks";
-
-const adder = (a, b) => a + b;
+import { adder } from "./utils";
 
 it("Return", async () => {
   const sum = (a, b) => adder(a, b);

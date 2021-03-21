@@ -25,6 +25,7 @@ importers:
   packages/useWorker:
     dependencies:
       dequal: 1.0.1
+      isoworker: 0.1.1
     devDependencies:
       '@babel/plugin-proposal-optional-chaining': 7.12.7
       '@testing-library/react-hooks': 3.7.0_98e0eb37a9f7280a1c5a6c886619f5b4
@@ -67,6 +68,7 @@ importers:
       eslint-plugin-jsx-a11y: ^6.2.3
       eslint-plugin-react: ^7.19.0
       eslint-plugin-react-hooks: ^4.0.4
+      isoworker: ^0.1.1
       karma: ^5.2.3
       karma-chai: ^0.1.0
       karma-chrome-launcher: ^3.1.0
@@ -9684,6 +9686,10 @@ packages:
       node: '>=0.10.0'
     resolution:
       integrity: sha1-TkMekrEalzFjaqH5yNHMvP2reN8=
+  /isoworker/0.1.1:
+    dev: false
+    resolution:
+      integrity: sha512-25hcgGZlLh3bxF6/YNS5aw/dw2H7cna/30EvKhq6Hwwsd7gzkML6oo9XrBTpExihBVJX/8RanSXR6M4Ox5dQWA==
   /isstream/0.1.2:
     dev: false
     resolution:
