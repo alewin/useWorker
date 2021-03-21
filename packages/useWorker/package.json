@@ -57,6 +57,7 @@
     "background"
   ],
   "dependencies": {
-    "dequal": "^1.0.0"
+    "dequal": "^1.0.0",
+    "isoworker": "^0.2.4"
   }
 }
