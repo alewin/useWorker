@@ -1,7 +1,8 @@
 import React from 'react'
-import createWorkerBlobUrl from './lib/createWorkerBlobUrl'
+import createWorker from './lib/createWorker'
 import WORKER_STATUS from './lib/status'
 import { useDeepCallback } from './hook/useDeepCallback'
+import { DepList } from 'isoworker'
 
 type WorkerController = {
   status: WORKER_STATUS;
@@ -18,7 +19,7 @@ type Options = {
   remoteDependencies?: string[];
   autoTerminate?: boolean;
   transferable?: TRANSFERABLE_TYPE;
-  localDependencies?: () => unknown[];
+  localDependencies?: DepList;
 }
 
 const PROMISE_RESOLVE = 'resolve'
@@ -83,9 +84,7 @@ export const useWorker = <T extends (...fnArgs: any[]) => any>(
       localDependencies = DEFAULT_OPTIONS.localDependencies,
     } = options
 
-    const blobUrl = createWorkerBlobUrl(fn, remoteDependencies!, transferable!, localDependencies!)
-    const newWorker: Worker & { _url?: string } = new Worker(blobUrl)
-    newWorker._url = blobUrl
+    const newWorker = createWorker(fn, remoteDependencies!, transferable!, localDependencies!)
 
     newWorker.onmessage = (e: MessageEvent) => {
       const [status, result] = e.data as [WORKER_STATUS, ReturnType<T>]

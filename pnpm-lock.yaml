@@ -15,7 +15,7 @@ importers:
     devDependencies:
       eslint-plugin-react: 7.22.0
     specifiers:
-      '@koale/useworker': workspace:^3.3.0
+      '@koale/useworker': workspace:^4.0.1
       eslint-plugin-react: ^7.22.0
       react: ^16.13.1
       react-dom: ^16.13.1
@@ -25,7 +25,7 @@ importers:
   packages/useWorker:
     dependencies:
       dequal: 1.0.1
-      isoworker: 0.1.1
+      isoworker: 0.2.4
     devDependencies:
       '@babel/plugin-proposal-optional-chaining': 7.12.7
       '@testing-library/react-hooks': 3.7.0_98e0eb37a9f7280a1c5a6c886619f5b4
@@ -68,7 +68,7 @@ importers:
       eslint-plugin-jsx-a11y: ^6.2.3
       eslint-plugin-react: ^7.19.0
       eslint-plugin-react-hooks: ^4.0.4
-      isoworker: ^0.1.1
+      isoworker: ^0.2.4
       karma: ^5.2.3
       karma-chai: ^0.1.0
       karma-chrome-launcher: ^3.1.0
@@ -4468,7 +4468,7 @@ packages:
       integrity: sha512-5Kgy8Cz6LPC9DJcNb3yjAXTu3XihQgEdnIg50c//zOC/MyLP0Clg+Y8Sh9ZjjnvBrDZU4DgXS9C3T9r4/scGZQ==
   /axios/0.21.1:
     dependencies:
-      follow-redirects: 1.13.1_debug@4.3.1
+      follow-redirects: 1.13.1
     dev: false
     resolution:
       integrity: sha512-dKQiRHxGD9PPRIUNIWvZhPTPpl1rf/OxTYKsqKUDjBwYylTvV7SjSHJb9ratfyzM6wCdLCOYLzs73qpg5c4iGA==
@@ -8081,7 +8081,6 @@ packages:
     resolution:
       integrity: sha512-emk4RCvJ8RzNP2lNpphKnG7r18q8elDYNAPx7xn+bDeOIo9FFfxEfIQ2y6YbQNmnsGD3nH1noxtLE64Puz1bRQ==
   /follow-redirects/1.13.1:
-    dev: true
     engines:
       node: '>=4.0'
     peerDependencies:
@@ -9686,10 +9685,10 @@ packages:
       node: '>=0.10.0'
     resolution:
       integrity: sha1-TkMekrEalzFjaqH5yNHMvP2reN8=
-  /isoworker/0.1.1:
+  /isoworker/0.2.4:
     dev: false
     resolution:
-      integrity: sha512-25hcgGZlLh3bxF6/YNS5aw/dw2H7cna/30EvKhq6Hwwsd7gzkML6oo9XrBTpExihBVJX/8RanSXR6M4Ox5dQWA==
+      integrity: sha512-oIN3zgTUVzu52EWYyl7zVlqNOOA+vdsUQs2DIHLDwWgs1CnOohdwopN23HmIYiZKePmjU7sQLq+J4xYjMMfsYQ==
   /isstream/0.1.2:
     dev: false
     resolution:
