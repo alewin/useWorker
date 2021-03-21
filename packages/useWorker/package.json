@@ -1,6 +1,6 @@
 {
   "name": "@koale/useworker",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "types": "dist/index.d.ts",
   "source": "src/index.ts",
   "main": "dist/index.js",
