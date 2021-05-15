@@ -42,7 +42,7 @@
     "mocha": "^8.1.3",
     "react": "^16.13.1",
     "react-test-renderer": "^16.13.1",
-    "webpack": "^4.44.2"
+    "webpack": "^4.46.0"
   },
   "description": "useWorker() - Web worker using React hook",
   "author": "alewin",

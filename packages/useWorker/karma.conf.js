@@ -5,6 +5,13 @@ module.exports = function (config) {
     preprocessors: {
       "test/*.test.js": ["webpack"], //preprocess with webpack
     },
+    plugins: [
+      'karma-chrome-launcher',
+      'karma-detect-browsers',
+      'karma-mocha',
+      'karma-chai',
+      'karma-webpack' // *** This 'registers' the Karma webpack plugin.
+    ],
     reporters: ["dots"], //report results in this format
     webpack: {
       devtool: "inline-source-map", //just do inline source maps instead of the default
