@@ -3,12 +3,18 @@
 - Node 14/npm ( [`nvm`](https://github.com/nvm-sh/nvm) is recommended )
 - pnpm ( `npm install -g pnpm`)
 
-## Steps
+- first time run `pnpm install`
+## Run `useWorker` Steps
 
-- `pnpm install`
-- TBD
+- open the `packages/useWorker` directory
+- run `pnpm run dev`
+- develop your own feature or fix
+
+## Run `examples` Steps
+- open the `packages/useWorker` directory
+- run `pnpm run start`
 
 ## How to debug
 
-- TBD
+- the `packages/examples` project is linked to the `packages/useWorker` build so you can test your changes immediately
 

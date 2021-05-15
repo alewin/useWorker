@@ -193,6 +193,12 @@ The library is experimental so if you find a **bug** or would like to request a 
 - [@IljaDaderko](https://github.com/IljaDaderko) (`Typescript` support, Discussion of `RFC`)
 - [@ophirg](https://github.com/ophirg) (`Typescript` support)
 - [@Pigotz](https://github.com/Pigotz) (Discussion of `RFC`)
+- [@gubo97000](https://github.com/gubo97000) (Fix [#108](https://github.com/alewin/useWorker/issues/108))
+
+
+*How to contribute?*
+
+Read [CONTRIBUTE.md](docs/CONTRIBUTE.md)
 
 ---
 
