@@ -166,6 +166,6 @@ export const useWorker = <T extends (...fnArgs: any[]) => any>(
   }, [killWorker])
 
   return [
-    workerHook, workerController,
-  ] as [typeof workerHook, WorkerController]
+    workerHook, workerController, worker.current
+  ] as [typeof workerHook, WorkerController, any]
 }
