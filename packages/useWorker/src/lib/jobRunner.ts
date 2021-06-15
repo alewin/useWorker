@@ -1,9 +1,9 @@
 /* eslint-disable no-restricted-globals */
-import { TRANSFERABLE_TYPE } from 'src/useWorker'
+import { TRANSFERABLE_TYPE } from "./types";
 
 interface JOB_RUNNER_OPTIONS {
-  fn: Function,
-  transferable: TRANSFERABLE_TYPE
+  fn: Function;
+  transferable: TRANSFERABLE_TYPE;
 }
 
 /**
@@ -19,24 +19,25 @@ interface JOB_RUNNER_OPTIONS {
  * @returns {Function} returns a function that accepts the parameters
  * to be passed to the "userFunc" function
  */
-const jobRunner = (options: JOB_RUNNER_OPTIONS): Function => (e: MessageEvent) => {
-  const [userFuncArgs] = e.data as [any[]]
-  return Promise.resolve(options.fn(...userFuncArgs))
-    .then(result => {
-      const isTransferable = (val: any) => (
-        ('ArrayBuffer' in self && val instanceof ArrayBuffer)
-        || ('MessagePort' in self && val instanceof MessagePort)
-        || ('ImageBitmap' in self && val instanceof ImageBitmap)
-        || ('OffscreenCanvas' in self && val instanceof OffscreenCanvas)
-      )
-      const transferList: any[] = options.transferable === 'auto' && isTransferable(result) ? [result] : []
-      // @ts-ignore
-      postMessage(['SUCCESS', result], transferList)
-    })
-    .catch(error => {
-      // @ts-ignore
-      postMessage(['ERROR', error])
-    })
-}
+const jobRunner =
+  (options: JOB_RUNNER_OPTIONS): Function =>
+  (e: MessageEvent) => {
+    const [userFuncArgs] = e.data as [any[]];
+    return Promise.resolve(options.fn(...userFuncArgs))
+      .then((result) => {
+        const isTransferable = (val: any) =>
+          ("ArrayBuffer" in self && val instanceof ArrayBuffer) ||
+          ("MessagePort" in self && val instanceof MessagePort) ||
+          ("ImageBitmap" in self && val instanceof ImageBitmap) ||
+          ("OffscreenCanvas" in self && val instanceof OffscreenCanvas);
+        const transferList: any[] = options.transferable === "auto" && isTransferable(result) ? [result] : [];
+        // @ts-ignore
+        postMessage(["SUCCESS", result], transferList);
+      })
+      .catch((error) => {
+        // @ts-ignore
+        postMessage(["ERROR", error]);
+      });
+  };
 
-export default jobRunner
+export default jobRunner;

@@ -1,0 +1,51 @@
+{
+  "env": {
+     "browser": true,
+     "es2021": true
+  },
+  "settings": {
+    "import/resolver": {
+    "typescript": {}, // this loads <rootdir>/tsconfig.json to eslint
+      "node": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      }
+    }
+  },
+  "extends": [
+     "plugin:react/recommended",
+     "airbnb",
+     "plugin:import/typescript",
+     "prettier"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+     "ecmaFeatures": {
+        "jsx": true
+     },
+     "ecmaVersion": 12,
+     "sourceType": "module"
+  },
+  "plugins": [
+     "react",
+     "react-hooks",
+     "@typescript-eslint"
+  ],
+  "rules": {
+    "@typescript-eslint/semi": 0,
+    "@typescript-eslint/no-shadow": "error",
+    "@typescript-eslint/no-unused-vars": "error",
+    "import/prefer-default-export": 0,
+    "import/no-named-as-default": 0,
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "no-shadow": "off",
+    "no-undef": 0,
+    "import/extensions": 0,
+    "arrow-parens": 0,
+    "no-underscore-dangle": 0,
+    "no-unused-vars": "off",
+    "react/jsx-filename-extension": [
+      1, { "extensions": [".js", ".jsx", ".ts", ".tsx"] }
+    ]
+  }
+}

@@ -43,7 +43,7 @@ to view the values of `WORKER_STATUS` click here: [Status API](./workerstatus.md
 | ------------------ | --------------- | --------- | ------------------------------------------------------------------------- |
 | timeout            | Number          | undefined | The number of milliseconds before killing the worker                      |
 | remoteDependencies | Array of String | []        | An array that contains the remote dependencies needed to run the worker   |
-<!-- | localDependencies  | Function of Array of String | () => []        | A function that returns an array that contains the local dependencies needed to run the worker   | -->
+| localDependencies  | Function of Array of String | () => []        | A function that returns an array that contains the local dependencies needed to run the worker   |
 | autoTerminate      | Boolean         | true      | Kill the worker once it's done (success or error)                         |
 | transferable       | String          | 'auto'    | Enable [Transferable Objects](https://developer.mozilla.org/en-US/docs/Web/API/Transferable), to disable it set transferable: 'none' |
 
@@ -61,7 +61,6 @@ const [workerFn, {status: workerStatus, kill: workerTerminate }] = useWorker(fn,
   ],
 });
 ```
-<!-- 
 ## Local Dependencies Example
 
 ```javascript
@@ -75,7 +74,6 @@ const [workerFn, {status: workerStatus, kill: workerTerminate }] = useWorker(fn,
   localDependencies: () => [expensiveAdder] // we pass the local function to the worker
 });
 ```
- -->
 
 :::tip
 To see an example click here: [ExternalScripts](https://github.com/alewin/useWorker/blob/develop/example/src/pages/ExternalScripts/index.js)
