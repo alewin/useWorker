@@ -1,25 +1,8 @@
 import React from 'react'
 import createWorkerBlobUrl from './lib/createWorkerBlobUrl'
-import WORKER_STATUS from './lib/status'
 import { useDeepCallback } from './hook/useDeepCallback'
-
-type WorkerController = {
-  status: WORKER_STATUS;
-  kill: Function;
-}
-
-export enum TRANSFERABLE_TYPE {
-  AUTO = 'auto',
-  NONE = 'none',
-}
-
-type Options = {
-  timeout?: number;
-  remoteDependencies?: string[];
-  autoTerminate?: boolean;
-  transferable?: TRANSFERABLE_TYPE;
-  // localDependencies?: () => unknown[];
-}
+import { Options, TRANSFERABLE_TYPE, WorkerController } from './types'
+import WORKER_STATUS from './lib/status'
 
 const PROMISE_RESOLVE = 'resolve'
 const PROMISE_REJECT = 'reject'
@@ -30,7 +13,6 @@ const DEFAULT_OPTIONS: Options = {
   transferable: TRANSFERABLE_TYPE.AUTO,
   // localDependencies: () => [],
 }
-
 
 /**
  *
@@ -83,7 +65,11 @@ export const useWorker = <T extends (...fnArgs: any[]) => any>(
       // localDependencies = DEFAULT_OPTIONS.localDependencies,
     } = options
 
-    const blobUrl = createWorkerBlobUrl(fn, remoteDependencies!, transferable! /*, localDependencies!*/)
+    const blobUrl = createWorkerBlobUrl(
+      fn,
+      remoteDependencies!,
+      transferable! /* localDependencies! */,
+    )
     const newWorker: Worker & { _url?: string } = new Worker(blobUrl)
     newWorker._url = blobUrl
 

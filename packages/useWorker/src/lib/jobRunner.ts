@@ -1,5 +1,5 @@
 /* eslint-disable no-restricted-globals */
-import { TRANSFERABLE_TYPE } from 'src/useWorker'
+import { TRANSFERABLE_TYPE } from '../types'
 
 interface JOB_RUNNER_OPTIONS {
   fn: Function,
