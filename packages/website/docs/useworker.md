@@ -45,7 +45,7 @@ to view the values of `WORKER_STATUS` click here: [Status API](./workerstatus.md
 | remoteDependencies | Array of String | []        | An array that contains the remote dependencies needed to run the worker   |
 <!-- | localDependencies  | Function of Array of String | () => []        | A function that returns an array that contains the local dependencies needed to run the worker   | -->
 | autoTerminate      | Boolean         | true      | Kill the worker once it's done (success or error)                         |
-| transferable       | String          | 'auto'    | Enable [Transferable Objects](https://developer.mozilla.org/en-US/docs/Web/API/Transferable), to disable it set transferable: 'none' |
+| transferable       | String          | 'auto'    | Enable [Transferable Objects](https://developer.mozilla.org/en-US/docs/Glossary/Transferable_objects), to disable it set transferable: 'none' |
 
 ## Options Example
 
