@@ -132,7 +132,7 @@ More examples: https://github.com/alewin/useWorker/tree/develop/example
 - [x] Reactive web worker status
 - [x] Add timeout option
 - [x] Import and use remote script inside `useWorker` function
-- [x] support [Transferable Objects](https://developer.mozilla.org/en-US/docs/Web/API/Transferable)
+- [x] support [Transferable Objects](https://developer.mozilla.org/en-US/docs/Glossary/Transferable_objects)
 - [x] Testing useWorker [#41](https://github.com/alewin/useWorker/issues/41)
 - [x] Import and use local script inside `useWorker` function [#37](https://github.com/alewin/useWorker/issues/37)
 - [ ] useWorkers Hook [#38](https://github.com/alewin/useWorker/issues/38)
