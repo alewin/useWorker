@@ -154,7 +154,7 @@ export const useWorker = <T extends (...fnArgs: any[]) => any>(
   const killWorkerController = React.useCallback(() => {
     killWorker()
     setWorkerStatus(WORKER_STATUS.KILLED)
-  }, [killWorker])
+  }, [killWorker, setWorkerStatus])
 
   const workerController = {
     status: workerStatus,
