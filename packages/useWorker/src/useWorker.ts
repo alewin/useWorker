@@ -40,7 +40,7 @@ const DEFAULT_OPTIONS: Options = {
 export const useWorker = <T extends (...fnArgs: any[]) => any>(
   fn: T, options: Options = DEFAULT_OPTIONS,
 ) => {
-  const [workerStatus, _setWorkerStatus] = React.useState<WORKER_STATUS>(WORKER_STATUS.PENDING)
+  const [workerStatus, setWorkerStatus] = React.useState<WORKER_STATUS>(WORKER_STATUS.PENDING)
   const worker = React.useRef<Worker & { _url?: string }>()
   const isRunning = React.useRef(false)
   const promise = React.useRef<{
@@ -48,11 +48,6 @@ export const useWorker = <T extends (...fnArgs: any[]) => any>(
     (result: ReturnType<T>) => void
   }>({})
   const timeoutId = React.useRef<number>()
-
-  const setWorkerStatus = React.useCallback((status: WORKER_STATUS) => {
-    isRunning.current = status === WORKER_STATUS.RUNNING
-    _setWorkerStatus(status)
-  }, [])
 
   const killWorker = React.useCallback(() => {
     if (worker.current?._url) {
@@ -156,10 +151,19 @@ export const useWorker = <T extends (...fnArgs: any[]) => any>(
     return callWorker(...fnArgs)
   }, [options.autoTerminate, generateWorker, callWorker])
 
+  const killWorkerController = React.useCallback(() => {
+    killWorker()
+    setWorkerStatus(WORKER_STATUS.KILLED)
+  }, [killWorker, setWorkerStatus])
+
   const workerController = {
     status: workerStatus,
-    kill: killWorker,
+    kill: killWorkerController,
   }
+
+  React.useEffect(() => {
+    isRunning.current = workerStatus === WORKER_STATUS.RUNNING
+  }, [workerStatus])
 
   React.useEffect(() => () => {
     killWorker()

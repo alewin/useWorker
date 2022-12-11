@@ -4,6 +4,7 @@ export enum WORKER_STATUS {
   RUNNING = 'RUNNING',
   ERROR = 'ERROR',
   TIMEOUT_EXPIRED = 'TIMEOUT_EXPIRED',
+  KILLED = 'KILLED',
 }
 
 export default WORKER_STATUS
