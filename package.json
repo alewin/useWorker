@@ -1,32 +1,32 @@
 {
   "name": "useworker",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "⚛️ useWorker() - A React Hook for Blocking-Free Background Tasks",
   "devDependencies": {
-      "@changesets/cli": "^2.13.1"
+    "@changesets/cli": "^2.13.1"
   },
   "scripts": {
-      "preinstall": "npx only-allow pnpm",
-      "changeset": "changeset",
-      "ci:build": "pnpm run build -r",
-      "ci:publish": "pnpm run build -r && changeset publish",
-      "ci:version": "changeset version"
+    "preinstall": "npx only-allow pnpm",
+    "changeset": "changeset",
+    "ci:build": "pnpm run build -r",
+    "ci:publish": "pnpm run build -r && changeset publish",
+    "ci:version": "changeset version"
   },
   "repository": "alewin/useworker",
   "keywords": [
-      "useWorker",
-      "react",
-      "hooks",
-      "worker",
-      "web worker",
-      "blocking ui",
-      "javscript",
-      "background"
+    "useWorker",
+    "react",
+    "hooks",
+    "worker",
+    "web worker",
+    "blocking ui",
+    "javscript",
+    "background"
   ],
   "author": "alewin",
   "license": "MIT",
   "bugs": {
-      "url": "https://github.com/alewin/useWorker/issues"
+    "url": "https://github.com/alewin/useWorker/issues"
   },
   "homepage": "https://github.com/alewin/useWorker#readme"
 }

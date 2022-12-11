@@ -102,11 +102,11 @@ export default {
       "@docusaurus/preset-classic",
       {
         "docs": {
-          "sidebarPath": "/Users/prova/git/useWorker/packages/website/sidebars.js",
+          "sidebarPath": "/home/ib_admin/Desktop/KV/Work/git-repos/useWorker/packages/website/sidebars.js",
           "editUrl": "https://github.com/alewin/useworker/edit/master/website/"
         },
         "theme": {
-          "customCss": "/Users/prova/git/useWorker/packages/website/src/css/custom.css"
+          "customCss": "/home/ib_admin/Desktop/KV/Work/git-repos/useWorker/packages/website/src/css/custom.css"
         }
       }
     ]
