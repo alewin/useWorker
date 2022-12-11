@@ -17,7 +17,7 @@
   <a
     href="https://ui.dev/bytes/?r=alessio">
     <br />
-    <img alt="Bytes Newsletter" src="https://raw.githubusercontent.com/alewin/useWorker/develop/website/static/img/bytes-newsletter.jpg" />
+    <img alt="Bytes Newsletter" src="https://raw.githubusercontent.com/alewin/useWorker/master/packages/website/static/img/bytes-newsletter.jpg" />
   </a>
 </h2>
 
