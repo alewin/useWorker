@@ -38,7 +38,7 @@ const DEFAULT_OPTIONS: Options = {
  * @param {Object} options useWorker option params
  */
 export const useWorker = <T extends (...fnArgs: any[]) => any>(
-  fn: T, options: Options = DEFAULT_OPTIONS,
+  fn: T | string, options: Options = DEFAULT_OPTIONS,
 ) => {
   const [workerStatus, setWorkerStatus] = React.useState<WORKER_STATUS>(WORKER_STATUS.PENDING)
   const worker = React.useRef<Worker & { _url?: string }>()
