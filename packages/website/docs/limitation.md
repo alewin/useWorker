@@ -14,7 +14,7 @@ Before you start using this hook, I suggest you read the [Web Worker](https://de
 - The web worker **don't** have access to the document, and window object
 
 ```javascript
-  document.querySelectoAll('#demoId'); // not allowed!!
+  document.querySelectorAll('#demoId'); // not allowed!!
   window.navigator // not allowed!!
 ```
 
@@ -24,7 +24,7 @@ Before you start using this hook, I suggest you read the [Web Worker](https://de
 
 :::warning
 
-- While the worker is running you **cannot** call him again, until it's finished, or until you kill it. To get around this you can create two or more "instances" of the hook
+- While the worker is running you **cannot** call it again, until it's finished, or until you kill it. To get around this you can create two or more "instances" of the hook
 
 ```javascript
   const [sort1] = useWorker(sort, { timeout: 10000 });
