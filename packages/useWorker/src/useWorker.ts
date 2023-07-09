@@ -56,6 +56,9 @@ export const useWorker = <T extends (...fnArgs: any[]) => any>(
       promise.current = {}
       worker.current = undefined
       window.clearTimeout(timeoutId.current)
+      console.log('worker killed');
+      isRunning.current = false;
+      setWorkerStatus(WORKER_STATUS.KILLED);
     }
   }, [])
 
