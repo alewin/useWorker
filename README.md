@@ -1,3 +1,18 @@
+<div align="center">
+
+# 🚨 New Maintainer Needed! 🚨
+
+### 🔍 Looking for someone passionate to take over the useWorker repo.
+
+🌟 Interested in maintaining this cool project? 🌟
+
+[![Send PR](https://img.shields.io/badge/Send-PR-blue?style=for-the-badge&logo=github)](https://github.com/alewin/useWorker/pulls)
+[![DM Me](https://img.shields.io/badge/DM-Me-green?style=for-the-badge&logo=github)]([https://github.com/alewin](https://www.alessiokoci.com/contact/))
+
+</div>
+
+---
+
 <h1 align="center">
   <br>
   <img width="300px" src="logo.png" alt="useWorker"
@@ -14,18 +29,14 @@
     <br />
     <img alt="Tweet" src="https://img.shields.io/twitter/url/http/shields.io.svg?style=social" />
   </a>
-  <a
-    href="https://ui.dev/bytes/?r=alessio">
-    <br />
-    <img alt="Bytes Newsletter" src="https://raw.githubusercontent.com/alewin/useWorker/develop/website/static/img/bytes-newsletter.jpg" />
-  </a>
+
 </h2>
 
 <h3 align="center">
   <img alt="GitHub" src="https://img.shields.io/npm/dm/@koale/useworker" />
   <img alt="size" src="https://img.shields.io/bundlephobia/minzip/@koale/useworker/2.1.0" />
   <img alt="GitHub" src="https://img.shields.io/npm/l/@koale/useworker" />
- <img src="https://camo.githubusercontent.com/6ef0a300e96da21e04d4d45bf54285202674498c/68747470733a2f2f62616467656e2e6e65742f62616467652f547970655363726970742f537570706f7274" alt="TypeScript Support" title="TypeScript Support" data-canonical-src="https://badgen.net/badge/TypeScript/Support" style="max-width:100%;">
+ <img src="https://badgen.net/npm/types/tslib" alt="TypeScript Support" title="TypeScript Support" data-canonical-src="https://badgen.net/badge/TypeScript/Support" style="max-width:100%;">
 </h3>
 
 ---
