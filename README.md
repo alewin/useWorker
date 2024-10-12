@@ -1,18 +1,3 @@
-<div align="center">
-
-# 🚨 New Maintainer Needed! 🚨
-
-### 🔍 Looking for someone passionate to take over the useWorker repo.
-
-🌟 Interested in maintaining this cool project? 🌟
-
-[![Send PR](https://img.shields.io/badge/Send-PR-blue?style=for-the-badge&logo=github)](https://github.com/alewin/useWorker/pulls)
-[![DM Me](https://img.shields.io/badge/DM-Me-green?style=for-the-badge&logo=github)]([https://github.com/alewin](https://www.alessiokoci.com/contact/))
-
-</div>
-
----
-
 <h1 align="center">
   <br>
   <img width="300px" src="logo.png" alt="useWorker"
