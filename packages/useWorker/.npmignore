@@ -11,7 +11,5 @@ node_modules/
 .editorconfig
 .github/
 
-dist/*.map
-
 logo.png
 
