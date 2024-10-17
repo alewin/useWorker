@@ -1,9 +1,18 @@
 name: Release
 
 on:
-  push:
-    branches:
-      - master
+  workflow_dispatch:
+    inputs:
+      version_type:
+        type: choice
+        description: Version type
+        options:
+        - patch
+        - minor
+        - major
+
+concurrency: ${{ github.workflow }}-${{ github.ref }}
+
 env:
   CI: true
   PNPM_CACHE_FOLDER: .pnpm-store
@@ -18,10 +27,10 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Setup Node.js 12.x
+      - name: Setup Node.js 18.x
         uses: actions/setup-node@master
         with:
-          node-version: 12.x
+          node-version: 18.x
 
       - name: Install pnpm
         run: |
@@ -43,11 +52,11 @@ jobs:
       - name: Install Dependencies
         run: pnpm install --frozen-lockfile=false
 
-      - name: Create Release Pull Request or Publish to npm
+      - name: Create Release Pull Request
         id: changesets
-        uses: changesets/action@master
+        uses: changesets/action@v1
         with:
-          version: pnpm ci:version
+          version: pnpm ci:version ${{ github.event.inputs.version_type }}
           publish: pnpm ci:publish
           commit: 'chore: update version'
         env:
