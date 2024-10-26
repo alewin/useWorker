@@ -13,9 +13,9 @@
 
 ## Run `examples` Steps
 
-- open the `packages/useWorker` directory
-- run `pnpm run start`
+- open the `apps/examples` directory
+- run `pnpm run dev`
 
 ## How to debug
 
-- the `packages/examples` project is linked to the `packages/useWorker` build so you can test your changes immediately
+- the `apps/examples` project is linked to the `packages/useWorker` build so you can test your changes immediately
