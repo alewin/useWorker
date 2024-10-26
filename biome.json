@@ -3,7 +3,12 @@
   "vcs": { "enabled": false, "clientKind": "git", "useIgnoreFile": false },
   "files": {
     "ignoreUnknown": false,
-    "ignore": [],
+    "ignore": [
+      "**/dist/**",
+      "**/node_modules/**",
+      "**/vite.config.mts",
+      "**/website/build/**"
+    ],
     "include": ["packages/**/*", "apps/**/*"]
   },
   "formatter": {

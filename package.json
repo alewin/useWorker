@@ -1,6 +1,6 @@
 {
-  "name": "useworker",
-  "version": "1.0.0",
+  "name": "useworker-root",
+  "version": "0.0.0",
   "description": "⚛️ useWorker() - A React Hook for Blocking-Free Background Tasks",
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
