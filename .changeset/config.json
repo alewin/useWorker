@@ -6,8 +6,5 @@
   "access": "public",
   "baseBranch": "master",
   "updateInternalDependencies": "patch",
-  "ignore": [
-    "@koale/useworker-website",
-    "@koale/useworker-examples"
-  ]
+  "ignore": ["@koale/useworker-website", "@koale/useworker-examples"]
 }
