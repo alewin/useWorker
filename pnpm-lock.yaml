@@ -15,7 +15,7 @@ importers:
         specifier: ^2.13.1
         version: 2.27.9
 
-  packages/examples:
+  apps/examples:
     dependencies:
       react:
         specifier: ^18.3.1
@@ -30,6 +30,27 @@ importers:
       vite:
         specifier: ^5.4.9
         version: 5.4.10(@types/node@22.8.1)(terser@5.36.0)
+
+  apps/website:
+    dependencies:
+      '@docusaurus/core':
+        specifier: ^2.0.0-alpha.70
+        version: 2.4.3(@docusaurus/types@2.4.3(react-dom@16.14.0(react@16.14.0))(react@16.14.0))(eslint@6.8.0)(react-dom@16.14.0(react@16.14.0))(react@16.14.0)(typescript@5.6.3)
+      '@docusaurus/preset-classic':
+        specifier: ^2.0.0-alpha.70
+        version: 2.4.3(@algolia/client-search@4.24.0)(@types/react@18.3.12)(eslint@6.8.0)(react-dom@16.14.0(react@16.14.0))(react@16.14.0)(search-insights@2.17.2)(typescript@5.6.3)
+      '@mdx-js/react':
+        specifier: 1.5.2
+        version: 1.5.2(react@16.14.0)
+      classnames:
+        specifier: ^2.2.6
+        version: 2.5.1
+      react:
+        specifier: ^16.13.1
+        version: 16.14.0
+      react-dom:
+        specifier: ^16.13.1
+        version: 16.14.0(react@16.14.0)
 
   packages/useWorker:
     dependencies:
@@ -85,27 +106,6 @@ importers:
       webpack:
         specifier: ^4.46.0
         version: 4.47.0
-
-  packages/website:
-    dependencies:
-      '@docusaurus/core':
-        specifier: ^2.0.0-alpha.70
-        version: 2.4.3(@docusaurus/types@2.4.3(react-dom@16.14.0(react@16.14.0))(react@16.14.0))(eslint@6.8.0)(react-dom@16.14.0(react@16.14.0))(react@16.14.0)(typescript@5.6.3)
-      '@docusaurus/preset-classic':
-        specifier: ^2.0.0-alpha.70
-        version: 2.4.3(@algolia/client-search@4.24.0)(@types/react@18.3.12)(eslint@6.8.0)(react-dom@16.14.0(react@16.14.0))(react@16.14.0)(search-insights@2.17.2)(typescript@5.6.3)
-      '@mdx-js/react':
-        specifier: 1.5.2
-        version: 1.5.2(react@16.14.0)
-      classnames:
-        specifier: ^2.2.6
-        version: 2.5.1
-      react:
-        specifier: ^16.13.1
-        version: 16.14.0
-      react-dom:
-        specifier: ^16.13.1
-        version: 16.14.0(react@16.14.0)
 
 packages:
 
@@ -1867,10 +1867,6 @@ packages:
     resolution: {integrity: sha512-8zSiw54Oxrdym50NlZ9sUusyO1Z1ZchgRLWRaK6c86XJFClyCgFKetdowBg5bKxyp/u+CDBJG4Mpp0m3HLZl9w==}
     engines: {node: '>=0.4.0'}
     hasBin: true
-
-  address@1.1.2:
-    resolution: {integrity: sha512-aT6camzM4xEA54YVJYSqxz1kv4IHnQZRtThJJHhUMRExaU5spC7jX5ugSwTaTgJliIgs4VhZOk7htClvQ/LmRA==}
-    engines: {node: '>= 0.12.0'}
 
   address@1.2.2:
     resolution: {integrity: sha512-4B/qKCfeE/ODUaAUpSwfzazo5x29WD4r3vXiWsB7I2mSDAihwEqKO+g8GELZUQSSAo5e1XTYh3ZVfLyxBc12nA==}
@@ -9624,7 +9620,7 @@ snapshots:
 
   '@types/sax@1.2.7':
     dependencies:
-      '@types/node': 17.0.45
+      '@types/node': 22.8.1
 
   '@types/scheduler@0.16.8': {}
 
@@ -9870,8 +9866,6 @@ snapshots:
   acorn@7.4.1: {}
 
   acorn@8.13.0: {}
-
-  address@1.1.2: {}
 
   address@1.2.2: {}
 
@@ -11230,7 +11224,7 @@ snapshots:
 
   detect-port-alt@1.1.6:
     dependencies:
-      address: 1.1.2
+      address: 1.2.2
       debug: 2.6.9
     transitivePeerDependencies:
       - supports-color
