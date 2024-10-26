@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link, Route, BrowserRouter as Router, Switch } from 'react-router-dom'
+import { Link, Route, Routes, BrowserRouter as Router } from 'react-router-dom'
 import { ToastProvider } from 'react-toast-notifications'
 
 import CsvPage from './pages/Csv'
@@ -55,20 +55,12 @@ export default function App() {
           <hr />
         </div>
         <div>
-          <Switch>
-            <Route path="/sorting">
-              <SortingPage />
-            </Route>
-            <Route path="/csv">
-              <CsvPage />
-            </Route>
-            <Route path="/external">
-              <ExternalScriptsPage />
-            </Route>
-            <Route path="/transferable">
-              <TransferablePage />
-            </Route>
-          </Switch>
+          <Routes>
+            <Route path="/sorting" element={<SortingPage />} />
+            <Route path="/csv" element={<CsvPage />} />
+            <Route path="/external" element={<ExternalScriptsPage />} />
+            <Route path="/transferable" element={<TransferablePage />} />
+          </Routes>
         </div>
       </Router>
     </ToastProvider>

@@ -4,12 +4,15 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "vite build",
     "preview": "vite preview"
   },
   "dependencies": {
+    "@koale/useworker": "workspace:*",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.27.0",
+    "react-toast-notifications": "^2.5.1"
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^4.3.3",
