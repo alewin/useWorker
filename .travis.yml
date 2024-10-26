@@ -1,8 +1,0 @@
-sudo: required
-
-services:
-  - docker
-
-script:
-  - docker build -t useworker ./packages/useWorker
-  - docker run --rm -v $(pwd)/packages/useWorker:/usr/src useworker

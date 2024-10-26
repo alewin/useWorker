@@ -1,4 +1,4 @@
-import dequal from 'dequal'
+import { dequal } from 'dequal'
 import React, { DependencyList } from 'react'
 
 export const useDeepCallback = <T extends (...args: any[]) => any>(
