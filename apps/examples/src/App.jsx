@@ -7,7 +7,6 @@ import ExternalScriptsPage from './pages/ExternalScripts'
 import SortingPage from './pages/Sorting'
 import TransferablePage from './pages/Transferable'
 import logo from './react.png'
-import './style.css'
 
 let turn = 0
 function infiniteLoop() {
