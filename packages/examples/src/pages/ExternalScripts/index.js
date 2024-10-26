@@ -1,49 +1,51 @@
-/* eslint-disable no-alert */
-/* eslint-disable no-console */
-import React from "react";
-import { useWorker, WORKER_STATUS } from "@koale/useworker";
-import { useToasts } from "react-toast-notifications";
+import { WORKER_STATUS, useWorker } from '@koale/useworker'
+import React from 'react'
+import { useToasts } from 'react-toast-notifications'
 
-import sortDates from "./algorithms/sortDates";
+import sortDates from './algorithms/sortDates'
 
 const dates = [...Array(100000)].map(
-  () => new Date(1995, Math.floor(Math.random() * 2000), 6, 2)
-);
+  () => new Date(1995, Math.floor(Math.random() * 2000), 6, 2),
+)
 
 function App() {
-  const { addToast } = useToasts();
+  const { addToast } = useToasts()
 
-  const [sortStatus, setSortStatus] = React.useState(false);
+  const [sortStatus, setSortStatus] = React.useState(false)
 
-  const [sortWorker, { status: sortWorkerStatus, kill: killWorker }] = useWorker(sortDates, {
-    autoTerminate: false, // you should manually kill the worker using "killWorker()"
-    remoteDependencies: [
-      "https://cdnjs.cloudflare.com/ajax/libs/date-fns/1.30.1/date_fns.js"
-    ],
-  });
+  const [sortWorker, { status: sortWorkerStatus, kill: killWorker }] =
+    useWorker(sortDates, {
+      autoTerminate: false, // you should manually kill the worker using "killWorker()"
+      remoteDependencies: [
+        'https://cdnjs.cloudflare.com/ajax/libs/date-fns/1.30.1/date_fns.js',
+      ],
+    })
 
-  React.useEffect(()=>()=> {
-    killWorker(); // [UN-MOUNT] Since autoTerminate: false we need to kill the worker manually (recommended)
-  },[killWorker]);
+  React.useEffect(
+    () => () => {
+      killWorker() // [UN-MOUNT] Since autoTerminate: false we need to kill the worker manually (recommended)
+    },
+    [killWorker],
+  )
 
-  React.useEffect(()=>{
-    console.log("WORKER:", sortWorkerStatus);
+  React.useEffect(() => {
+    console.log('WORKER:', sortWorkerStatus)
   }, [sortWorkerStatus])
 
   const onSortClick = () => {
-    setSortStatus(true);
-    const result = sortDates(dates);
-    setSortStatus(false);
-    addToast("Finished: Sort", { appearance: "success" });
-    console.log("Buble Sort", result);
-  };
+    setSortStatus(true)
+    const result = sortDates(dates)
+    setSortStatus(false)
+    addToast('Finished: Sort', { appearance: 'success' })
+    console.log('Buble Sort', result)
+  }
 
   const onWorkerSortClick = () => {
-    sortWorker(dates).then(result => {
-      console.log("Buble Sort useWorker()", result);
-      addToast("Finished: Sort using useWorker.", { appearance: "success" });
-    });
-  };
+    sortWorker(dates).then((result) => {
+      console.log('Buble Sort useWorker()', result)
+      addToast('Finished: Sort using useWorker.', { appearance: 'success' })
+    })
+  }
 
   return (
     <div>
@@ -77,12 +79,12 @@ function App() {
         ) : null}
       </section>
       <section className="App-section">
-        <span style={{ color: "white" }}>
+        <span style={{ color: 'white' }}>
           Open DevTools console to see the results.
         </span>
       </section>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

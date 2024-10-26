@@ -1,19 +1,12 @@
-import React, { useState } from 'react'
 import CodeBlock from '@theme/CodeBlock'
+import React, { useState } from 'react'
 
-export default ({
-  header,
-  js,
-  jsHighlight,
-}) =>  (
-    <div className={'code-with-header'}>
-      {header && <div className="code-header">{header}</div>}
-      <>
-        {js && <CodeBlock metastring={jsHighlight}>{js}</CodeBlock>}
-      </>
-    </div>
+export default ({ header, js, jsHighlight }) => (
+  <div className={'code-with-header'}>
+    {header && <div className="code-header">{header}</div>}
+    <>{js && <CodeBlock metastring={jsHighlight}>{js}</CodeBlock>}</>
+  </div>
 )
-
 
 const styles = {
   responseShown: {

@@ -18,7 +18,9 @@ import remoteDepsParser from './remoteDepsParser'
  * .catch(postMessage(['ERROR', error])"
  */
 const createWorkerBlobUrl = (
-  fn: Function, deps: string[], transferable: TRANSFERABLE_TYPE, /* localDeps: () => unknown[], */
+  fn: Function,
+  deps: string[],
+  transferable: TRANSFERABLE_TYPE /* localDeps: () => unknown[], */,
 ) => {
   // const [context] = isoworker.createContext(localDeps)
   const blobCode = `

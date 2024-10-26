@@ -1,30 +1,30 @@
 module.exports = function (config) {
   config.set({
-    frameworks: ["mocha", "chai", "detectBrowsers"],
-    files: [{ pattern: "test/*.test.js" }],
+    frameworks: ['mocha', 'chai', 'detectBrowsers'],
+    files: [{ pattern: 'test/*.test.js' }],
     preprocessors: {
-      "test/*.test.js": ["webpack"], //preprocess with webpack
+      'test/*.test.js': ['webpack'], //preprocess with webpack
     },
     plugins: [
       'karma-chrome-launcher',
       'karma-detect-browsers',
       'karma-mocha',
       'karma-chai',
-      'karma-webpack' // *** This 'registers' the Karma webpack plugin.
+      'karma-webpack', // *** This 'registers' the Karma webpack plugin.
     ],
-    reporters: ["dots"], //report results in this format
+    reporters: ['dots'], //report results in this format
     webpack: {
-      devtool: "inline-source-map", //just do inline source maps instead of the default
+      devtool: 'inline-source-map', //just do inline source maps instead of the default
       module: {
         rules: [
           {
             test: /test\.js$/,
             use: {
-              loader: "babel-loader",
+              loader: 'babel-loader',
               options: {
                 presets: [
                   [
-                    "@babel/preset-env",
+                    '@babel/preset-env',
                     {
                       targets: {
                         esmodules: true,
@@ -33,8 +33,8 @@ module.exports = function (config) {
                   ],
                 ],
                 plugins: [
-                  "@babel/plugin-transform-react-jsx",
-                  "@babel/plugin-proposal-optional-chaining",
+                  '@babel/plugin-transform-react-jsx',
+                  '@babel/plugin-proposal-optional-chaining',
                 ],
               },
             },
@@ -42,7 +42,7 @@ module.exports = function (config) {
         ],
       },
     },
-    reporters: ["progress"],
+    reporters: ['progress'],
     singleRun: true,
     port: 9876, // Karma web server port
     colors: true,
@@ -53,27 +53,27 @@ module.exports = function (config) {
       preferHeadless: true,
       postDetection: (availableBrowsers) => {
         if (process.env.INSIDE_DOCKER) {
-          return ["DockerChrome"];
+          return ['DockerChrome']
         } else if (process.env.CHROME_ONLY) {
-          return ["ChromeHeadless"];
+          return ['ChromeHeadless']
         } else {
           // Filtering SafariTechPreview because I am having
           // local issues and I have no idea how to fix them.
           // I know that’s not a good reason to disable tests,
           // but Safari TP is relatively unimportant.
           return availableBrowsers.filter(
-            (browser) => browser !== "SafariTechPreview"
-          );
+            (browser) => browser !== 'SafariTechPreview',
+          )
         }
       },
     },
     customLaunchers: {
       DockerChrome: {
-        base: "ChromeHeadless",
-        flags: ["--no-sandbox"],
+        base: 'ChromeHeadless',
+        flags: ['--no-sandbox'],
       },
     },
     autoWatch: false,
     concurrency: Infinity,
-  });
-};
+  })
+}

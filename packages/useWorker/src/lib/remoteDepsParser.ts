@@ -13,7 +13,7 @@
 const remoteDepsParser = (deps: string[]) => {
   if (deps.length === 0) return ''
 
-  const depsString = (deps.map(dep => `'${dep}'`)).toString()
+  const depsString = deps.map((dep) => `'${dep}'`).toString()
   return `importScripts(${depsString})`
 }
 

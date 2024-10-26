@@ -27,18 +27,11 @@
     "listEmittedFiles": false,
     "listFiles": false,
     "pretty": true,
-    "lib": [
-      "es2019",
-      "dom"
-    ],
+    "lib": ["es2019", "dom"],
     "outDir": "./dist",
     "baseUrl": "."
   },
   "compileOnSave": false,
-  "include": [
-    "src/**/*"
-  ],
-  "exclude": [
-    "node_modules/**"
-  ]
+  "include": ["src/**/*"],
+  "exclude": ["node_modules/**"]
 }
