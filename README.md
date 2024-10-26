@@ -1,9 +1,22 @@
+
 <h1 align="center">
   <br>
   <img width="300px" src="logo.png" alt="useWorker"
     title="useWorker() Use web workers with react hook" />
   <br>
 </h1>
+
+#  ⚠️ Important Notice: Library Refactoring in Progress ⚠️
+
+A major refactoring of this library is currently underway. By the end of October/November 2024, we will release significant updates including:
+
+- Full compatibility with React 17/18/19
+- Improvements and optimizations 
+- Enhanced TypeScript support
+- New features and capabilities
+
+Stay tuned for these upcoming changes! 🚀
+
 
 <h2 align="center">
   Use web workers with react hook
@@ -16,6 +29,8 @@
   </a>
 
 </h2>
+
+
 
 <h3 align="center">
   <img alt="GitHub" src="https://img.shields.io/npm/dm/@koale/useworker" />
