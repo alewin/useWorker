@@ -5,13 +5,7 @@
   "author": "alewin",
   "license": "MIT",
   "repository": "alewin/useworker",
-  "keywords": [
-    "react",
-    "react-hooks",
-    "web worker",
-    "useWorker",
-    "background"
-  ],
+  "keywords": ["react", "react-hooks", "web worker", "useWorker", "background"],
   "scripts": {
     "build": "vite build",
     "dev": "vite"
