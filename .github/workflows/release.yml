@@ -14,21 +14,21 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
-        uses: actions/checkout@master
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - name: Setup Node.js 12.x
-        uses: actions/setup-node@master
+      - uses: pnpm/action-setup@v4
+        name: Install pnpm
         with:
-          node-version: 12.x
+          version: 9
+          run_install: false
 
-      - name: Install pnpm
-        run: |
-          npm install pnpm@latest -g
-
-      - name: Setup pnpm config
-        run: pnpm config set store-dir $PNPM_CACHE_FOLDER
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20.x"
+          cache: "pnpm"
 
       - name: Setup GIT
         run: |
@@ -41,14 +41,14 @@ jobs:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Install Dependencies
-        run: pnpm install --frozen-lockfile=false
+        run: pnpm install --frozen-lockfile
 
       - name: Create Release Pull Request or Publish to npm
         id: changesets
-        uses: changesets/action@master
+        uses: changesets/action@v1
         with:
           version: pnpm ci:version
           publish: pnpm ci:publish
-          commit: 'chore: update version'
+          commit: "chore: update version"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

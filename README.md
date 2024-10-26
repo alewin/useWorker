@@ -86,8 +86,8 @@ Before you start using this [hook](https://www.npmjs.com/package/@koale/useworke
 import React from "react";
 import { useWorker } from "@koale/useworker";
 
-const numbers = [...Array(5000000)].map(e => ~~(Math.random() * 1000000));
-const sortNumbers = nums => nums.sort();
+const numbers = [...Array(5000000)].map((e) => ~~(Math.random() * 1000000));
+const sortNumbers = (nums) => nums.sort();
 
 const Example = () => {
   const [sortWorker] = useWorker(sortNumbers);
@@ -103,7 +103,6 @@ const Example = () => {
     </button>
   );
 };
-
 ```
 
 ---
@@ -134,30 +133,29 @@ More examples: https://github.com/alewin/useWorker/tree/develop/example
 - [ ] useWorkers Hook [#38](https://github.com/alewin/useWorker/issues/38)
 - [ ] useWorkerFile Hook [#93](https://github.com/alewin/useWorker/issues/93)
 
-
 ---
 
-
 ## 🤔 Motivation and Limitations
+
 Most react projects are initialized through [Create React App](https://github.com/facebook/create-react-app).
 CRA unfortunately does not offer support for webworkers, unless you eject and change the webpack configuration manually.
 
 This library allows you to use web workers without having to change the CRA configuration, which is why there are often limitations or particular workarounds.
 
-If you are interested in changing the webpack configuration to manually manage your workers, see: [worker-loader]( https://github.com/webpack-contrib/worker-loader)
+If you are interested in changing the webpack configuration to manually manage your workers, see: [worker-loader](https://github.com/webpack-contrib/worker-loader)
 
 ---
 
 ## Known issues
 
-There's a known issue related to transpiling tools such as Babel causing `Not refereced` errors. 
+There's a known issue related to transpiling tools such as Babel causing `Not refereced` errors.
 
 Since the approach of this library is moving the entire function passed to the Hook to a worker, if the function gets transpiled, variable definitions used by the transpiling tool may get out of scope when the function gets moved to the worker, causing unexpected reference errors.
 
 If you're experimenting this type of issue, one workaround is wrapping your function declaration inside a function object as a string.
 
 ```js
-const sum = new Function(`a`, `b`, `return a + b`)
+const sum = new Function(`a`, `b`, `return a + b`);
 ```
 
 ---
@@ -177,8 +175,9 @@ The library is experimental so if you find a **bug** or would like to request a 
 
 ## 💻 Mantainers
 
-- [@zant](https://github.com/zant)
+- [@naorpeled](https://github.com/naorpeled)
 - [@alewin](https://github.com/alewin)
+- [@zant](https://github.com/zant)
 
 ## 💻 Contributors
 
@@ -191,8 +190,7 @@ The library is experimental so if you find a **bug** or would like to request a 
 - [@Pigotz](https://github.com/Pigotz) (Discussion of `RFC`)
 - [@gubo97000](https://github.com/gubo97000) (Fix [#108](https://github.com/alewin/useWorker/issues/108))
 
-
-*How to contribute?*
+_How to contribute?_
 
 Read [CONTRIBUTE.md](docs/CONTRIBUTE.md)
 
