@@ -4,15 +4,15 @@
   "description": "⚛️ useWorker() - A React Hook for Blocking-Free Background Tasks",
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
-    "@changesets/cli": "^2.13.1"
+    "@changesets/cli": "^2.27.9"
   },
   "scripts": {
     "preinstall": "npx only-allow pnpm",
     "changeset": "changeset",
     "check": "biome check",
     "check:fix": "biome check --write",
-    "ci:build": "pnpm run build -r",
-    "ci:publish": "pnpm run build -r && changeset publish",
+    "ci:build": "pnpm run --filter @koale/useworker build",
+    "ci:publish": "pnpm run --filter @koale/useworker build && changeset publish",
     "ci:version": "changeset version"
   },
   "repository": "alewin/useworker",
