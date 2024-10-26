@@ -1,11 +1,11 @@
 import React from 'react'
+import { useDeepCallback } from './hook/useDeepCallback'
 import createWorkerBlobUrl from './lib/createWorkerBlobUrl'
 import WORKER_STATUS from './lib/status'
-import { useDeepCallback } from './hook/useDeepCallback'
 
 type WorkerController = {
-  status: WORKER_STATUS;
-  kill: Function;
+  status: WORKER_STATUS
+  kill: Function
 }
 
 export enum TRANSFERABLE_TYPE {
@@ -14,10 +14,10 @@ export enum TRANSFERABLE_TYPE {
 }
 
 type Options = {
-  timeout?: number;
-  remoteDependencies?: string[];
-  autoTerminate?: boolean;
-  transferable?: TRANSFERABLE_TYPE;
+  timeout?: number
+  remoteDependencies?: string[]
+  autoTerminate?: boolean
+  transferable?: TRANSFERABLE_TYPE
   // localDependencies?: () => unknown[];
 }
 
@@ -31,21 +31,23 @@ const DEFAULT_OPTIONS: Options = {
   // localDependencies: () => [],
 }
 
-
 /**
  *
  * @param {Function} fn the function to run with web worker
  * @param {Object} options useWorker option params
  */
 export const useWorker = <T extends (...fnArgs: any[]) => any>(
-  fn: T, options: Options = DEFAULT_OPTIONS,
+  fn: T,
+  options: Options = DEFAULT_OPTIONS,
 ) => {
-  const [workerStatus, setWorkerStatus] = React.useState<WORKER_STATUS>(WORKER_STATUS.PENDING)
+  const [workerStatus, setWorkerStatus] = React.useState<WORKER_STATUS>(
+    WORKER_STATUS.PENDING,
+  )
   const worker = React.useRef<Worker & { _url?: string }>()
   const isRunning = React.useRef(false)
   const promise = React.useRef<{
-    [PROMISE_REJECT]?:(result: ReturnType<T> | ErrorEvent) => void;[PROMISE_RESOLVE]?:
-    (result: ReturnType<T>) => void
+    [PROMISE_REJECT]?: (result: ReturnType<T> | ErrorEvent) => void
+    [PROMISE_RESOLVE]?: (result: ReturnType<T>) => void
   }>({})
   const timeoutId = React.useRef<number>()
 
@@ -59,16 +61,21 @@ export const useWorker = <T extends (...fnArgs: any[]) => any>(
     }
   }, [])
 
-  const onWorkerEnd = React.useCallback((status: WORKER_STATUS) => {
-    const terminate = options.autoTerminate != null
-      ? options.autoTerminate
-      : DEFAULT_OPTIONS.autoTerminate
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
+  const onWorkerEnd = React.useCallback(
+    (status: WORKER_STATUS) => {
+      const terminate =
+        options.autoTerminate != null
+          ? options.autoTerminate
+          : DEFAULT_OPTIONS.autoTerminate
 
-    if (terminate) {
-      killWorker()
-    }
-    setWorkerStatus(status)
-  }, [options.autoTerminate, killWorker, setWorkerStatus])
+      if (terminate) {
+        killWorker()
+      }
+      setWorkerStatus(status)
+    },
+    [options.autoTerminate, killWorker, setWorkerStatus],
+  )
 
   const generateWorker = useDeepCallback(() => {
     const {
@@ -78,7 +85,11 @@ export const useWorker = <T extends (...fnArgs: any[]) => any>(
       // localDependencies = DEFAULT_OPTIONS.localDependencies,
     } = options
 
-    const blobUrl = createWorkerBlobUrl(fn, remoteDependencies!, transferable! /*, localDependencies!*/)
+    const blobUrl = createWorkerBlobUrl(
+      fn,
+      remoteDependencies!,
+      transferable! /*, localDependencies!*/,
+    )
     const newWorker: Worker & { _url?: string } = new Worker(blobUrl)
     newWorker._url = blobUrl
 
@@ -111,46 +122,58 @@ export const useWorker = <T extends (...fnArgs: any[]) => any>(
     return newWorker
   }, [fn, options, killWorker])
 
-  const callWorker = React.useCallback((...workerArgs: Parameters<T>) => {
-    const { transferable = DEFAULT_OPTIONS.transferable } = options
-    return new Promise<ReturnType<T>>((resolve, reject) => {
-      promise.current = {
-        [PROMISE_RESOLVE]: resolve,
-        [PROMISE_REJECT]: reject,
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
+  const callWorker = React.useCallback(
+    (...workerArgs: Parameters<T>) => {
+      const { transferable = DEFAULT_OPTIONS.transferable } = options
+      return new Promise<ReturnType<T>>((resolve, reject) => {
+        promise.current = {
+          [PROMISE_RESOLVE]: resolve,
+          [PROMISE_REJECT]: reject,
+        }
+        const transferList: any[] =
+          transferable === TRANSFERABLE_TYPE.AUTO
+            ? workerArgs.filter(
+                (val: any) =>
+                  ('ArrayBuffer' in window && val instanceof ArrayBuffer) ||
+                  ('MessagePort' in window && val instanceof MessagePort) ||
+                  ('ImageBitmap' in window && val instanceof ImageBitmap) ||
+                  ('OffscreenCanvas' in window &&
+                    val instanceof OffscreenCanvas),
+              )
+            : []
+
+        worker.current?.postMessage([[...workerArgs]], transferList)
+
+        setWorkerStatus(WORKER_STATUS.RUNNING)
+      })
+    },
+    [setWorkerStatus],
+  )
+
+  const workerHook = React.useCallback(
+    (...fnArgs: Parameters<T>) => {
+      const terminate =
+        options.autoTerminate != null
+          ? options.autoTerminate
+          : DEFAULT_OPTIONS.autoTerminate
+
+      if (isRunning.current) {
+        console.error(
+          '[useWorker] You can only run one instance of the worker at a time, if you want to run more than one in parallel, create another instance with the hook useWorker(). Read more: https://github.com/alewin/useWorker',
+        )
+        return Promise.reject()
       }
-      const transferList: any[] = transferable === TRANSFERABLE_TYPE.AUTO ? (
-        workerArgs.filter((val: any) => (
-          ('ArrayBuffer' in window && val instanceof ArrayBuffer)
-            || ('MessagePort' in window && val instanceof MessagePort)
-            || ('ImageBitmap' in window && val instanceof ImageBitmap)
-            || ('OffscreenCanvas' in window && val instanceof OffscreenCanvas)
-        ))
-      ) : []
+      if (terminate || !worker.current) {
+        worker.current = generateWorker()
+      }
 
-      worker.current?.postMessage([[...workerArgs]], transferList)
+      return callWorker(...fnArgs)
+    },
+    [options.autoTerminate, generateWorker, callWorker],
+  )
 
-      setWorkerStatus(WORKER_STATUS.RUNNING)
-    })
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [setWorkerStatus])
-
-  const workerHook = React.useCallback((...fnArgs: Parameters<T>) => {
-    const terminate = options.autoTerminate != null
-      ? options.autoTerminate
-      : DEFAULT_OPTIONS.autoTerminate
-
-    if (isRunning.current) {
-      /* eslint-disable-next-line no-console */
-      console.error('[useWorker] You can only run one instance of the worker at a time, if you want to run more than one in parallel, create another instance with the hook useWorker(). Read more: https://github.com/alewin/useWorker')
-      return Promise.reject()
-    }
-    if (terminate || !worker.current) {
-      worker.current = generateWorker()
-    }
-
-    return callWorker(...fnArgs)
-  }, [options.autoTerminate, generateWorker, callWorker])
-
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   const killWorkerController = React.useCallback(() => {
     killWorker()
     setWorkerStatus(WORKER_STATUS.KILLED)
@@ -165,11 +188,12 @@ export const useWorker = <T extends (...fnArgs: any[]) => any>(
     isRunning.current = workerStatus === WORKER_STATUS.RUNNING
   }, [workerStatus])
 
-  React.useEffect(() => () => {
-    killWorker()
-  }, [killWorker])
+  React.useEffect(
+    () => () => {
+      killWorker()
+    },
+    [killWorker],
+  )
 
-  return [
-    workerHook, workerController,
-  ] as [typeof workerHook, WorkerController]
+  return [workerHook, workerController] as [typeof workerHook, WorkerController]
 }

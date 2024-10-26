@@ -41,8 +41,6 @@ typings/
 .npm
 .pnpm
 
-# Optional eslint cache
-.eslintcache
 
 # Microbundle cache
 .rpt2_cache/
@@ -65,5 +63,5 @@ dist/
 .DS_*
 
 # docusaurus
-.docusaurus
+.docusaurus/
 
