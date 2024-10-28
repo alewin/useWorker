@@ -4,4 +4,3 @@
 - Buble Sort ( complex calculation )
 - External Scripts ( `removeDependencies` option example )
 - Transferable ( `transferable` option example )
-<!-- - LocalDeps ( `localDependencies` option example ) -->
