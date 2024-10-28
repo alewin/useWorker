@@ -30,5 +30,12 @@
   },
   "peerDependencies": {
     "react": ">=16.8.0 <20.0.0"
+  },
+  "homepage": "https://github.com/alewin/useworker",
+  "bugs": {
+    "url": "https://github.com/alewin/useworker/issues"
+  },
+  "engines": {
+    "node": ">=20"
   }
 }
