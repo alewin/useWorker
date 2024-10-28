@@ -6,18 +6,6 @@
   <br>
 </h1>
 
-#  ⚠️ Important Notice: Library Refactoring in Progress ⚠️
-
-A major refactoring of this library is currently underway. By the end of October/November 2024, we will release significant updates including:
-
-- Full compatibility with React 17/18/19
-- Improvements and optimizations 
-- Enhanced TypeScript support
-- New features and capabilities
-
-Stay tuned for these upcoming changes! 🚀
-
-
 <h2 align="center">
   Use web workers with react hook
   <br />
