@@ -28,4 +28,4 @@ jobs:
       - name: Build
         run: pnpm run ci:build
 
-      - run: pnpx pkg-pr-new publish --compact './packages/useWorker'
+      - run: pnpx pkg-pr-new publish './packages/useWorker'
