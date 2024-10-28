@@ -1,11 +1,17 @@
 {
   "name": "@koale/useworker",
-  "version": "4.0.2",
+  "version": "4.1.0",
   "description": "useWorker() - Web worker using React hook",
   "author": "alewin",
   "license": "MIT",
   "repository": "alewin/useworker",
-  "keywords": ["react", "react-hooks", "web worker", "useWorker", "background"],
+  "keywords": [
+    "react",
+    "react-hooks",
+    "web worker",
+    "useWorker",
+    "background"
+  ],
   "scripts": {
     "build": "vite build",
     "dev": "vite"
