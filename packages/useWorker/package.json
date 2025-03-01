@@ -40,8 +40,5 @@
   "homepage": "https://github.com/alewin/useworker",
   "bugs": {
     "url": "https://github.com/alewin/useworker/issues"
-  },
-  "engines": {
-    "node": ">=20"
   }
 }
