@@ -16,14 +16,7 @@
     "ci:version": "changeset version"
   },
   "repository": "alewin/useworker",
-  "keywords": [
-    "useWorker",
-    "react",
-    "hooks",
-    "worker",
-    "web worker",
-    "blocking ui",
-    "javscript",
+  "keywords": ["useWorker", "react", "hooks", "worker", "web worker", "blocking ui", "javscript", "background"],
     "background"
   ],
   "author": "alewin",
