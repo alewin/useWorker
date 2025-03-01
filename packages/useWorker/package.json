@@ -5,13 +5,7 @@
   "author": "alewin",
   "license": "MIT",
   "repository": "alewin/useworker",
-  "keywords": [
-    "react",
-    "react-hooks",
-    "web worker",
-    "useWorker",
-    "background"
-  ],
+  "keywords": ["react", "react-hooks", "web worker", "useWorker", "background"],
   "scripts": {
     "build": "vite build",
     "dev": "vite"
@@ -40,8 +34,5 @@
   "homepage": "https://github.com/alewin/useworker",
   "bugs": {
     "url": "https://github.com/alewin/useworker/issues"
-  },
-  "engines": {
-    "node": ">=20"
   }
 }
