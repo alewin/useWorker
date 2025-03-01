@@ -1,5 +1,11 @@
 # @koale/useworker
 
+## 4.1.1
+
+### Patch Changes
+
+- revert(package.json): rollback Node engine change
+
 ## 4.1.0
 
 ### Minor Changes
