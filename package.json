@@ -17,8 +17,6 @@
   },
   "repository": "alewin/useworker",
   "keywords": ["useWorker", "react", "hooks", "worker", "web worker", "blocking ui", "javscript", "background"],
-    "background"
-  ],
   "author": "alewin",
   "license": "MIT",
   "bugs": {
