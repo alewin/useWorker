@@ -1,6 +1,6 @@
 <h1 align="center">
   <br>
-  <img width="300px" src="../../logo.png" alt="useWorker"
+  <img width="300px" src="https://raw.githubusercontent.com/alewin/useWorker/refs/heads/master/logo.png" alt="useWorker"
     title="useWorker() Use web workers with react hook" />
   <br>
 </h1>
