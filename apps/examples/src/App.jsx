@@ -1,10 +1,10 @@
 import React from 'react'
 import { Link, Route, BrowserRouter as Router, Switch } from 'react-router-dom'
-import { ToastProvider } from 'react-toast-notifications'
+import { Toaster } from 'react-hot-toast';
 
-import CsvPage from './pages/Csv'
-import ExternalScriptsPage from './pages/ExternalScripts'
-import SortingPage from './pages/Sorting'
+import CsvPage from './pages/Csv/index.jsx'
+import ExternalScriptsPage from './pages/ExternalScripts/index.jsx'
+import SortingPage from './pages/Sorting/index.jsx'
 import TransferablePage from './pages/Transferable'
 import logo from './react.png'
 import './style.css'
@@ -23,7 +23,7 @@ export default function App() {
   }, [])
 
   return (
-    <ToastProvider>
+    <>
       <Router>
         <div className="App">
           <h1 className="App-Title">useWorker</h1>
@@ -71,6 +71,7 @@ export default function App() {
           </Switch>
         </div>
       </Router>
-    </ToastProvider>
+      <Toaster />
+    </>
   )
 }

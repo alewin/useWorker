@@ -1,13 +1,11 @@
 import { WORKER_STATUS, useWorker } from '@koale/useworker'
 import React from 'react'
-import { useToasts } from 'react-toast-notifications'
+import toast from 'react-hot-toast'
 
 import csvToJson from './parser/csvToJson'
 import generateCsv from './parser/generateCsv'
 
 function App() {
-  const { addToast } = useToasts()
-
   const [csvStatus, setCsvStatus] = React.useState(false)
   const [generateWorker] = useWorker(generateCsv, { autoTerminate: false })
   const [csvWorker, { status: csvWorkerStatus, kill: killWorker }] =
@@ -22,7 +20,7 @@ function App() {
     setCsvStatus(true)
     const result = csvToJson(fakeCsv)
     setCsvStatus(false)
-    addToast('Finished: Csv parsed', { appearance: 'success' })
+    toast.success('Finished: Csv parsed')
     console.log('Csv', result)
   }
 
@@ -30,9 +28,7 @@ function App() {
     const fakeCsv = await generateWorker()
     csvWorker(fakeCsv).then((result) => {
       console.log('Csv useWorker()', result)
-      addToast('Finished: Csv parsed using useWorker()', {
-        appearance: 'success',
-      })
+      toast.success('Finished: Csv parsed using useWorker()')
     })
   }
 

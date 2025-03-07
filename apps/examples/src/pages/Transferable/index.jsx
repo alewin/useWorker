@@ -1,6 +1,6 @@
 import { WORKER_STATUS, useWorker } from '@koale/useworker'
 import React from 'react'
-import { useToasts } from 'react-toast-notifications'
+import toast from 'react-hot-toast'
 
 const demoFunction = (arrayBuffer) => {
   var uInt8Array = new Uint8Array(arrayBuffer)
@@ -11,8 +11,6 @@ const demoFunction = (arrayBuffer) => {
 }
 
 function App() {
-  const { addToast } = useToasts()
-
   const [
     transferableWorker,
     { status: transferableWorkerStatus, kill: killWorker },
@@ -30,9 +28,7 @@ function App() {
     }
     transferableWorker(uInt8Array.buffer).then((result) => {
       console.log('transferable useWorker()', result)
-      addToast('Finished: transferable using useWorker.', {
-        appearance: 'success',
-      })
+      toast.success('Finished: transferable using useWorker.')
     })
   }
 

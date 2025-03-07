@@ -18,18 +18,18 @@ title: Sorting Numbers
 ---
 
 ```javascript
-import bubleSort from "./algorithms/bublesort";
+import bubbleSort from "./algorithms/bublesort";
 
 const numbers = [...Array(50000)].map(() =>
   Math.floor(Math.random() * 1000000)
 );
 
 function App() {
-  const [sortWorker, { status: sortWorkerStatus, kill: killWorker }] = useWorker(bubleSort);
+  const [sortWorker, { status: sortWorkerStatus, kill: killWorker }] = useWorker(bubbleSort);
 
   const onWorkerSortClick = () => {
     sortWorker(numbers).then(result => {
-      console.log("Buble Sort useWorker()", result);
+      console.log("Bubble Sort useWorker()", result);
       addToast("Finished: Sort using useWorker.", { appearance: "success" });
     });
   };

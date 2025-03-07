@@ -1,32 +1,15 @@
 import { WORKER_STATUS, useWorker } from '@koale/useworker'
 import React from 'react'
-import { useToasts } from 'react-toast-notifications'
+import toast from 'react-hot-toast'
 
-import sortDates from './algorithms/sortDates'
+import bubbleSort from './algorithms/bubbleSort.js'
 
-const dates = [...Array(100000)].map(
-  () => new Date(1995, Math.floor(Math.random() * 2000), 6, 2),
-)
+const numbers = [...Array(50000)].map(() => Math.floor(Math.random() * 1000000))
 
 function App() {
-  const { addToast } = useToasts()
-
   const [sortStatus, setSortStatus] = React.useState(false)
-
   const [sortWorker, { status: sortWorkerStatus, kill: killWorker }] =
-    useWorker(sortDates, {
-      autoTerminate: false, // you should manually kill the worker using "killWorker()"
-      remoteDependencies: [
-        'https://cdnjs.cloudflare.com/ajax/libs/date-fns/1.30.1/date_fns.js',
-      ],
-    })
-
-  React.useEffect(
-    () => () => {
-      killWorker() // [UN-MOUNT] Since autoTerminate: false we need to kill the worker manually (recommended)
-    },
-    [killWorker],
-  )
+    useWorker(bubbleSort)
 
   React.useEffect(() => {
     console.log('WORKER:', sortWorkerStatus)
@@ -34,16 +17,16 @@ function App() {
 
   const onSortClick = () => {
     setSortStatus(true)
-    const result = sortDates(dates)
+    const result = bubbleSort(numbers)
     setSortStatus(false)
-    addToast('Finished: Sort', { appearance: 'success' })
-    console.log('Buble Sort', result)
+    toast.success('Finished: Sort')
+    console.log('Bubble Sort', result)
   }
 
   const onWorkerSortClick = () => {
-    sortWorker(dates).then((result) => {
-      console.log('Buble Sort useWorker()', result)
-      addToast('Finished: Sort using useWorker.', { appearance: 'success' })
+    sortWorker(numbers).then((result) => {
+      console.log('Bubble Sort useWorker()', result)
+      toast.success('Finished: Sort using useWorker.')
     })
   }
 
@@ -56,7 +39,7 @@ function App() {
           className="App-button"
           onClick={() => onSortClick()}
         >
-          {sortStatus ? `Loading...` : `Sort Dates`}
+          {sortStatus ? `Loading...` : `Bubble Sort`}
         </button>
         <button
           type="button"
@@ -66,7 +49,7 @@ function App() {
         >
           {sortWorkerStatus === WORKER_STATUS.RUNNING
             ? `Loading...`
-            : `Sort Dates useWorker()`}
+            : `Bubble Sort useWorker()`}
         </button>
         {sortWorkerStatus === WORKER_STATUS.RUNNING ? (
           <button
