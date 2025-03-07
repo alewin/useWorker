@@ -55,6 +55,7 @@ export const useWorker = <T extends (...fnArgs: any[]) => any>(
       URL.revokeObjectURL(worker.current._url)
       promise.current = {}
       worker.current = undefined
+      isRunning.current = false
       window.clearTimeout(timeoutId.current)
     }
   }, [])
