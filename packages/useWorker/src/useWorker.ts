@@ -1,8 +1,8 @@
 import React from 'react'
 import { useDeepCallback } from './hook/useDeepCallback'
+import { AbortError } from './lib/abortError'
 import createWorkerBlobUrl from './lib/createWorkerBlobUrl'
 import WORKER_STATUS from './lib/status'
-import { AbortError } from './lib/abortError'
 
 type WorkerController = {
   status: WORKER_STATUS

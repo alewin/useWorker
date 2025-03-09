@@ -1,6 +1,6 @@
 import React from 'react'
+import { Toaster } from 'react-hot-toast'
 import { Link, Route, BrowserRouter as Router, Switch } from 'react-router-dom'
-import { Toaster } from 'react-hot-toast';
 
 import CsvPage from './pages/Csv/index.jsx'
 import ExternalScriptsPage from './pages/ExternalScripts/index.jsx'
