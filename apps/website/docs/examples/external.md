@@ -34,7 +34,7 @@ const [sortWorker, { status: sortWorkerStatus, kill: killWorker }] = useWorker(
 
 const onWorkerSortClick = () => {
   sortWorker(dates).then((result) => {
-    console.log("Buble Sort useWorker()", result);
+    console.log("Bubble Sort useWorker()", result);
     addToast("Finished: Sort using useWorker.", { appearance: "success" });
   });
 };

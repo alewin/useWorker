@@ -1,4 +1,4 @@
-const bubleSort = (input) => {
+const bubbleSort = (input) => {
   let swap
   let n = input.length - 1
   const sortedArray = input.slice()
@@ -18,4 +18,4 @@ const bubleSort = (input) => {
   return sortedArray
 }
 
-export default bubleSort
+export default bubbleSort
