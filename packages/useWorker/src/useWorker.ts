@@ -2,6 +2,7 @@ import React from 'react'
 import { useDeepCallback } from './hook/useDeepCallback'
 import createWorkerBlobUrl from './lib/createWorkerBlobUrl'
 import WORKER_STATUS from './lib/status'
+import { AbortError } from './lib/abortError'
 
 type WorkerController = {
   status: WORKER_STATUS
@@ -44,13 +45,17 @@ export const useWorker = <T extends (...fnArgs: any[]) => any>(
   const worker = React.useRef<Worker & { _url?: string }>()
   const isRunning = React.useRef(false)
   const promise = React.useRef<{
-    [PROMISE_REJECT]?: (result: ReturnType<T> | ErrorEvent) => void
+    [PROMISE_REJECT]?: (result: ReturnType<T> | ErrorEvent | AbortError) => void
     [PROMISE_RESOLVE]?: (result: ReturnType<T>) => void
   }>({})
   const timeoutId = React.useRef<number>()
 
   const killWorker = React.useCallback(() => {
     if (worker.current?._url) {
+      if (promise.current) {
+        promise.current[PROMISE_REJECT]?.(new AbortError())
+      }
+
       worker.current.terminate()
       URL.revokeObjectURL(worker.current._url)
       promise.current = {}
