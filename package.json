@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "description": "⚛️ useWorker() - A React Hook for Blocking-Free Background Tasks",
   "devDependencies": {
-    "@biomejs/biome": "1.9.4",
+    "@biomejs/biome": "^2.0.0",
     "@changesets/cli": "^2.27.9"
   },
   "scripts": {
