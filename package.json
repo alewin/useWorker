@@ -4,7 +4,7 @@
   "description": "⚛️ useWorker() - A React Hook for Blocking-Free Background Tasks",
   "devDependencies": {
     "@biomejs/biome": "^2.0.0",
-    "@changesets/cli": "^2.27.9"
+    "@changesets/cli": "^2.29.5"
   },
   "scripts": {
     "preinstall": "npx only-allow pnpm",
