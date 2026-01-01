@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "description": "⚛️ useWorker() - A React Hook for Blocking-Free Background Tasks",
   "devDependencies": {
-    "@biomejs/biome": "^2.0.0",
-    "@changesets/cli": "^2.27.9"
+    "@biomejs/biome": "^2.3.10",
+    "@changesets/cli": "^2.29.8"
   },
   "scripts": {
     "preinstall": "npx only-allow pnpm",
