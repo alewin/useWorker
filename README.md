@@ -62,10 +62,10 @@ import { useWorker, WORKER_STATUS } from "@koale/useworker";
 
 ## 📙 Documents
 
-- [Getting Started](https://useworker.netlify.com/docs/introduction/)
-- [APIs](https://useworker.netlify.com/docs/api-useworker)
-- [Examples](https://useworker.netlify.com/docs/examples/examples-sort)
-- [Limitations](https://useworker.netlify.com/docs/limitations)
+- [Getting Started](https://useworker.js.org/docs/introduction)
+- [APIs](https://useworker.js.org/docs/api-useworker/)
+- [Examples](https://useworker.js.org/docs/examples/examples-sort)
+- [Limitations](https://useworker.js.org/docs/limitations)
 
 ---
 
