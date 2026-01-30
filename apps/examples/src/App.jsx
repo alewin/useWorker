@@ -1,26 +1,27 @@
-import React from 'react'
-import { Toaster } from 'react-hot-toast'
-import { Link, Route, BrowserRouter as Router, Switch } from 'react-router-dom'
+import React from "react";
+import { Toaster } from "react-hot-toast";
+import { Link, Route, BrowserRouter as Router, Switch } from "react-router-dom";
 
-import CsvPage from './pages/Csv/index.jsx'
-import ExternalScriptsPage from './pages/ExternalScripts/index.jsx'
-import SortingPage from './pages/Sorting/index.jsx'
-import TransferablePage from './pages/Transferable'
-import logo from './react.png'
-import './style.css'
+import CsvPage from "./pages/Csv/index.jsx";
+import ExternalScriptsPage from "./pages/ExternalScripts/index.jsx";
+import SortingPage from "./pages/Sorting/index.jsx";
+import TransferablePage from "./pages/Transferable";
+import LocalDepsPage from "./pages/LocalDeps";
+import logo from "./react.png";
+import "./style.css";
 
-let turn = 0
+let turn = 0;
 function infiniteLoop() {
-  const lgoo = document.querySelector('.App-logo')
-  turn += 8
-  lgoo.style.transform = `rotate(${turn % 360}deg)`
+  const lgoo = document.querySelector(".App-logo");
+  turn += 8;
+  lgoo.style.transform = `rotate(${turn % 360}deg)`;
 }
 
 export default function App() {
   React.useEffect(() => {
-    const loopInterval = setInterval(infiniteLoop, 100)
-    return () => clearInterval(loopInterval)
-  }, [])
+    const loopInterval = setInterval(infiniteLoop, 100);
+    return () => clearInterval(loopInterval);
+  }, []);
 
   return (
     <>
@@ -31,23 +32,28 @@ export default function App() {
             <img src={logo} className="App-logo" alt="logo" />
             <ul>
               <li>
-                <Link style={{ color: 'white' }} to="/sorting">
+                <Link style={{ color: "white" }} to="/sorting">
                   Sorting Demo
                 </Link>
               </li>
               <li>
-                <Link style={{ color: 'white' }} to="/csv">
+                <Link style={{ color: "white" }} to="/csv">
                   Csv Demo
                 </Link>
               </li>
               <li>
-                <Link style={{ color: 'white' }} to="/external">
+                <Link style={{ color: "white" }} to="/external">
                   External Scripts Demo
                 </Link>
               </li>
               <li>
-                <Link style={{ color: 'white' }} to="/transferable">
+                <Link style={{ color: "white" }} to="/transferable">
                   Transferable Demo
+                </Link>
+              </li>
+              <li>
+                <Link style={{ color: "white" }} to="/localdeps">
+                  LocalDeps Demo
                 </Link>
               </li>
             </ul>
@@ -68,10 +74,13 @@ export default function App() {
             <Route path="/transferable">
               <TransferablePage />
             </Route>
+            <Route path="/localdeps">
+              <LocalDepsPage />
+            </Route>
           </Switch>
         </div>
       </Router>
       <Toaster />
     </>
-  )
+  );
 }
