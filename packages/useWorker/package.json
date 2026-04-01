@@ -28,10 +28,10 @@
     "dequal": "^2.0.3"
   },
   "devDependencies": {
-    "@types/react": "^19.2.10",
-    "@vitejs/plugin-react": "^5.1.2",
+    "@types/react": "^19.2.14",
+    "@vitejs/plugin-react": "^6.0.1",
     "react": "^19.2.4",
-    "vite": "^7.3.1",
+    "vite": "^8.0.3",
     "vite-plugin-dts": "^4.5.4"
   },
   "peerDependencies": {
