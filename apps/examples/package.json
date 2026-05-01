@@ -9,13 +9,13 @@
   },
   "dependencies": {
     "@koale/useworker": "workspace:*",
-    "react": "^19.2.4",
-    "react-dom": "^19.2.4",
+    "react": "^19.2.5",
+    "react-dom": "^19.2.5",
     "react-hot-toast": "^2.6.0",
-    "react-router-dom": "^7.13.0"
+    "react-router-dom": "^7.14.2"
   },
   "devDependencies": {
-    "@vitejs/plugin-react": "^5.1.2",
-    "vite": "^7.3.1"
+    "@vitejs/plugin-react": "^6.0.1",
+    "vite": "^8.0.10"
   }
 }
