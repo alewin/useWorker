@@ -151,11 +151,45 @@ If you are interested in changing the webpack configuration to manually manage y
 
 ## Known issues
 
-There's a known issue related to transpiling tools such as Babel causing `Not refereced` errors.
+#### `ReferenceError: <x> is not defined` in production builds
 
-Since the approach of this library is moving the entire function passed to the Hook to a worker, if the function gets transpiled, variable definitions used by the transpiling tool may get out of scope when the function gets moved to the worker, causing unexpected reference errors.
+A common report (e.g. `Uncaught ReferenceError: f is not defined`) is a worker that
+works in development (`npm start`) but breaks in a production build such as
+Create React App.
 
-If you're experimenting this type of issue, one workaround is wrapping your function declaration inside a function object as a string.
+Since the approach of this library is moving the entire function passed to the Hook
+into a worker (via `Function.prototype.toString`), the function **must be
+self-contained**. In production, transpilers/minifiers such as Babel or Terser hoist
+helper functions and rename them (often to single letters like `f`). Those helpers
+live in your module scope and are **not** copied into the worker, so the serialized
+function references identifiers that don't exist inside the worker — causing the
+reference error.
+
+To help diagnose this, `useWorker` now rejects with a `WorkerScopeError` carrying an
+actionable message (and logs it to the console) whenever a worker throws this kind of
+`ReferenceError`. The original `ErrorEvent` is preserved on `error.originalEvent`.
+
+```js
+import { useWorker, WorkerScopeError } from "@koale/useworker";
+
+const [doWork] = useWorker(myFn);
+
+try {
+  await doWork(data);
+} catch (error) {
+  if (error instanceof WorkerScopeError) {
+    // the function isn't self-contained — see error.message
+  }
+}
+```
+
+##### How to fix it
+
+- Keep the function self-contained: don't reference outer-scope variables, imports, or
+  helpers defined elsewhere in your module.
+- Load external scripts through the `remoteDependencies` option (they're added via
+  `importScripts` inside the worker) instead of closing over imported values.
+- As a last resort, declare the function as a string so the transpiler can't rewrite it:
 
 ```js
 const sum = new Function(`a`, `b`, `return a + b`);
