@@ -3,6 +3,7 @@ import { useDeepCallback } from './hook/useDeepCallback'
 import { AbortError } from './lib/abortError'
 import createWorkerBlobUrl from './lib/createWorkerBlobUrl'
 import WORKER_STATUS from './lib/status'
+import { enhanceWorkerError, WorkerScopeError } from './lib/workerError'
 
 type WorkerController = {
   status: WORKER_STATUS
@@ -45,7 +46,9 @@ export const useWorker = <T extends (...fnArgs: any[]) => any>(
   const worker = React.useRef<Worker & { _url?: string }>()
   const isRunning = React.useRef(false)
   const promise = React.useRef<{
-    [PROMISE_REJECT]?: (result: ReturnType<T> | ErrorEvent | AbortError) => void
+    [PROMISE_REJECT]?: (
+      result: ReturnType<T> | ErrorEvent | AbortError | WorkerScopeError,
+    ) => void
     [PROMISE_RESOLVE]?: (result: ReturnType<T>) => void
   }>({})
   const timeoutId = React.useRef<number>()
@@ -108,7 +111,11 @@ export const useWorker = <T extends (...fnArgs: any[]) => any>(
     }
 
     newWorker.onerror = (e: ErrorEvent) => {
-      promise.current[PROMISE_REJECT]?.(e)
+      const enhancedError = enhanceWorkerError(e)
+      if (enhancedError instanceof WorkerScopeError) {
+        console.error(enhancedError.message)
+      }
+      promise.current[PROMISE_REJECT]?.(enhancedError)
       onWorkerEnd(WORKER_STATUS.ERROR)
     }
 
