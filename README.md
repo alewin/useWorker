@@ -90,7 +90,7 @@ import React from "react";
 import { useWorker } from "@koale/useworker";
 
 const numbers = [...Array(5000000)].map((e) => ~~(Math.random() * 1000000));
-const sortNumbers = (nums) => nums.sort();
+const sortNumbers = (nums) => nums.sort((a, b) => a - b);
 
 const Example = () => {
   const [sortWorker] = useWorker(sortNumbers);
